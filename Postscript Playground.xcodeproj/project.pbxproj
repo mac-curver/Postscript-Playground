@@ -1,0 +1,473 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2659A7802A3851D5002AB841 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2659A77F2A3851D5002AB841 /* AppDelegate.swift */; };
+		2659A7822A3851D6002AB841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2659A7812A3851D6002AB841 /* Assets.xcassets */; };
+		2659A7852A3851D6002AB841 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2659A7832A3851D6002AB841 /* MainMenu.xib */; };
+		26E571802A3853CF0084827C /* Shell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E571752A3853CF0084827C /* Shell.swift */; };
+		26E571812A3853CF0084827C /* PsEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E571762A3853CF0084827C /* PsEditView.swift */; };
+		26E571822A3853CF0084827C /* ContextPdfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E571772A3853CF0084827C /* ContextPdfView.swift */; };
+		26E571832A3853CF0084827C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E571782A3853CF0084827C /* ViewController.swift */; };
+		26E571842A3853CF0084827C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 26E571792A3853CF0084827C /* Info.plist */; };
+		26E571852A3853CF0084827C /* OutputStreamExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E5717A2A3853CF0084827C /* OutputStreamExtension.swift */; };
+		26E571862A3853CF0084827C /* MyLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E5717B2A3853CF0084827C /* MyLogger.swift */; };
+		26E571872A3853CF0084827C /* SaveAsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E5717C2A3853CF0084827C /* SaveAsProtocol.swift */; };
+		26E571882A3853CF0084827C /* SyntaxHighlightExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E5717D2A3853CF0084827C /* SyntaxHighlightExtension.swift */; };
+		26E571892A3853CF0084827C /* ColorTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E5717E2A3853CF0084827C /* ColorTransformer.swift */; };
+		26E5718A2A3853CF0084827C /* RecentMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E5717F2A3853CF0084827C /* RecentMenuItem.swift */; };
+		26E5719F2A3853F00084827C /* Postscript PlaygroundHelp.html in Resources */ = {isa = PBXBuildFile; fileRef = 26E5718D2A3853F00084827C /* Postscript PlaygroundHelp.html */; };
+		26E571A02A3853F00084827C /* Postscript PlaygroundHelp.helpindex in Resources */ = {isa = PBXBuildFile; fileRef = 26E5718E2A3853F00084827C /* Postscript PlaygroundHelp.helpindex */; };
+		26E571AF2A3853F00084827C /* HelpTemplateTrial.code-workspace in Resources */ = {isa = PBXBuildFile; fileRef = 26E5719E2A3853F00084827C /* HelpTemplateTrial.code-workspace */; };
+		26E571B52A3853FC0084827C /* stop.svg in Resources */ = {isa = PBXBuildFile; fileRef = 26E571B12A3853FC0084827C /* stop.svg */; };
+		26E571B62A3853FC0084827C /* stop.fill.svg in Resources */ = {isa = PBXBuildFile; fileRef = 26E571B22A3853FC0084827C /* stop.fill.svg */; };
+		26E571B72A3853FC0084827C /* play.svg in Resources */ = {isa = PBXBuildFile; fileRef = 26E571B32A3853FC0084827C /* play.svg */; };
+		26E571B82A3853FC0084827C /* play.fill.svg in Resources */ = {isa = PBXBuildFile; fileRef = 26E571B42A3853FC0084827C /* play.fill.svg */; };
+		26E571D92A38AD170084827C /* HelpContent in Resources */ = {isa = PBXBuildFile; fileRef = 26E571D82A38AD170084827C /* HelpContent */; };
+		26E571DE2A38AF630084827C /* ConcentricCircles.ps in Resources */ = {isa = PBXBuildFile; fileRef = 26E571DB2A38AF630084827C /* ConcentricCircles.ps */; };
+		26E571DF2A38AF630084827C /* SiemensSternAngle.ps in Resources */ = {isa = PBXBuildFile; fileRef = 26E571DC2A38AF630084827C /* SiemensSternAngle.ps */; };
+		26E571E02A38AF630084827C /* New.ps in Resources */ = {isa = PBXBuildFile; fileRef = 26E571DD2A38AF630084827C /* New.ps */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2659A77C2A3851D5002AB841 /* Postscript Playground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Postscript Playground.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2659A77F2A3851D5002AB841 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2659A7812A3851D6002AB841 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2659A7842A3851D6002AB841 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		2659A7862A3851D6002AB841 /* Postscript_Playground.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Postscript_Playground.entitlements; sourceTree = "<group>"; };
+		26E571752A3853CF0084827C /* Shell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shell.swift; sourceTree = "<group>"; };
+		26E571762A3853CF0084827C /* PsEditView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PsEditView.swift; sourceTree = "<group>"; };
+		26E571772A3853CF0084827C /* ContextPdfView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextPdfView.swift; sourceTree = "<group>"; };
+		26E571782A3853CF0084827C /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		26E571792A3853CF0084827C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26E5717A2A3853CF0084827C /* OutputStreamExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputStreamExtension.swift; sourceTree = "<group>"; };
+		26E5717B2A3853CF0084827C /* MyLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLogger.swift; sourceTree = "<group>"; };
+		26E5717C2A3853CF0084827C /* SaveAsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveAsProtocol.swift; sourceTree = "<group>"; };
+		26E5717D2A3853CF0084827C /* SyntaxHighlightExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxHighlightExtension.swift; sourceTree = "<group>"; };
+		26E5717E2A3853CF0084827C /* ColorTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorTransformer.swift; sourceTree = "<group>"; };
+		26E5717F2A3853CF0084827C /* RecentMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentMenuItem.swift; sourceTree = "<group>"; };
+		26E5718D2A3853F00084827C /* Postscript PlaygroundHelp.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Postscript PlaygroundHelp.html"; sourceTree = "<group>"; };
+		26E5718E2A3853F00084827C /* Postscript PlaygroundHelp.helpindex */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Postscript PlaygroundHelp.helpindex"; sourceTree = "<group>"; };
+		26E5719E2A3853F00084827C /* HelpTemplateTrial.code-workspace */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "HelpTemplateTrial.code-workspace"; sourceTree = "<group>"; };
+		26E571B12A3853FC0084827C /* stop.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = stop.svg; sourceTree = "<group>"; };
+		26E571B22A3853FC0084827C /* stop.fill.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = stop.fill.svg; sourceTree = "<group>"; };
+		26E571B32A3853FC0084827C /* play.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = play.svg; sourceTree = "<group>"; };
+		26E571B42A3853FC0084827C /* play.fill.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = play.fill.svg; sourceTree = "<group>"; };
+		26E571BA2A3854060084827C /* ToolX.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = ToolX.entitlements; sourceTree = "<group>"; };
+		26E571D82A38AD170084827C /* HelpContent */ = {isa = PBXFileReference; lastKnownFileType = folder; path = HelpContent; sourceTree = "<group>"; };
+		26E571DB2A38AF630084827C /* ConcentricCircles.ps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ConcentricCircles.ps; sourceTree = "<group>"; };
+		26E571DC2A38AF630084827C /* SiemensSternAngle.ps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SiemensSternAngle.ps; sourceTree = "<group>"; };
+		26E571DD2A38AF630084827C /* New.ps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = New.ps; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2659A7792A3851D5002AB841 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2659A7732A3851D5002AB841 = {
+			isa = PBXGroup;
+			children = (
+				26E571B92A3854060084827C /* ToolX */,
+				26E571B02A3853FC0084827C /* Images */,
+				26E5718B2A3853F00084827C /* HelpFolder */,
+				26E571DA2A38AF630084827C /* ExampleFiles */,
+				2659A77E2A3851D5002AB841 /* Postscript Playground */,
+				2659A77D2A3851D5002AB841 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2659A77D2A3851D5002AB841 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2659A77C2A3851D5002AB841 /* Postscript Playground.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2659A77E2A3851D5002AB841 /* Postscript Playground */ = {
+			isa = PBXGroup;
+			children = (
+				26E5717E2A3853CF0084827C /* ColorTransformer.swift */,
+				26E571772A3853CF0084827C /* ContextPdfView.swift */,
+				26E571792A3853CF0084827C /* Info.plist */,
+				26E5717B2A3853CF0084827C /* MyLogger.swift */,
+				26E5717A2A3853CF0084827C /* OutputStreamExtension.swift */,
+				26E571762A3853CF0084827C /* PsEditView.swift */,
+				26E5717F2A3853CF0084827C /* RecentMenuItem.swift */,
+				26E5717C2A3853CF0084827C /* SaveAsProtocol.swift */,
+				26E571752A3853CF0084827C /* Shell.swift */,
+				26E5717D2A3853CF0084827C /* SyntaxHighlightExtension.swift */,
+				26E571782A3853CF0084827C /* ViewController.swift */,
+				2659A77F2A3851D5002AB841 /* AppDelegate.swift */,
+				2659A7812A3851D6002AB841 /* Assets.xcassets */,
+				2659A7832A3851D6002AB841 /* MainMenu.xib */,
+				2659A7862A3851D6002AB841 /* Postscript_Playground.entitlements */,
+			);
+			path = "Postscript Playground";
+			sourceTree = "<group>";
+		};
+		26E5718B2A3853F00084827C /* HelpFolder */ = {
+			isa = PBXGroup;
+			children = (
+				26E5718C2A3853F00084827C /* Postscript PlaygroundHelp */,
+			);
+			path = HelpFolder;
+			sourceTree = "<group>";
+		};
+		26E5718C2A3853F00084827C /* Postscript PlaygroundHelp */ = {
+			isa = PBXGroup;
+			children = (
+				26E571D82A38AD170084827C /* HelpContent */,
+				26E5718D2A3853F00084827C /* Postscript PlaygroundHelp.html */,
+				26E5718E2A3853F00084827C /* Postscript PlaygroundHelp.helpindex */,
+				26E5719E2A3853F00084827C /* HelpTemplateTrial.code-workspace */,
+			);
+			path = "Postscript PlaygroundHelp";
+			sourceTree = "<group>";
+		};
+		26E571B02A3853FC0084827C /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				26E571B12A3853FC0084827C /* stop.svg */,
+				26E571B22A3853FC0084827C /* stop.fill.svg */,
+				26E571B32A3853FC0084827C /* play.svg */,
+				26E571B42A3853FC0084827C /* play.fill.svg */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		26E571B92A3854060084827C /* ToolX */ = {
+			isa = PBXGroup;
+			children = (
+				26E571BA2A3854060084827C /* ToolX.entitlements */,
+			);
+			path = ToolX;
+			sourceTree = "<group>";
+		};
+		26E571DA2A38AF630084827C /* ExampleFiles */ = {
+			isa = PBXGroup;
+			children = (
+				26E571DB2A38AF630084827C /* ConcentricCircles.ps */,
+				26E571DC2A38AF630084827C /* SiemensSternAngle.ps */,
+				26E571DD2A38AF630084827C /* New.ps */,
+			);
+			name = ExampleFiles;
+			path = "Postscript Playground/ExampleFiles";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2659A77B2A3851D5002AB841 /* Postscript Playground */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2659A7892A3851D6002AB841 /* Build configuration list for PBXNativeTarget "Postscript Playground" */;
+			buildPhases = (
+				2659A7782A3851D5002AB841 /* Sources */,
+				2659A7792A3851D5002AB841 /* Frameworks */,
+				2659A77A2A3851D5002AB841 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Postscript Playground";
+			productName = "Postscript Playground";
+			productReference = 2659A77C2A3851D5002AB841 /* Postscript Playground.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2659A7742A3851D5002AB841 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					2659A77B2A3851D5002AB841 = {
+						CreatedOnToolsVersion = 14.3;
+					};
+				};
+			};
+			buildConfigurationList = 2659A7772A3851D5002AB841 /* Build configuration list for PBXProject "Postscript Playground" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2659A7732A3851D5002AB841;
+			productRefGroup = 2659A77D2A3851D5002AB841 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2659A77B2A3851D5002AB841 /* Postscript Playground */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2659A77A2A3851D5002AB841 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26E571D92A38AD170084827C /* HelpContent in Resources */,
+				2659A7822A3851D6002AB841 /* Assets.xcassets in Resources */,
+				26E571B52A3853FC0084827C /* stop.svg in Resources */,
+				26E571A02A3853F00084827C /* Postscript PlaygroundHelp.helpindex in Resources */,
+				26E571B72A3853FC0084827C /* play.svg in Resources */,
+				2659A7852A3851D6002AB841 /* MainMenu.xib in Resources */,
+				26E571DE2A38AF630084827C /* ConcentricCircles.ps in Resources */,
+				26E5719F2A3853F00084827C /* Postscript PlaygroundHelp.html in Resources */,
+				26E571AF2A3853F00084827C /* HelpTemplateTrial.code-workspace in Resources */,
+				26E571E02A38AF630084827C /* New.ps in Resources */,
+				26E571B62A3853FC0084827C /* stop.fill.svg in Resources */,
+				26E571842A3853CF0084827C /* Info.plist in Resources */,
+				26E571B82A3853FC0084827C /* play.fill.svg in Resources */,
+				26E571DF2A38AF630084827C /* SiemensSternAngle.ps in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2659A7782A3851D5002AB841 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26E571832A3853CF0084827C /* ViewController.swift in Sources */,
+				26E571802A3853CF0084827C /* Shell.swift in Sources */,
+				26E571862A3853CF0084827C /* MyLogger.swift in Sources */,
+				26E571852A3853CF0084827C /* OutputStreamExtension.swift in Sources */,
+				26E571872A3853CF0084827C /* SaveAsProtocol.swift in Sources */,
+				26E571892A3853CF0084827C /* ColorTransformer.swift in Sources */,
+				26E571822A3853CF0084827C /* ContextPdfView.swift in Sources */,
+				26E5718A2A3853CF0084827C /* RecentMenuItem.swift in Sources */,
+				2659A7802A3851D5002AB841 /* AppDelegate.swift in Sources */,
+				26E571882A3853CF0084827C /* SyntaxHighlightExtension.swift in Sources */,
+				26E571812A3853CF0084827C /* PsEditView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		2659A7832A3851D6002AB841 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2659A7842A3851D6002AB841 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2659A7872A3851D6002AB841 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2659A7882A3851D6002AB841 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		2659A78A2A3851D6002AB841 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Postscript Playground/Postscript_Playground.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P8TSSKQDC4;
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainNibFile = MainMenu;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.6;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.LegoEsprit.Postscript-Playground";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		2659A78B2A3851D6002AB841 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Postscript Playground/Postscript_Playground.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P8TSSKQDC4;
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainNibFile = MainMenu;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.6;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.LegoEsprit.Postscript-Playground";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2659A7772A3851D5002AB841 /* Build configuration list for PBXProject "Postscript Playground" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2659A7872A3851D6002AB841 /* Debug */,
+				2659A7882A3851D6002AB841 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2659A7892A3851D6002AB841 /* Build configuration list for PBXNativeTarget "Postscript Playground" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2659A78A2A3851D6002AB841 /* Debug */,
+				2659A78B2A3851D6002AB841 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2659A7742A3851D5002AB841 /* Project object */;
+}
