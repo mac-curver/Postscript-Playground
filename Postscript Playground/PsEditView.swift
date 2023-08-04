@@ -34,7 +34,7 @@ extension Double {
         return formatter
     }()
     var formatted: String {
-        return Double.twoFractionDigits.string(for: self) ?? ""
+        return Double.twoFractionDigits.string(for: self) ?? "-.------"
     }
 }
 
@@ -49,12 +49,12 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
     
     /// version number of PsEditView
     static let version = "2.2.0"
+    var viewController: ViewController!
 
     
     /// Only .ps files are allowed
     let expectedExt = ["ps"]
     let postScriptUUType = UTType("com.adobe.postscript")!
-    var viewController: ViewController? = nil
     
     /// Timer used for automatic conversion and delayed syntax highlighting
     var timer: Timer = Timer()
@@ -68,7 +68,7 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
 
     /// true whenever changes were applied
     var saved = true
-    /// AutoSaving when in live mode
+    /// Auto saving when in live mode
     var autoSave = false
 
 
@@ -103,22 +103,21 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
     /// awakeFromNib to initialize to a monospaced font
     override func awakeFromNib() {
         Logger.login("", className: className)
-        let appDelegate = NSApplication.shared.delegate as? AppDelegate
-        viewController = appDelegate?.viewController
         font = NSFont(name: "Monaco", size: 11)
         //isRulerVisible = true
         Logger.logout("", className: className)
     }
     
+    
     /// setPathes calculates the pdf and ps pathes from a root `URL`
     /// - parameter urlForPrefix:           The  root `URL` for the pdf or ps.
     func setPathes(urlForPrefix: URL, known: Bool) {
-        Logger.login("", className: className)
+        Logger.login("", level: OSLogType.default, className: className)
         let pathPrefix = urlForPrefix.deletingPathExtension()
         psFileUrl = FileUrl(url: pathPrefix.appendingPathExtension("ps")
                             , knownToFileManager: known
         )
-        Logger.logout("\(psFileUrl)", className: className)
+        Logger.logout("\(psFileUrl)", level: OSLogType.default, className: className)
     }
     
     @IBAction func showRuler(_ sender: NSMenuItem) {
@@ -216,7 +215,7 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
 
     /// mouseDown used to caluculate the text position in the ps file
     ///
-    /// - parameter event:            The system ´NSEvent´.
+    /// - parameter event: The system ´NSEvent´.
     override func mouseDown(with event: NSEvent) {
         super.mouseDown(with: event)
         setColumnAndRow()
@@ -224,7 +223,7 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
 
     
     /// keyDown used to restart the timer for autosave and syntax highligthing
-    /// - parameter event:            The system ´NSEvent´.
+    /// - parameter event: The system ´NSEvent´.
     ///
     override func keyDown(with event: NSEvent) {
         super.keyDown(with: event)
@@ -326,7 +325,7 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
         //let start = ProcessInfo.processInfo.systemUptime;
         let selectionRange: NSRange = selectedRange()
         let regex = try! NSRegularExpression(pattern: "\n", options: [])
-        let lineNumber = regex.numberOfMatches(in: string, options: [], range: NSMakeRange(0, selectionRange.location)) + 1
+        let lineNumber = regex.numberOfMatches(in: string, options: [], range: NSMakeRange(0, selectionRange.location))
         var column = 0
         if let stringIndexSelection = Range(selectionRange, in: string) {
             let lineRange = string.lineRange(for: stringIndexSelection)
@@ -367,6 +366,9 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
         return response
     }
     
+    /// Creates a very simple .ps file
+    ///
+    /// In case the bundle access fails a hard coded file is being used!
     func newFile() {
         let myFileUrl = Bundle.main.url(forResource:"New", withExtension: "ps")
         do {
@@ -415,19 +417,19 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
     /// - Returns: true if new file was opened successfully
     fileprivate func openFilePrivate() -> Bool {
         Logger.login("", className: className)
+        var opened = false
         saved = true
         do {
             string = try String(contentsOf: psFileUrl.url, encoding: .utf8)
             
             assignSyntaxColors()
-            Logger.logout("\(string.count)", className: className)
-            return true
+            opened = true
         }
         catch {
-            //os_log("Here we should add an error message")
-            Logger.logout("", className: className)
-            return false
+            Logger.write("Open file failed", level: OSLogType.error, className: className)
         }
+        Logger.logout("\(string.count)", className: className)
+        return opened
     }
     
     /// Displays an alert to offer to save the changes in case document has been changed
@@ -499,8 +501,7 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
             
         }
         catch {
-            Logger.write("Reading bookmark failed: \(error)", className: className)
-
+            Logger.write("Reading bookmark failed: \(error)", level: OSLogType.error, className: className)
         }
         Logger.logout("", className: className)
         return bookmarkedUrl
@@ -508,7 +509,7 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
     
     func saveFileTo(path: String) -> Bool {
         
-        Logger.login("\(path)")
+        Logger.login("\(path)", level: OSLogType.default, className: className)
         var success = false
         do {
             try string.write(toFile: path
@@ -524,7 +525,7 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
             alert.informativeText = error.localizedDescription
             alert.runModal()
         }
-        Logger.logout("\(success)")
+        Logger.logout("\(success)", level: OSLogType.default, className: className)
         return success
     }
     

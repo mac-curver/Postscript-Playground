@@ -35,6 +35,7 @@ class ViewController: NSViewController {
     @IBOutlet weak var attentionButton: NSButton!
     
     @IBOutlet weak var automaticallyComboBox: NSComboButton!
+    @IBOutlet weak var delegate: AppDelegate!
     
     let alternateConverters = [  ["/usr/bin/pstopdf", "-o"]
                                , ["/usr/local/bin/ps2pdf", ""]
@@ -67,16 +68,14 @@ class ViewController: NSViewController {
     }
     
     
-    func version() {
-        Logger.write("\(PsEditView.version)")
-        //Logger.write("Stack:\(stackSize)")
+    func version() -> String {
 
         /*
         /// Start in background
         DispatchQueue.global(qos: .userInitiated).async {
            
             let start = ProcessInfo.processInfo.systemUptime
-            let test = self.ackermann(m: 3, n: 3)
+            let test = self.ackermann(m: 2, n: 2)
             Logger.write("\(ProcessInfo.processInfo.systemUptime-start) s")
             print("This is run on a background queue: \(test)")
 
@@ -85,10 +84,19 @@ class ViewController: NSViewController {
             }
         }
          */
+        
+        return """
+               Bundle: \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String) \
+               Editor: \(PsEditView.version)
+               """
+
     }
     
+    
+    
     override func viewDidLoad() {
-        Logger.login("Version: \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)", className: className)
+        Logger.login(version(), level: OSLogType.default, className: className)
+        
         super.viewDidLoad()
         
         var successPath = ""
@@ -105,7 +113,7 @@ class ViewController: NSViewController {
             }
         }
         
-        if (successPath.isEmpty) {
+        if successPath.isEmpty {
             let alert = NSAlert()
             
             alert.alertStyle = .critical
@@ -116,7 +124,7 @@ class ViewController: NSViewController {
                                     or Homebrew.
                                     The App will close now!
                                     """
-            //alert.addButton(withTitle: "Quit SimplePsViewer")
+            //alert.addButton(withTitle: "Quit PsViewer")
             //alert.addButton(withTitle: "Xcode in App Store")
             //alert.addButton(withTitle: "GS for Mac Ports")
             //alert.addButton(withTitle: "GS for Homebrew")
@@ -187,7 +195,7 @@ class ViewController: NSViewController {
         
         self.fileNew(NSMenuItem())
             
-        Logger.logout("", className: className)
+        Logger.logout("", level: OSLogType.default, className: className)
 
     }
     
@@ -200,8 +208,8 @@ class ViewController: NSViewController {
     */
     
     /// We need this as otherwise the animation does not start
-    func didFinishLaunching() {
-        version()
+    func didFinishLaunching(appDelegate: AppDelegate) {
+        psTextView.viewController = appDelegate.viewController                  /// copy the view controller down the hierachy
         addAnimationToAttentionButton()
     }
     
@@ -326,7 +334,7 @@ class ViewController: NSViewController {
             )
         }
         catch {
-            Logger.write("Bookmarking failed: \(error)")
+            Logger.write("Bookmarking failed: \(error)", level: OSLogType.default, className: className)
         }
     }
     
@@ -534,7 +542,7 @@ class ViewController: NSViewController {
     }
     
     
-    /// Adds blinking animation to the attenntion button
+    /// Adds blinking animation to the attention button
     func addAnimationToAttentionButton() {
         let animation = CAKeyframeAnimation.init(keyPath: "opacity")
         animation.values = [0, 1]
@@ -579,6 +587,7 @@ class ViewController: NSViewController {
     func checkForChanges() {
         // Insert code here to tear down your application
         psTextView.checkToSaveChanges()
+        addRecentItem(url: psTextView.psFileUrl.url)
         let preferences = NSUserDefaultsController().defaults
         
         recent2Menu.storeItems(preferences: preferences)

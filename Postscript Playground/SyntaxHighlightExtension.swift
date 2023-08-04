@@ -163,7 +163,6 @@ extension NSTextView {
             SyntaxColors.ColorSpaces.GraphicsColor: Regex {
                 Anchor.wordBoundary
                 ChoiceOf {
-                    "selectfont"
                     "get"
                     "moveto"; "lineto"; "rmoveto"; "rlineto"
                     "newpath"; "closepath"; "stroke"
@@ -174,13 +173,14 @@ extension NSTextView {
                     "push"; "pop"; "dup"; "exch"; "copy"; "index"; "roll";
                     "clear"; "mark"; "cleartomark"; "counttomark"
                     "findfont"; "scalefont"; "setfont"; "charpath"
+                    "selectfont"; "stringwidth"
                     "setgray"
                     "fill"
                     "setrgbcolor"
                     "length"
                     "putinterval"
                     "bind"
-                    "cvs"
+                    "cvs"; "cvi"; "cvn"
                 }
                 Anchor.wordBoundary
             }
@@ -286,6 +286,7 @@ extension NSTextView {
                 }
                 
             }
+            setNeedsDisplay(visibleRect)
         }
     }
     

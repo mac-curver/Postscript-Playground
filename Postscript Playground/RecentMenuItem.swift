@@ -35,6 +35,7 @@
 import os.log
 import Cocoa
 
+/// Structure to remember the name and the bookmark for files that have been opened before
 struct MenuItem: Codable {
     var pdfUrl: URL = URL(fileURLWithPath: "")                                  ///< remember the pdf path
     var secureData: Data = Data()                                               ///< remember the ps path as secure bookmark
@@ -42,7 +43,7 @@ struct MenuItem: Codable {
   
 
 
-
+/// Required to implement the recent functionality
 extension NSMenu {
     
     /// Add item to recent menu
@@ -51,7 +52,7 @@ extension NSMenu {
     ///   - pdfUrl: Url for the PDF file
     ///   - selector: Selector to be called
     func addRecentMenuItem(pdfUrl: URL, psData: Data, for selector: Selector?) {
-        // I can't get it done automatically, what I assumed to work
+        // I can't get it done automatically, what was that I assumed!
         
         // remove item title if it exists already
         do {
@@ -62,7 +63,14 @@ extension NSMenu {
                 relativeTo: nil,
                 bookmarkDataIsStale: &isStale
             )
-            Logger.write("Bookmark is stalled: \(isStale)", className: className)
+            if isStale {
+                Logger.write("Bookmark is stale!", level: OSLogType.error, className: className)
+                /// On return, if YES, the bookmark data is stale.
+                /// Your app should create a new bookmark using the returned URL and use
+                /// it in place of any stored copies of the existing bookmark.
+                /// Fortunately this never happened?!
+            }
+            
             if let oldItem = self.item(withTitle: menuItemUrl.path) {
                 self.removeItem(oldItem)
             }
@@ -74,11 +82,13 @@ extension NSMenu {
             self.insertItem(item, at:0)
         }
         catch {
-            Logger.write("An issue occured", className: className)
+            Logger.write("An issue occured", level: OSLogType.error, className: className)
         }
 
     }
     
+    /// Stores the menu items with bookmarks to the preferences
+    /// - Parameter preferences: Access to the preferences
     func storeItems(preferences: UserDefaults) {
         var key = 0
         preferences.set(self.items.count - 1, forKey: "RecentItemCount")
@@ -98,12 +108,18 @@ extension NSMenu {
         preferences.set("1.0.3", forKey: "Version")
     }
     
+    /// Retrieves the menu items with bookmarks to the preferences and fills up the recent menu
+    /// - Parameters:
+    ///   - preferences: Access to the preferences file
+    ///   - selector: Call back for the recent menu item
     func retrieveItems(preferences: UserDefaults, for selector: Selector?) {
         
         // (lldb) po NSHomeDirectory()
         // /Users/hj/Library/Containers/de.LegoEsprit.SimplePsViewer/Data/Library/Preferences
         
-        Logger.write(preferences.string(forKey: "Version") ?? "Undefined", className: className)
+        Logger.write(preferences.string(forKey: "Version") ?? "Undefined"
+                     , level: OSLogType.default, className: className
+        )
         let count = preferences.integer(forKey: "RecentItemCount")
             
         let decoder = PropertyListDecoder()
@@ -124,7 +140,7 @@ extension NSMenu {
     }
 }
 
-/// Helps to implement recent menu item by storing the file name and the name of te pdf.
+/// Helps to implement recent menu item by storing the file name and the name of the pdf.
 class RecentMenuItem: NSMenuItem {
     
     var menuItem: MenuItem = MenuItem()
@@ -133,15 +149,14 @@ class RecentMenuItem: NSMenuItem {
     /// - Parameter coder: Propagated to super but not used
     required init(coder: NSCoder) {
         /// Not even called, but super.init also required by compiler ?!
-        
         super.init(coder: coder)
     }
     
     /// overwritten init
     ///
-    /// - parameter newEditView:            The `PsEditView` that uses the menu.
-    /// - parameter pdfView:                The `ContextPdfView` that uses the menu.
-    /// - parameter selector:               The `Selector?` to be executed foir the menu item.
+    /// - parameter newEditView: The `PsEditView` that uses the menu.
+    /// - parameter pdfView:     The `ContextPdfView` that uses the menu.
+    /// - parameter selector:    The `Selector?` to be executed foir the menu item.
 
     init(ps: URL, pdf: URL, psData: Data, action selector: Selector?) {
         super.init(title: ps.path, action: selector, keyEquivalent: "")

@@ -30,16 +30,16 @@
 		26E571B82A3853FC0084827C /* play.fill.svg in Resources */ = {isa = PBXBuildFile; fileRef = 26E571B42A3853FC0084827C /* play.fill.svg */; };
 		26E571D92A38AD170084827C /* HelpContent in Resources */ = {isa = PBXBuildFile; fileRef = 26E571D82A38AD170084827C /* HelpContent */; };
 		26E571DE2A38AF630084827C /* ConcentricCircles.ps in Resources */ = {isa = PBXBuildFile; fileRef = 26E571DB2A38AF630084827C /* ConcentricCircles.ps */; };
-		26E571DF2A38AF630084827C /* SiemensSternAngle.ps in Resources */ = {isa = PBXBuildFile; fileRef = 26E571DC2A38AF630084827C /* SiemensSternAngle.ps */; };
+		26E571DF2A38AF630084827C /* SiemensStarAngle.ps in Resources */ = {isa = PBXBuildFile; fileRef = 26E571DC2A38AF630084827C /* SiemensStarAngle.ps */; };
 		26E571E02A38AF630084827C /* New.ps in Resources */ = {isa = PBXBuildFile; fileRef = 26E571DD2A38AF630084827C /* New.ps */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		264E7AA02A766604009B75C0 /* Postscript_Playground.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Postscript_Playground.entitlements; sourceTree = "<group>"; };
 		2659A77C2A3851D5002AB841 /* Postscript Playground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Postscript Playground.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2659A77F2A3851D5002AB841 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2659A7812A3851D6002AB841 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2659A7842A3851D6002AB841 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		2659A7862A3851D6002AB841 /* Postscript_Playground.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Postscript_Playground.entitlements; sourceTree = "<group>"; };
 		26E571752A3853CF0084827C /* Shell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shell.swift; sourceTree = "<group>"; };
 		26E571762A3853CF0084827C /* PsEditView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PsEditView.swift; sourceTree = "<group>"; };
 		26E571772A3853CF0084827C /* ContextPdfView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextPdfView.swift; sourceTree = "<group>"; };
@@ -61,7 +61,7 @@
 		26E571BA2A3854060084827C /* ToolX.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = ToolX.entitlements; sourceTree = "<group>"; };
 		26E571D82A38AD170084827C /* HelpContent */ = {isa = PBXFileReference; lastKnownFileType = folder; path = HelpContent; sourceTree = "<group>"; };
 		26E571DB2A38AF630084827C /* ConcentricCircles.ps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ConcentricCircles.ps; sourceTree = "<group>"; };
-		26E571DC2A38AF630084827C /* SiemensSternAngle.ps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SiemensSternAngle.ps; sourceTree = "<group>"; };
+		26E571DC2A38AF630084827C /* SiemensStarAngle.ps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SiemensStarAngle.ps; sourceTree = "<group>"; };
 		26E571DD2A38AF630084827C /* New.ps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = New.ps; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,9 +99,10 @@
 		2659A77E2A3851D5002AB841 /* Postscript Playground */ = {
 			isa = PBXGroup;
 			children = (
+				264E7AA02A766604009B75C0 /* Postscript_Playground.entitlements */,
+				26E571792A3853CF0084827C /* Info.plist */,
 				26E5717E2A3853CF0084827C /* ColorTransformer.swift */,
 				26E571772A3853CF0084827C /* ContextPdfView.swift */,
-				26E571792A3853CF0084827C /* Info.plist */,
 				26E5717B2A3853CF0084827C /* MyLogger.swift */,
 				26E5717A2A3853CF0084827C /* OutputStreamExtension.swift */,
 				26E571762A3853CF0084827C /* PsEditView.swift */,
@@ -113,7 +114,6 @@
 				2659A77F2A3851D5002AB841 /* AppDelegate.swift */,
 				2659A7812A3851D6002AB841 /* Assets.xcassets */,
 				2659A7832A3851D6002AB841 /* MainMenu.xib */,
-				2659A7862A3851D6002AB841 /* Postscript_Playground.entitlements */,
 			);
 			path = "Postscript Playground";
 			sourceTree = "<group>";
@@ -160,7 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				26E571DB2A38AF630084827C /* ConcentricCircles.ps */,
-				26E571DC2A38AF630084827C /* SiemensSternAngle.ps */,
+				26E571DC2A38AF630084827C /* SiemensStarAngle.ps */,
 				26E571DD2A38AF630084827C /* New.ps */,
 			);
 			name = ExampleFiles;
@@ -238,7 +238,7 @@
 				26E571B62A3853FC0084827C /* stop.fill.svg in Resources */,
 				26E571842A3853CF0084827C /* Info.plist in Resources */,
 				26E571B82A3853FC0084827C /* play.fill.svg in Resources */,
-				26E571DF2A38AF630084827C /* SiemensSternAngle.ps in Resources */,
+				26E571DF2A38AF630084827C /* SiemensStarAngle.ps in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,8 +399,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = P8TSSKQDC4;
-				ENABLE_HARDENED_RUNTIME = NO;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainNibFile = MainMenu;
@@ -427,8 +427,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = P8TSSKQDC4;
-				ENABLE_HARDENED_RUNTIME = NO;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainNibFile = MainMenu;

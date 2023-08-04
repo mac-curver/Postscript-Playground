@@ -6,6 +6,8 @@
 //
 //                        , file: URL = URL(string: #file) -> MyLogger !!!
 /*
+> Examples on how to retrieve the log info from "Console" log files:
+ 
 sudo log stream --predicate 'subsystem == <Bundle Identifier>'
 sudo log stream --predicate 'subsystem == <Bundle Identifier>' | awk '{print $0}'
 sudo log show --predicate 'subsystem == <Bundle Identifier>' --last 1h
@@ -19,28 +21,53 @@ import Foundation
 
 /// How to use
 ///
-///         Logger.login("In-Message"[, className: className])                  // Increases ident
+///         Logger.login("In-Message"[, className: className])                  // Increases indent
 ///         ...
-///         Logger.logout("Out-Message"[, className: className])                // Decreases ident
+///         Logger.logout("Out-Message"[, className: className])                // Decreases indent
 ///
 ///         Logger.write("Write-Message"[, className: className])               // write message
 ///  usage of [, className: className] is optional, but recommended to extract
-///  the class.
+///  the class (I could not identify a method to retrieve the class name by
+///  other means).
 ///
+///  Comments:
+///  =========
+///  Contrary to Apple's intend I am using "privacy: .public", as otherwise
+///  you will only get useless log files filled with <private> like:
+///
+/// ╭╴ ViewController.saveAndConvert(_:), <private>
+/// | <private>PsEditView.saveFileToPsUrl(), <private>
+/// | <private>PsEditView.saveFileToPsUrl(), <private>
+/// | <private>PsEditView.saveFileToPsUrl(), <private>
+/// | ╭╴ PsEditView|saveFileTo(path:), <private>
+/// | ╰╴ PsEditView|saveFileTo(path:), <private>
+/// | ╭╴ ViewController.convertPsToPdf(), <private>
+/// | | <private>Shell.init(_:arguments:), <private>
+/// | ╰╴ ViewController.convertPsToPdf(), <private>
+/// ╰╴ ViewController.saveAndConvert(_:), <private>
+///
+/// . It is even not possible to control the privacy setting via a parameter. Therefore please
+///  don't use this Logger for security senitive information. (See  "OSLogPrivacy.public")
+///
+///
+///#if DEBUG
+///Logger.write("I'm running in DEBUG mode")
+///#else
+///Logger.write("I'm not running in DEBUG mode")
+///#endif
+
 extension Logger {
     private static let subsystem = Bundle.main.bundleIdentifier!
-    static var fill: String = ""
+    static var fill: String = ""                                                // This should be thread save as we change it only on main thread
     
     static let main = Logger(subsystem: subsystem, category: "")
-    static let defaultLevel = OSLogType.default
+    static let debugLevel = OSLogType.debug                                     // This will not be added to Console log unless configuration has been changed
     /*
      debug: OSLogType
      info: OSLogType
      default: OSLogType -> notice
      error: OSLogType
      fault: OSLogType
-     
-     OSLogPrivacy.public
      */
     
     /// Generates a name from eith classname or file name
@@ -53,7 +80,7 @@ extension Logger {
     ) -> String {
         if className.isEmpty {
             // extracting the filename part only. Unfortunately we can't use
-            // URL(filepath: file) here as it will allways returns "MyLogger"
+            // URL(filepath: file) here as it will allways return "MyLogger"
             return "\(file.split(separator: "/").last!.split(separator: ".").first!)|"
         }
         else {
@@ -62,6 +89,41 @@ extension Logger {
         }
     }
     
+    /// Writes log message to console file
+    /// - Parameters:
+    ///   - className: The retrieved class name
+    ///   - file: Alternatively the file name
+    ///   - thread: Either "T" for dispatched thread, blank or plus/minus indent
+    ///   - function: Name of the calling function
+    ///   - message: The debug message
+    fileprivate static func privateLog(level: OSLogType = debugLevel
+                                       , className: String
+                                       , file: String
+                                       , thread: String
+                                       , function: StaticString
+                                       , _ message: String
+    ) {
+        let name = name(className: className, file: file)
+        
+        #if DEBUG
+        let myLevel = OSLogType.default
+        #else
+        let myLevel = level
+        #endif
+
+        Logger.main.log(level: myLevel,
+                        //  v--- must be all at same column!
+                        """
+                        \(fill, privacy: .public)\
+                        \(thread)\(name, privacy: .public)\
+                        \(function, privacy: .public),\
+                         \(message, privacy: .public)
+                        """
+                        //  ^--- must be all at same column!
+        )
+        
+    }
+
     
     /// Writes message to log file keeping the level
     /// - Parameters:
@@ -72,7 +134,7 @@ extension Logger {
     ///   - function: Optional method name - defaults to #function
     ///   - line: Optional line number - defaults to #line
     static func write(_ message: String
-                      , level: OSLogType = defaultLevel
+                      , level: OSLogType = debugLevel
                       , className: String = ""
                       , file: String = #file
                       , function: StaticString = #function
@@ -80,49 +142,36 @@ extension Logger {
                 ) {
         
         let thread = Thread.isMainThread ? " " : "T"
-        
-        let name = name(className: className, file: file)
-        Logger.main.log(level: defaultLevel,
-                    //  v--- must be all same column!
-                        """
-                        \(fill, privacy: .public)\
-                        \(thread)\(name, privacy: .public)\
-                        \(function, privacy: .public),\
-                         \(message, privacy: .public)
-                        """)
-                    //  ^--- must be all same column!
+        privateLog(level: level
+                   , className: className
+                   , file: file
+                   , thread: thread
+                   , function: function
+                   , message
+        )
     }
+    
     
     /// Increases the log level indent
     /// - Parameters:
     ///   see write
     static func login(_ message: String
-                      , level: OSLogType = defaultLevel
+                      , level: OSLogType = debugLevel
                       , className: String = ""
                       , file: String = #file
                       , function: StaticString = #function
                       //, line: UInt = #line
                 ) {
-        let name = name(className: className, file: file)
+        let thread = Thread.isMainThread ? "╭╴" : "T"
+        privateLog(level: level
+                   , className: className
+                   , file: file
+                   , thread: thread
+                   , function: function
+                   , message
+        )
         if Thread.isMainThread {
-            // \(String(format: "%4d", line), privacy: .public)\
-            Logger.main.log(level: defaultLevel,
-                        """
-                        \(fill, privacy: .public)\
-                        ╭╴ \(name, privacy: .public)\
-                        \(function, privacy: .public),\
-                         \(message, privacy: .public)
-                        """)
             fill += "│ "
-        }
-        else {
-            Logger.main.log(level: defaultLevel,
-                        """
-                        \(fill, privacy: .public)\
-                        T\(name, privacy: .public)\
-                        \(function, privacy: .public),\
-                         \(message, privacy: .public)
-                        """)
         }
     }
     
@@ -130,35 +179,25 @@ extension Logger {
     /// - Parameters:
     ///   see write
     static func logout(_ message: String
-                       , level: OSLogType = defaultLevel
+                       , level: OSLogType = debugLevel
                        , className: String = ""
                        , file: String = #file
                        , function: StaticString = #function
                        //, line: UInt = #line
                 ) {
-        if fill.count >= 2 {
-            fill.removeLast(2)
-        }
-        let name = name(className: className, file: file)
         if Thread.isMainThread {
-            
-            Logger.main.log(level: defaultLevel,
-                        """
-                        \(fill, privacy: .public)\
-                        ╰╴ \(name, privacy: .public)\
-                        \(function, privacy: .public),\
-                         \(message, privacy: .public)
-                        """)
+            if fill.count >= 2 {
+                fill.removeLast(2)
+            }
         }
-        else {
-            Logger.main.log(level: defaultLevel,
-                        """
-                        \(fill, privacy: .public)\
-                        T\(name, privacy: .public)\
-                        \(function, privacy: .public),\
-                         \(message, privacy: .public)
-                        """)
-        }
+        let thread = Thread.isMainThread ? "╰╴" : "T"
+        privateLog(level: level
+                   , className: className
+                   , file: file
+                   , thread: thread
+                   , function: function
+                   , message
+        )
     }
     
 }

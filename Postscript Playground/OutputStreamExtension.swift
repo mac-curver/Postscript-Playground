@@ -43,7 +43,7 @@ extension OutputStream {
 
     /// Write `Data` to `OutputStream`
     ///
-    /// - parameter data:                  The `Data` to write.
+    /// - parameter data: The `Data` to write.
     func write(_ data: Data) throws {
         try data.withUnsafeBytes { (buffer: UnsafeRawBufferPointer) throws in
             guard var pointer = buffer.baseAddress?.assumingMemoryBound(to: UInt8.self) else {

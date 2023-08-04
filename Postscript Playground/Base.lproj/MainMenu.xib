@@ -9,31 +9,13 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ViewController" customModule="Postscript_Playground" customModuleProvider="target">
             <connections>
-                <outlet property="attentionButton" destination="LVk-of-Y9q" id="6pV-gY-YHs"/>
-                <outlet property="automaticallyComboBox" destination="0JF-Rh-CLr" id="QhA-gX-HgZ"/>
-                <outlet property="columnRowLabel" destination="l6x-LW-uFU" id="PK2-1k-Mmh"/>
                 <outlet property="delegate" destination="Voe-Tx-rLC" id="GzC-gU-4Uq"/>
-                <outlet property="pdfView" destination="V2y-i5-Q8g" id="l2q-eI-tut"/>
-                <outlet property="psTextView" destination="qTi-0S-hBv" id="Axx-DI-p4b"/>
-                <outlet property="recent2Menu" destination="8AO-Nz-E1Y" id="ZW2-VA-NlK"/>
-                <outlet property="settingsWindow" destination="5KJ-h8-R4L" id="kG3-a1-u9S"/>
-                <outlet property="verticalSplitter" destination="igB-vT-9oa" id="APC-18-aEI"/>
-                <outlet property="window" destination="QvC-M9-y7g" id="aKQ-QA-90E"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Postscript_Playground" customModuleProvider="target">
             <connections>
-                <outlet property="attentionButton" destination="LVk-of-Y9q" id="F8m-gS-id7"/>
-                <outlet property="automaticallyComboBox" destination="0JF-Rh-CLr" id="b0S-JD-eAS"/>
-                <outlet property="columnRowLabel" destination="l6x-LW-uFU" id="wIN-Wq-Os1"/>
-                <outlet property="pdfView" destination="V2y-i5-Q8g" id="jeT-Wy-XvB"/>
-                <outlet property="psTextView" destination="qTi-0S-hBv" id="WCw-rC-q0v"/>
-                <outlet property="psToPdfConverterPathComboBox" destination="xUa-Ww-37a" id="4bh-f7-TuM"/>
-                <outlet property="recent2Menu" destination="8AO-Nz-E1Y" id="NKP-pZ-LXR"/>
-                <outlet property="settingsWindow" destination="5KJ-h8-R4L" id="G5n-Qr-jAv"/>
-                <outlet property="verticalSplitter" destination="igB-vT-9oa" id="oo0-Vk-Nmb"/>
                 <outlet property="viewController" destination="Wis-H3-gc5" id="QTN-Ls-IMd"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
@@ -41,7 +23,7 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <viewController id="Wis-H3-gc5" customClass="ViewController" customModule="Postscript_Playground" customModuleProvider="target">
             <connections>
-                <outlet property="attentionButton" destination="LVk-of-Y9q" id="Gze-6a-U1l"/>
+                <outlet property="attentionButton" destination="LVk-of-Y9q" id="vl1-2b-GDe"/>
                 <outlet property="automaticallyComboBox" destination="0JF-Rh-CLr" id="YYV-wM-z9C"/>
                 <outlet property="columnRowLabel" destination="l6x-LW-uFU" id="UB5-Lg-EvZ"/>
                 <outlet property="exampleMenu" destination="cxF-98-W44" id="cbV-FH-0XL"/>
