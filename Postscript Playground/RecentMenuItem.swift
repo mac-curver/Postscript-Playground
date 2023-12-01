@@ -48,8 +48,8 @@ extension NSMenu {
     
     /// Add item to recent menu
     /// - Parameters:
-    ///   - psUrl: Url for the Postscript file
     ///   - pdfUrl: Url for the PDF file
+	///   - psData:
     ///   - selector: Selector to be called
     func addRecentMenuItem(pdfUrl: URL, psData: Data, for selector: Selector?) {
         // I can't get it done automatically, what was that I assumed!
@@ -57,29 +57,37 @@ extension NSMenu {
         // remove item title if it exists already
         do {
             var isStale = true
-            let menuItemUrl = try URL(
-                resolvingBookmarkData: psData,
-                options: [.withSecurityScope],
-                relativeTo: nil,
-                bookmarkDataIsStale: &isStale
-            )
-            if isStale {
-                Logger.write("Bookmark is stale!", level: OSLogType.error, className: className)
-                /// On return, if YES, the bookmark data is stale.
-                /// Your app should create a new bookmark using the returned URL and use
-                /// it in place of any stored copies of the existing bookmark.
-                /// Fortunately this never happened?!
-            }
-            
-            if let oldItem = self.item(withTitle: menuItemUrl.path) {
-                self.removeItem(oldItem)
-            }
-            let item = RecentMenuItem(  ps: menuItemUrl
-                                      , pdf: pdfUrl
-                                      , psData: psData
-                                      , action: selector
-            )
-            self.insertItem(item, at:0)
+			var generatedPsUrl = pdfUrl.deletingPathExtension()
+			generatedPsUrl.appendPathExtension("ps")
+			
+			if FileManager.default.fileExists(atPath: generatedPsUrl.path) {
+				let menuItemUrl = try URL(
+					resolvingBookmarkData: psData,
+					options: [.withSecurityScope],
+					relativeTo: nil,
+					bookmarkDataIsStale: &isStale
+				)
+				if isStale {
+					Logger.write("Bookmark is stale!", level: OSLogType.error, className: className)
+					/// On return, if YES, the bookmark data is stale.
+					/// Your app should create a new bookmark using the returned URL and use
+					/// it in place of any stored copies of the existing bookmark.
+					/// Fortunately this never happened?!
+				}
+				
+				if let oldItem = self.item(withTitle: menuItemUrl.path) {
+					self.removeItem(oldItem)
+				}
+				let item = RecentMenuItem(  ps: menuItemUrl
+										  , pdf: pdfUrl
+										  , psData: psData
+										  , action: selector
+				)
+				self.insertItem(item, at:0)
+			}
+			else {
+				Logger.write("\(generatedPsUrl.path) does not exist")
+			}
         }
         catch {
             Logger.write("An issue occured", level: OSLogType.error, className: className)
@@ -123,13 +131,16 @@ extension NSMenu {
         let count = preferences.integer(forKey: "RecentItemCount")
             
         let decoder = PropertyListDecoder()
+		
+		
         for key in 0..<count {
             if let itemData = preferences.data(forKey: "RecentItem\(key)") {
                 do {
                     let item = try decoder.decode(MenuItem.self, from: itemData)
-                    addRecentMenuItem(  pdfUrl: item.pdfUrl
-                                      , psData: item.secureData
-                                      , for: selector
+                    addRecentMenuItem(
+						pdfUrl: item.pdfUrl
+						, psData: item.secureData
+						, for: selector
                     )
                 }
                 catch {

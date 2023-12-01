@@ -26,6 +26,7 @@
                 <outlet property="attentionButton" destination="LVk-of-Y9q" id="vl1-2b-GDe"/>
                 <outlet property="automaticallyComboBox" destination="0JF-Rh-CLr" id="YYV-wM-z9C"/>
                 <outlet property="columnRowLabel" destination="l6x-LW-uFU" id="UB5-Lg-EvZ"/>
+                <outlet property="encodingComboBox" destination="bfD-jX-xgq" id="Ahi-Wm-X1g"/>
                 <outlet property="exampleMenu" destination="cxF-98-W44" id="cbV-FH-0XL"/>
                 <outlet property="pdfView" destination="V2y-i5-Q8g" id="aMw-eB-z5W"/>
                 <outlet property="psTextView" destination="qTi-0S-hBv" id="E4A-7Y-v8Q"/>
@@ -732,30 +733,30 @@
                                 <rect key="frame" x="0.0" y="0.0" width="541" height="772"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
-                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VGH-hf-HRg">
-                                        <rect key="frame" x="13" y="13" width="46" height="32"/>
+                                    <button toolTip="Select another file" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VGH-hf-HRg">
+                                        <rect key="frame" x="4" y="-1" width="38" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <buttonCell key="cell" type="push" title="..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fKd-5P-zrC">
+                                        <buttonCell key="cell" type="bevel" title="..." bezelStyle="rounded" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="fKd-5P-zrC">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
+                                            <font key="font" metaFont="smallSystem"/>
                                         </buttonCell>
                                         <connections>
                                             <action selector="openFileWithOpenDialog:" target="Wis-H3-gc5" id="Qmu-nj-YXo"/>
                                         </connections>
                                     </button>
                                     <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LT0-bJ-p8E">
-                                        <rect key="frame" x="0.0" y="46" width="541" height="726"/>
+                                        <rect key="frame" x="0.0" y="24" width="541" height="748"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <clipView key="contentView" drawsBackground="NO" id="DO9-ti-Ymh">
-                                            <rect key="frame" x="0.0" y="0.0" width="541" height="726"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="541" height="748"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <textView wantsLayer="YES" drawsBackground="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" findStyle="bar" allowsUndo="YES" usesRuler="YES" smartInsertDelete="YES" id="qTi-0S-hBv" customClass="PsEditView" customModule="Postscript_Playground" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="541" height="726"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="541" height="748"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    <size key="minSize" width="541" height="726"/>
+                                                    <size key="minSize" width="541" height="748"/>
                                                     <size key="maxSize" width="541" height="10000000"/>
                                                     <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 </textView>
@@ -766,32 +767,36 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="ZBb-3D-27D">
-                                            <rect key="frame" x="525" y="0.0" width="16" height="726"/>
+                                            <rect key="frame" x="525" y="0.0" width="16" height="748"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l6x-LW-uFU">
-                                        <rect key="frame" x="58" y="22" width="352" height="16"/>
+                                        <rect key="frame" x="49" y="6" width="67" height="14"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="0/0" id="KlM-jM-0wv">
-                                            <font key="font" metaFont="system"/>
+                                        <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" alignment="left" title="0/0" id="KlM-jM-0wv">
+                                            <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ws2-f8-NNl">
-                                        <rect key="frame" x="409" y="12" width="62" height="32"/>
+                                        <rect key="frame" x="407" y="-1" width="53" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                        <buttonCell key="cell" type="push" title="Help" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="b5z-Ux-JLA">
+                                        <buttonCell key="cell" type="bevel" title="Help" bezelStyle="rounded" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="b5z-Ux-JLA">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
+                                            <font key="font" metaFont="smallSystem"/>
                                         </buttonCell>
                                         <connections>
                                             <action selector="helpButtonAction:" target="Wis-H3-gc5" id="oiz-0w-4Gd"/>
                                         </connections>
                                     </button>
-                                    <comboButton toolTip="Execute PS playground" verticalHuggingPriority="750" fixedFrame="YES" baseWritingDirection="leftToRight" alignment="center" title="" image="play.fill" imageScaling="proportionallyDown" translatesAutoresizingMaskIntoConstraints="NO" id="0JF-Rh-CLr">
-                                        <rect key="frame" x="469" y="17" width="55" height="24"/>
+                                    <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="VoN-mS-Iua">
+                                        <rect key="frame" x="0.0" y="22" width="541" height="5"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    </box>
+                                    <comboButton toolTip="Execute PS playground" verticalHuggingPriority="750" fixedFrame="YES" controlSize="small" baseWritingDirection="leftToRight" alignment="center" title="" image="play.fill" imageScaling="proportionallyDown" translatesAutoresizingMaskIntoConstraints="NO" id="0JF-Rh-CLr">
+                                        <rect key="frame" x="474" y="0.0" width="55" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                         <menu key="menu" id="E1f-g2-WfM">
                                             <items>
@@ -811,6 +816,18 @@
                                             <action selector="saveAndConvert:" target="Wis-H3-gc5" id="SYJ-0W-6PP"/>
                                         </connections>
                                     </comboButton>
+                                    <comboBox toolTip="Current encoding - will be changed to utf-8 when stored!" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bfD-jX-xgq">
+                                        <rect key="frame" x="121" y="2" width="199" height="19"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <comboBoxCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="UTF-8" usesSingleLineMode="YES" completes="NO" numberOfVisibleItems="16" id="JfV-d3-Fhm">
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </comboBoxCell>
+                                        <connections>
+                                            <action selector="releadWithEncoding:" target="qTi-0S-hBv" id="ERW-rH-PpZ"/>
+                                        </connections>
+                                    </comboBox>
                                 </subviews>
                             </customView>
                             <customView fixedFrame="YES" id="6gi-qU-lDx" userLabel="PDFView">

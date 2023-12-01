@@ -20,7 +20,6 @@ class ViewController: NSViewController {
         case StopAutomatically
     }
 
-
     @IBOutlet var window: NSWindow!
     @IBOutlet weak var settingsWindow: NSWindow!
     @IBOutlet weak var recent2Menu: NSMenu!
@@ -36,11 +35,15 @@ class ViewController: NSViewController {
     
     @IBOutlet weak var automaticallyComboBox: NSComboButton!
     @IBOutlet weak var delegate: AppDelegate!
-    
-    let alternateConverters = [  ["/usr/bin/pstopdf", "-o"]
+	
+	@IBOutlet weak var encodingComboBox: NSComboBox!
+	
+	let alternateConverters = [  ["/usr/bin/pstopdf", "-o"]
                                , ["/usr/local/bin/ps2pdf", ""]
                                , ["/usr/local/opt/ps2pdf", ""]
                               ]
+	
+
         
     var psToPdfConverterPath = ""
     var outputArgument = ""
@@ -84,11 +87,11 @@ class ViewController: NSViewController {
             }
         }
          */
-        
-        return """
-               Bundle: \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String) \
-               Editor: \(PsEditView.version)
-               """
+		return """
+			Bundle: \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String) \
+			(\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String))
+			Editor: \(PsEditView.version)
+			"""
 
     }
     
@@ -153,8 +156,7 @@ class ViewController: NSViewController {
             exit(-1)
         }
         
-        psToPdfConverterPath = preferences.string(forKey: "PsToPdfConverter") ?? ""
-        
+		psToPdfConverterPath = preferences.string(forKey: "PsToPdfConverter") ?? ""
         
 
         if psToPdfConverterPathComboBox.numberOfItems > 1 && psToPdfConverterPath.isEmpty {
@@ -180,6 +182,9 @@ class ViewController: NSViewController {
                                       preferences: preferences
                                     , for: #selector(openRecentFile)
                                  )
+		for encoding in allPossibleEncodings {
+			encodingComboBox.addItem(withObjectValue: encoding.description)
+		}
         
         /// Build sample menu
         let pathes = Bundle.main.paths(forResourcesOfType: "ps", inDirectory: ".")
@@ -209,8 +214,10 @@ class ViewController: NSViewController {
     
     /// We need this as otherwise the animation does not start
     func didFinishLaunching(appDelegate: AppDelegate) {
+		Logger.login("", className: className)
         psTextView.viewController = appDelegate.viewController                  /// copy the view controller down the hierachy
         addAnimationToAttentionButton()
+		Logger.logout("", className: className)
     }
     
     
@@ -234,6 +241,10 @@ class ViewController: NSViewController {
             break
         }
     }
+	
+	func setEncoding(item: String) {
+		encodingComboBox.selectItem(withObjectValue: item)
+	}
 
     
     /// File: Save - Menu actions
@@ -321,6 +332,10 @@ class ViewController: NSViewController {
             convertPsToPdf()
         }
     }
+	
+	@objc func changeEncoding(sender: NSMenuItem) {
+		Logger.write("")
+	}
     
     fileprivate func addRecentItem(url resultUrl: URL) {
         do {
@@ -345,9 +360,9 @@ class ViewController: NSViewController {
     /// Copies the base name to the PDF view as name proposal.
     func openFileUrl(_ resultUrl: URL, addToRecent: Bool = true) {
         Logger.login("\(resultUrl)", className: className)
-        if (psTextView.openFileUrlAsPs(url: resultUrl)) {
+        if psTextView.openFileUrlAsPs(url: resultUrl) {
             setPdfPath(urlForPrefix: resultUrl)
-            if (addToRecent) {
+            if addToRecent {
                 addRecentItem(url: resultUrl)
             }
         }
@@ -369,14 +384,15 @@ class ViewController: NSViewController {
     }
     
     func openAndConvert(_ urls: [URL]) {
-        Logger.write("Open file \(urls[0].absoluteString)", className: className)
-        if let url = urls.last {
+		Logger.login("Open file \(urls[0].absoluteString)", className: className)
+		if let url = urls.first {
             openFileUrl(url)
             startDelayedConversion()
         }
         if urls.count > 1 {
             tooManyFilesAlert()
         }
+		Logger.logout("", className: className)
     }
     
     /// Shows an alert stating that the app can only open a single file at a time
