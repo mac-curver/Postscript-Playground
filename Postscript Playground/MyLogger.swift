@@ -70,7 +70,7 @@ extension Logger {
      fault: OSLogType
      */
     
-    /// Generates a name from eith classname or file name
+    /// Generates a name from either classname or file name
     /// - Parameters:
     ///   - className: className or empty string
     ///   - file: filename of the sender

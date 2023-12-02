@@ -403,8 +403,8 @@ class ViewController: NSViewController {
         alert.messageText = "Only a single file can be opened at at time"
         alert.informativeText = """
                 This app allows to edit a single .ps at a time. Only
-                the last selected file is being opened for editing.
-            """
+                the first selected file is being opened for editing.
+                """
         _ = alert.runModal()
     }
 
