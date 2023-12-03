@@ -5,7 +5,7 @@
 //  Created by LegoEsprit on 25.03.23.
 //
 // Minimum Deployment version set to 13.0 as otherwise Combobox is not available
-// Sandboxing not possible as on client systems the ps..pdf converters
+// Sandboxing not possible as on client systems the ps to pdf converters
 // can't be called. Yields ->"Invalid launch path" always!
 //
 /*
@@ -46,6 +46,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         Logger.logout("app started2 \(application.debugDescription)", level: OSLogType.default, className: className)
         return false
     }
+	
+
     
     func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
         // Never called ?
@@ -65,12 +67,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 #endif
 
         viewController.didFinishLaunching(appDelegate: self)
-		if !urlsToOpen.isEmpty {
-			viewController.openAndConvert(urlsToOpen)
-		}
 
 		Logger.logout("", level: OSLogType.default, className: className)
     }
+	
+	func applicationWillBecomeActive(_ aNotification: Notification) {
+		Logger.login("Version: \(viewController.version())", level: OSLogType.default, className: className)
+		if !urlsToOpen.isEmpty {
+			viewController.openAndConvert(urlsToOpen)
+		}
+		Logger.logout("", level: OSLogType.default, className: className)
+	}
+
 
     
     func applicationWillTerminate(_ aNotification: Notification) {
