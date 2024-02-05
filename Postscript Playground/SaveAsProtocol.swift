@@ -9,7 +9,7 @@ import Cocoa
 import UniformTypeIdentifiers
 
 
-/// Protocol to make save panel available for PostScript and PDF files
+/// Protocol to make save panel available for Postscript and PDF files
 protocol SaveAsProtocol {
     
     /// Run save panel opens save dialog to store documents

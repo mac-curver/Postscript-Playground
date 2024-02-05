@@ -18,7 +18,7 @@
 ///     }
 /// }
 ///
-/// # Persist access to files with security-scoped URL bookmarks
+/// # Persisting access to files with security-scoped URL bookmarks
 /// Create bookmark data from a URL using
 /// bookmarkData(options:includingResourceValuesForKeys:relativeTo:),
 /// including the withSecurityScope option. Foundation creates a URL bookmark with an explicit security scope that your app can store, and retrieve to subsequently access the resource at the URL, regardless of whether your app exits between accesses. If your app doesn’t need to write to the file on subsequent access, include the securityScopeAllowOnlyReadAccess option.
@@ -52,8 +52,11 @@ extension NSMenu {
 	///   - psData:
     ///   - selector: Selector to be called
     func addRecentMenuItem(pdfUrl: URL, psData: Data, for selector: Selector?) {
-        // I can't get it done automatically, what was that I assumed!
+        // I can't get it done automatically, as I assumed!
         
+		while numberOfItems > 15 {
+			removeItem(at: numberOfItems-2)
+		}
         // remove item title if it exists already
         do {
             var isStale = true

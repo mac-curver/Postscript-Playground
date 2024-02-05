@@ -34,10 +34,10 @@ class Shell {
     }
 
 
-    /// init the shell and launch it as task
+    /// init the shell and launch it as a task
     ///
-    /// - parameter launchPath:            The `String` path for the executable file.
-    /// - parameter arguments:             An array of [`String`] used as parameters for the executable file.
+    /// - parameter launchPath: The `String` path for the executable file.
+    /// - parameter arguments:	An array of [`String`] used as parameters for the executable file.
 
     init(_ launchPath: String, arguments: [String])  {
         let task = Process()

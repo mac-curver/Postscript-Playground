@@ -10,6 +10,11 @@
 		2659A7802A3851D5002AB841 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2659A77F2A3851D5002AB841 /* AppDelegate.swift */; };
 		2659A7822A3851D6002AB841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2659A7812A3851D6002AB841 /* Assets.xcassets */; };
 		2659A7852A3851D6002AB841 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2659A7832A3851D6002AB841 /* MainMenu.xib */; };
+		2675D8952B2EFE59008436A3 /* SyntaxHighlightExtension2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675D8942B2EFE59008436A3 /* SyntaxHighlightExtension2.swift */; };
+		268ACD962B246C5500205133 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 268ACD942B246C5500205133 /* Localizable.strings */; };
+		269523922B2C9C7700014048 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269523912B2C9C7700014048 /* Utilities.swift */; };
+		26995EE02B68E9010026BAEB /* UserDefaultColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26995EDF2B68E9010026BAEB /* UserDefaultColorExtension.swift */; };
+		26CC8D972B697AB30035577F /* ColorTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CC8D962B697AB30035577F /* ColorTransformer.swift */; };
 		26E571802A3853CF0084827C /* Shell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E571752A3853CF0084827C /* Shell.swift */; };
 		26E571812A3853CF0084827C /* PsEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E571762A3853CF0084827C /* PsEditView.swift */; };
 		26E571822A3853CF0084827C /* ContextPdfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E571772A3853CF0084827C /* ContextPdfView.swift */; };
@@ -18,8 +23,6 @@
 		26E571852A3853CF0084827C /* OutputStreamExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E5717A2A3853CF0084827C /* OutputStreamExtension.swift */; };
 		26E571862A3853CF0084827C /* MyLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E5717B2A3853CF0084827C /* MyLogger.swift */; };
 		26E571872A3853CF0084827C /* SaveAsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E5717C2A3853CF0084827C /* SaveAsProtocol.swift */; };
-		26E571882A3853CF0084827C /* SyntaxHighlightExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E5717D2A3853CF0084827C /* SyntaxHighlightExtension.swift */; };
-		26E571892A3853CF0084827C /* ColorTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E5717E2A3853CF0084827C /* ColorTransformer.swift */; };
 		26E5718A2A3853CF0084827C /* RecentMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E5717F2A3853CF0084827C /* RecentMenuItem.swift */; };
 		26E5719F2A3853F00084827C /* Postscript PlaygroundHelp.html in Resources */ = {isa = PBXBuildFile; fileRef = 26E5718D2A3853F00084827C /* Postscript PlaygroundHelp.html */; };
 		26E571A02A3853F00084827C /* Postscript PlaygroundHelp.helpindex in Resources */ = {isa = PBXBuildFile; fileRef = 26E5718E2A3853F00084827C /* Postscript PlaygroundHelp.helpindex */; };
@@ -40,6 +43,14 @@
 		2659A77F2A3851D5002AB841 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2659A7812A3851D6002AB841 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2659A7842A3851D6002AB841 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		2675D8942B2EFE59008436A3 /* SyntaxHighlightExtension2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxHighlightExtension2.swift; sourceTree = "<group>"; };
+		268ACD952B246C5500205133 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "Postscript Playground/en.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		268ACD972B246C7A00205133 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = "Postscript Playground/de.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		269523912B2C9C7700014048 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		26995EDF2B68E9010026BAEB /* UserDefaultColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultColorExtension.swift; sourceTree = "<group>"; };
+		26AA0FED2B6A60100061CE54 /* Embedding a command-line tool in a sandboxed app.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Embedding a command-line tool in a sandboxed app.md"; sourceTree = "<group>"; };
+		26CC8D962B697AB30035577F /* ColorTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorTransformer.swift; sourceTree = "<group>"; };
+		26DAB8372B650C1600682705 /* ShowLogFor.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ShowLogFor.sh; sourceTree = "<group>"; };
 		26E571752A3853CF0084827C /* Shell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shell.swift; sourceTree = "<group>"; };
 		26E571762A3853CF0084827C /* PsEditView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PsEditView.swift; sourceTree = "<group>"; };
 		26E571772A3853CF0084827C /* ContextPdfView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextPdfView.swift; sourceTree = "<group>"; };
@@ -48,8 +59,6 @@
 		26E5717A2A3853CF0084827C /* OutputStreamExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputStreamExtension.swift; sourceTree = "<group>"; };
 		26E5717B2A3853CF0084827C /* MyLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLogger.swift; sourceTree = "<group>"; };
 		26E5717C2A3853CF0084827C /* SaveAsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveAsProtocol.swift; sourceTree = "<group>"; };
-		26E5717D2A3853CF0084827C /* SyntaxHighlightExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxHighlightExtension.swift; sourceTree = "<group>"; };
-		26E5717E2A3853CF0084827C /* ColorTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorTransformer.swift; sourceTree = "<group>"; };
 		26E5717F2A3853CF0084827C /* RecentMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentMenuItem.swift; sourceTree = "<group>"; };
 		26E5718D2A3853F00084827C /* Postscript PlaygroundHelp.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Postscript PlaygroundHelp.html"; sourceTree = "<group>"; };
 		26E5718E2A3853F00084827C /* Postscript PlaygroundHelp.helpindex */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Postscript PlaygroundHelp.helpindex"; sourceTree = "<group>"; };
@@ -85,6 +94,7 @@
 				26E571B02A3853FC0084827C /* Images */,
 				26E5718B2A3853F00084827C /* HelpFolder */,
 				26E571DA2A38AF630084827C /* ExampleFiles */,
+				268ACD942B246C5500205133 /* Localizable.strings */,
 				2659A77E2A3851D5002AB841 /* Postscript Playground */,
 				2659A77D2A3851D5002AB841 /* Products */,
 			);
@@ -103,19 +113,22 @@
 			children = (
 				264E7AA02A766604009B75C0 /* Postscript_Playground.entitlements */,
 				26E571792A3853CF0084827C /* Info.plist */,
-				26E5717E2A3853CF0084827C /* ColorTransformer.swift */,
-				26E571772A3853CF0084827C /* ContextPdfView.swift */,
 				26E5717B2A3853CF0084827C /* MyLogger.swift */,
+				269523912B2C9C7700014048 /* Utilities.swift */,
+				26E571772A3853CF0084827C /* ContextPdfView.swift */,
 				26E5717A2A3853CF0084827C /* OutputStreamExtension.swift */,
+				26CC8D962B697AB30035577F /* ColorTransformer.swift */,
+				26995EDF2B68E9010026BAEB /* UserDefaultColorExtension.swift */,
 				26E571762A3853CF0084827C /* PsEditView.swift */,
 				26E5717F2A3853CF0084827C /* RecentMenuItem.swift */,
 				26E5717C2A3853CF0084827C /* SaveAsProtocol.swift */,
 				26E571752A3853CF0084827C /* Shell.swift */,
-				26E5717D2A3853CF0084827C /* SyntaxHighlightExtension.swift */,
+				2675D8942B2EFE59008436A3 /* SyntaxHighlightExtension2.swift */,
 				26E571782A3853CF0084827C /* ViewController.swift */,
 				2659A77F2A3851D5002AB841 /* AppDelegate.swift */,
 				2659A7812A3851D6002AB841 /* Assets.xcassets */,
 				2659A7832A3851D6002AB841 /* MainMenu.xib */,
+				26DAB8372B650C1600682705 /* ShowLogFor.sh */,
 			);
 			path = "Postscript Playground";
 			sourceTree = "<group>";
@@ -154,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				26E571BA2A3854060084827C /* ToolX.entitlements */,
+				26AA0FED2B6A60100061CE54 /* Embedding a command-line tool in a sandboxed app.md */,
 			);
 			path = ToolX;
 			sourceTree = "<group>";
@@ -240,6 +254,7 @@
 				26E571E02A38AF630084827C /* New.ps in Resources */,
 				26E571B62A3853FC0084827C /* stop.fill.svg in Resources */,
 				26E571842A3853CF0084827C /* Info.plist in Resources */,
+				268ACD962B246C5500205133 /* Localizable.strings in Resources */,
 				26E571B82A3853FC0084827C /* play.fill.svg in Resources */,
 				26E571DF2A38AF630084827C /* SiemensStarAngle.ps in Resources */,
 			);
@@ -254,14 +269,16 @@
 			files = (
 				26E571832A3853CF0084827C /* ViewController.swift in Sources */,
 				26E571802A3853CF0084827C /* Shell.swift in Sources */,
+				26995EE02B68E9010026BAEB /* UserDefaultColorExtension.swift in Sources */,
 				26E571862A3853CF0084827C /* MyLogger.swift in Sources */,
 				26E571852A3853CF0084827C /* OutputStreamExtension.swift in Sources */,
+				26CC8D972B697AB30035577F /* ColorTransformer.swift in Sources */,
 				26E571872A3853CF0084827C /* SaveAsProtocol.swift in Sources */,
-				26E571892A3853CF0084827C /* ColorTransformer.swift in Sources */,
+				2675D8952B2EFE59008436A3 /* SyntaxHighlightExtension2.swift in Sources */,
+				269523922B2C9C7700014048 /* Utilities.swift in Sources */,
 				26E571822A3853CF0084827C /* ContextPdfView.swift in Sources */,
 				26E5718A2A3853CF0084827C /* RecentMenuItem.swift in Sources */,
 				2659A7802A3851D5002AB841 /* AppDelegate.swift in Sources */,
-				26E571882A3853CF0084827C /* SyntaxHighlightExtension.swift in Sources */,
 				26E571812A3853CF0084827C /* PsEditView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,6 +294,15 @@
 				26EF7E362B18827400D40D08 /* de */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		268ACD942B246C5500205133 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				268ACD952B246C5500205133 /* en */,
+				268ACD972B246C7A00205133 /* de */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -337,8 +363,10 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-D OTHER_EXTENSION_not_used";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -391,8 +419,10 @@
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "-D OTHER_EXTENSION_not_used";
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
@@ -403,10 +433,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Postscript Playground/Postscript_Playground.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 8;
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 0;
+				DEVELOPMENT_TEAM = P8TSSKQDC4;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
@@ -418,7 +449,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.7;
+				MARKETING_VERSION = 2.5;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.LegoEsprit.Postscript-Playground";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -432,10 +463,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Postscript Playground/Postscript_Playground.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 8;
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 0;
+				DEVELOPMENT_TEAM = P8TSSKQDC4;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
@@ -447,7 +479,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.7;
+				MARKETING_VERSION = 2.5;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.LegoEsprit.Postscript-Playground";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

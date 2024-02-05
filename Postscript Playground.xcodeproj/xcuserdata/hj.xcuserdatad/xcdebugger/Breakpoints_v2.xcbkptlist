@@ -7,170 +7,47 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6F3533BA-E4EB-430A-9FB0-A465CDE289CE"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Postscript Playground/ContextPdfView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "savePdfAsPrivate()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "11D4C09F-E8F0-43A6-9507-FEF2085BFF6D"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Postscript Playground/ContextPdfView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "setPathes(urlForPrefix:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "AE206C69-E1DD-4AA0-B139-3919AF02AC08"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Postscript Playground/ContextPdfView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
-            landmarkName = "savePdfAsPrivate()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3E2995BB-4A61-43E7-A360-620CD46CA1BE"
+            uuid = "DD16807F-02FE-40ED-BB02-19166EEF114D"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Postscript Playground/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "515"
-            endingLineNumber = "515"
-            landmarkName = "ViewController"
-            landmarkType = "3">
+            startingLineNumber = "159"
+            endingLineNumber = "159"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "3E2995BB-4A61-43E7-A360-620CD46CA1BE - ebfa662d4eb18a6f"
+                  uuid = "DD16807F-02FE-40ED-BB02-19166EEF114D - 75c882c44ceb7278"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Postscript_Playground.ViewController.convertPsToPdf() -&gt; ()"
+                  symbolName = "Postscript_Playground.ViewController.viewDidLoad() -&gt; ()"
                   moduleName = "Postscript Playground"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hj/Documents/Development/GitHub/Local/Projects/SwiftProjects/Postscript%20Playground/Postscript%20Playground/ViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "498"
-                  endingLineNumber = "498"
-                  offsetFromSymbolStart = "784">
+                  startingLineNumber = "159"
+                  endingLineNumber = "159"
+                  offsetFromSymbolStart = "888">
                </Location>
                <Location
-                  uuid = "3E2995BB-4A61-43E7-A360-620CD46CA1BE - ebfa662d4eb18a6f"
+                  uuid = "DD16807F-02FE-40ED-BB02-19166EEF114D - 75c882c44ceb7278"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Postscript_Playground.ViewController.convertPsToPdf() -&gt; ()"
+                  symbolName = "Postscript_Playground.ViewController.viewDidLoad() -&gt; ()"
                   moduleName = "Postscript Playground"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hj/Documents/Development/GitHub/Local/Projects/SwiftProjects/Postscript%20Playground/Postscript%20Playground/ViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "498"
-                  endingLineNumber = "498"
-                  offsetFromSymbolStart = "2704">
-               </Location>
-               <Location
-                  uuid = "3E2995BB-4A61-43E7-A360-620CD46CA1BE - ebfa662d4eb18b8c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Postscript_Playground.ViewController.convertPsToPdf() -&gt; ()"
-                  moduleName = "Postscript Playground"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hj/Documents/Development/GitHub/Local/Projects/SwiftProjects/Postscript%20Playground/Postscript%20Playground/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "499"
-                  endingLineNumber = "499"
-                  offsetFromSymbolStart = "2972">
-               </Location>
-               <Location
-                  uuid = "3E2995BB-4A61-43E7-A360-620CD46CA1BE - ebfa662d4eb18a6f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Postscript_Playground.ViewController.convertPsToPdf() -&gt; ()"
-                  moduleName = "Postscript Playground"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hj/Documents/Development/GitHub/Local/Projects/SwiftProjects/Postscript%20Playground/Postscript%20Playground/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "498"
-                  endingLineNumber = "498"
-                  offsetFromSymbolStart = "792">
-               </Location>
-               <Location
-                  uuid = "3E2995BB-4A61-43E7-A360-620CD46CA1BE - ebfa662d4eb18bca"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Postscript_Playground.ViewController.convertPsToPdf() -&gt; ()"
-                  moduleName = "Postscript Playground"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hj/Documents/Development/GitHub/Local/Projects/SwiftProjects/Postscript%20Playground/Postscript%20Playground/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "501"
-                  endingLineNumber = "501"
-                  offsetFromSymbolStart = "792">
-               </Location>
-               <Location
-                  uuid = "3E2995BB-4A61-43E7-A360-620CD46CA1BE - ebfa662d4eb18a4e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Postscript_Playground.ViewController.convertPsToPdf() -&gt; ()"
-                  moduleName = "Postscript Playground"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hj/Documents/Development/GitHub/Local/Projects/SwiftProjects/Postscript%20Playground/Postscript%20Playground/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "497"
-                  endingLineNumber = "497"
-                  offsetFromSymbolStart = "792">
-               </Location>
-               <Location
-                  uuid = "3E2995BB-4A61-43E7-A360-620CD46CA1BE - ebfa662d4eb18a21"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Postscript_Playground.ViewController.convertPsToPdf() -&gt; ()"
-                  moduleName = "Postscript Playground"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hj/Documents/Development/GitHub/Local/Projects/SwiftProjects/Postscript%20Playground/Postscript%20Playground/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "496"
-                  endingLineNumber = "496"
-                  offsetFromSymbolStart = "792">
+                  startingLineNumber = "159"
+                  endingLineNumber = "159"
+                  offsetFromSymbolStart = "880">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -178,78 +55,107 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CFB66920-E1FE-4333-B2AD-8CC715D42863"
+            uuid = "E530B347-92E0-49BD-887F-2BA0FF3D3A8B"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Postscript Playground/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "512"
-            endingLineNumber = "512"
-            landmarkName = "fireTimer()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "32035A9C-0895-4B1E-B065-EBE8F035ED4A"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Postscript Playground/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "406"
-            endingLineNumber = "406"
-            landmarkName = "tooManyFilesAlert()"
+            startingLineNumber = "240"
+            endingLineNumber = "240"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "32035A9C-0895-4B1E-B065-EBE8F035ED4A - fe7754937a93c85b"
+                  uuid = "E530B347-92E0-49BD-887F-2BA0FF3D3A8B - 75c882c44ceb4889"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Postscript_Playground.ViewController.fileNew(__C.NSMenuItem) -&gt; ()"
+                  symbolName = "Postscript_Playground.ViewController.viewDidLoad() -&gt; ()"
                   moduleName = "Postscript Playground"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hj/Documents/Development/GitHub/Local/Projects/SwiftProjects/Postscript%20Playground/Postscript%20Playground/ViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "390"
-                  endingLineNumber = "390"
-                  offsetFromSymbolStart = "88">
+                  startingLineNumber = "240"
+                  endingLineNumber = "240"
+                  offsetFromSymbolStart = "5768">
                </Location>
                <Location
-                  uuid = "32035A9C-0895-4B1E-B065-EBE8F035ED4A - fe7754937a93c85b"
+                  uuid = "E530B347-92E0-49BD-887F-2BA0FF3D3A8B - 75c882c44ceb4889"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Postscript_Playground.ViewController.fileNew(__C.NSMenuItem) -&gt; ()"
+                  symbolName = "Postscript_Playground.ViewController.viewDidLoad() -&gt; ()"
                   moduleName = "Postscript Playground"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hj/Documents/Development/GitHub/Local/Projects/SwiftProjects/Postscript%20Playground/Postscript%20Playground/ViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "390"
-                  endingLineNumber = "390"
-                  offsetFromSymbolStart = "316">
+                  startingLineNumber = "240"
+                  endingLineNumber = "240"
+                  offsetFromSymbolStart = "5884">
                </Location>
                <Location
-                  uuid = "32035A9C-0895-4B1E-B065-EBE8F035ED4A - fe7754937a93c9fc"
+                  uuid = "E530B347-92E0-49BD-887F-2BA0FF3D3A8B - 75c882c44ceb48a8"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Postscript_Playground.ViewController.fileNew(__C.NSMenuItem) -&gt; ()"
+                  symbolName = "Postscript_Playground.ViewController.viewDidLoad() -&gt; ()"
                   moduleName = "Postscript Playground"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/hj/Documents/Development/GitHub/Local/Projects/SwiftProjects/Postscript%20Playground/Postscript%20Playground/ViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "387"
-                  endingLineNumber = "387"
-                  offsetFromSymbolStart = "316">
+                  startingLineNumber = "239"
+                  endingLineNumber = "239"
+                  offsetFromSymbolStart = "5768">
+               </Location>
+               <Location
+                  uuid = "E530B347-92E0-49BD-887F-2BA0FF3D3A8B - 75c882c44ceb48a8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Postscript_Playground.ViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "Postscript Playground"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hj/Documents/Development/GitHub/Local/Projects/SwiftProjects/Postscript%20Playground/Postscript%20Playground/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "239"
+                  endingLineNumber = "239"
+                  offsetFromSymbolStart = "5884">
+               </Location>
+               <Location
+                  uuid = "E530B347-92E0-49BD-887F-2BA0FF3D3A8B - 75c882c44ceb48a8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Postscript_Playground.ViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "Postscript Playground"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hj/Documents/Development/GitHub/Local/Projects/SwiftProjects/Postscript%20Playground/Postscript%20Playground/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "239"
+                  endingLineNumber = "239"
+                  offsetFromSymbolStart = "5756">
+               </Location>
+               <Location
+                  uuid = "E530B347-92E0-49BD-887F-2BA0FF3D3A8B - 75c882c44ceb48a8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Postscript_Playground.ViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "Postscript Playground"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hj/Documents/Development/GitHub/Local/Projects/SwiftProjects/Postscript%20Playground/Postscript%20Playground/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "239"
+                  endingLineNumber = "239"
+                  offsetFromSymbolStart = "5872">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -257,95 +163,47 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "06F4F56E-912A-43CD-A78D-387D3298A429"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Postscript Playground/PsEditView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "688"
-            endingLineNumber = "688"
-            landmarkName = "saveFileToPsUrl()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D37BDA3F-79F4-4744-8B54-383F908FD585"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Postscript Playground/PsEditView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "710"
-            endingLineNumber = "710"
-            landmarkName = "savePsFileAs()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "D37BDA3F-79F4-4744-8B54-383F908FD585 - 8f31aa5f6e2435b1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Postscript_Playground.PsEditView.savePsFileAs() -&gt; __C.NSModalResponse"
-                  moduleName = "Postscript Playground"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hj/Documents/Development/GitHub/Local/Projects/SwiftProjects/Postscript%20Playground/Postscript%20Playground/PsEditView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "554"
-                  endingLineNumber = "554"
-                  offsetFromSymbolStart = "1240">
-               </Location>
-               <Location
-                  uuid = "D37BDA3F-79F4-4744-8B54-383F908FD585 - 8f31aa5f6e24359e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Postscript_Playground.PsEditView.savePsFileAs() -&gt; __C.NSModalResponse"
-                  moduleName = "Postscript Playground"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hj/Documents/Development/GitHub/Local/Projects/SwiftProjects/Postscript%20Playground/Postscript%20Playground/PsEditView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "555"
-                  endingLineNumber = "555"
-                  offsetFromSymbolStart = "1240">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D0A9D47A-6479-4DF1-8537-6E7FE976BD1E"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Postscript Playground/PsEditView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "421"
-            endingLineNumber = "421"
-            landmarkName = "newFile()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B4D6BC1A-523E-4CDC-9279-D9E6BE6A3865"
+            uuid = "BE5B7DF6-5293-43D2-9211-B34A7152D555"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Postscript Playground/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "362"
-            endingLineNumber = "362"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "007BA636-B298-46E7-B4C7-AC34E04FCD16"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Postscript Playground/PsEditView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "670"
+            endingLineNumber = "670"
+            landmarkName = "checkToSaveChanges()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3F015E18-45F0-4A09-A797-18F485C89285"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Postscript Playground/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "423"
+            endingLineNumber = "423"
             landmarkName = "openFileUrl(_:addToRecent:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -353,286 +211,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5739B947-A04C-4369-AE80-97C044F9AE81"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Postscript Playground/PsEditView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
-            landmarkName = "setPathes(urlForPrefix:known:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6DC377AD-2D9F-4867-96C2-BAE80838AEC9"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Postscript Playground/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "188"
-            endingLineNumber = "188"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "6DC377AD-2D9F-4867-96C2-BAE80838AEC9 - 75c882c44ceb779e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Postscript_Playground.ViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "Postscript Playground"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hj/Documents/Development/GitHub/Local/Projects/SwiftProjects/Postscript%20Playground/Postscript%20Playground/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "185"
-                  endingLineNumber = "185"
-                  offsetFromSymbolStart = "5556">
-               </Location>
-               <Location
-                  uuid = "6DC377AD-2D9F-4867-96C2-BAE80838AEC9 - 75c882c44ceb7741"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Postscript_Playground.ViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "Postscript Playground"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hj/Documents/Development/GitHub/Local/Projects/SwiftProjects/Postscript%20Playground/Postscript%20Playground/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "184"
-                  endingLineNumber = "184"
-                  offsetFromSymbolStart = "5556">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "149260D1-1E29-4378-BE29-194CF9351E66"
+            uuid = "E935727C-90A8-4739-A5A5-FC2A32AFC3F3"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Postscript Playground/RecentMenuItem.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
-            landmarkName = "addRecentMenuItem(pdfUrl:psData:for:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "149260D1-1E29-4378-BE29-194CF9351E66 - a34c0c1112f4a971"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__C.NSMenu.addRecentMenuItem(pdfUrl: Foundation.URL, psData: Foundation.Data, for: Swift.Optional&lt;ObjectiveC.Selector&gt;) -&gt; ()"
-                  moduleName = "Postscript Playground"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hj/Documents/Development/GitHub/Local/Projects/SwiftProjects/Postscript%20Playground/Postscript%20Playground/RecentMenuItem.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "106"
-                  endingLineNumber = "106"
-                  offsetFromSymbolStart = "4120">
-               </Location>
-               <Location
-                  uuid = "149260D1-1E29-4378-BE29-194CF9351E66 - a34c0c1112f4a971"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__C.NSMenu.addRecentMenuItem(pdfUrl: Foundation.URL, psData: Foundation.Data, for: Swift.Optional&lt;ObjectiveC.Selector&gt;) -&gt; ()"
-                  moduleName = "Postscript Playground"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hj/Documents/Development/GitHub/Local/Projects/SwiftProjects/Postscript%20Playground/Postscript%20Playground/RecentMenuItem.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "106"
-                  endingLineNumber = "106"
-                  offsetFromSymbolStart = "4496">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "64B5ED9D-05CF-4D96-9545-F8D3108B1090"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Postscript Playground/ViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "246"
-            endingLineNumber = "246"
-            landmarkName = "setEncoding(item:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "350471E0-5FE9-4346-8B0F-FDA0E7621DE7"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Postscript Playground/RecentMenuItem.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "addRecentMenuItem(pdfUrl:psData:for:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "350471E0-5FE9-4346-8B0F-FDA0E7621DE7 - a34c0c1112f4aacc"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__C.NSMenu.addRecentMenuItem(pdfUrl: Foundation.URL, psData: Foundation.Data, for: Swift.Optional&lt;ObjectiveC.Selector&gt;) -&gt; ()"
-                  moduleName = "Postscript Playground"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hj/Documents/Development/GitHub/Local/Projects/SwiftProjects/Postscript%20Playground/Postscript%20Playground/RecentMenuItem.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "93"
-                  endingLineNumber = "93"
-                  offsetFromSymbolStart = "4148">
-               </Location>
-               <Location
-                  uuid = "350471E0-5FE9-4346-8B0F-FDA0E7621DE7 - a34c0c1112f4ab0e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__C.NSMenu.addRecentMenuItem(pdfUrl: Foundation.URL, psData: Foundation.Data, for: Swift.Optional&lt;ObjectiveC.Selector&gt;) -&gt; ()"
-                  moduleName = "Postscript Playground"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hj/Documents/Development/GitHub/Local/Projects/SwiftProjects/Postscript%20Playground/Postscript%20Playground/RecentMenuItem.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "91"
-                  endingLineNumber = "91"
-                  offsetFromSymbolStart = "2552">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "9CCAD74B-01FC-4C9D-AB0A-ACAC9F6765B8"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Postscript Playground/AppDelegate.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "applicationDidFinishLaunching(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "9CCAD74B-01FC-4C9D-AB0A-ACAC9F6765B8 - 8432262135cec1d5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Postscript_Playground.AppDelegate.applicationDidFinishLaunching(Foundation.Notification) -&gt; ()"
-                  moduleName = "Postscript Playground"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hj/Documents/Development/GitHub/Local/Projects/SwiftProjects/Postscript%20Playground/Postscript%20Playground/AppDelegate.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68"
-                  offsetFromSymbolStart = "2172">
-               </Location>
-               <Location
-                  uuid = "9CCAD74B-01FC-4C9D-AB0A-ACAC9F6765B8 - 8432262135cec134"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Postscript_Playground.AppDelegate.applicationDidFinishLaunching(Foundation.Notification) -&gt; ()"
-                  moduleName = "Postscript Playground"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hj/Documents/Development/GitHub/Local/Projects/SwiftProjects/Postscript%20Playground/Postscript%20Playground/AppDelegate.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67"
-                  offsetFromSymbolStart = "2000">
-               </Location>
-               <Location
-                  uuid = "9CCAD74B-01FC-4C9D-AB0A-ACAC9F6765B8 - 8432262135cec1a8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Postscript_Playground.AppDelegate.applicationDidFinishLaunching(Foundation.Notification) -&gt; ()"
-                  moduleName = "Postscript Playground"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hj/Documents/Development/GitHub/Local/Projects/SwiftProjects/Postscript%20Playground/Postscript%20Playground/AppDelegate.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "71"
-                  endingLineNumber = "71"
-                  offsetFromSymbolStart = "2008">
-               </Location>
-               <Location
-                  uuid = "9CCAD74B-01FC-4C9D-AB0A-ACAC9F6765B8 - 8432262135cec00b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Postscript_Playground.AppDelegate.applicationDidFinishLaunching(Foundation.Notification) -&gt; ()"
-                  moduleName = "Postscript Playground"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hj/Documents/Development/GitHub/Local/Projects/SwiftProjects/Postscript%20Playground/Postscript%20Playground/AppDelegate.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "74"
-                  endingLineNumber = "74"
-                  offsetFromSymbolStart = "2008">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E4E11267-F5AD-41B5-8E68-0F86D4FE0926"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Postscript Playground/AppDelegate.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "application(_:openFile:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "4DDBAE23-663E-4704-B0FC-4CCC1FE07E79"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Postscript Playground/AppDelegate.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "application(_:open:)"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "storeItems(preferences:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

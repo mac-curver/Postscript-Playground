@@ -26,7 +26,7 @@ class ContextPdfView: PDFView, SaveAsProtocol {
 
     
     /// Copies the name and sets pdf as extension to propose a correct name for the pdf
-    /// - Parameter urlForPrefix: URL of the corresponding PostScript file
+    /// - Parameter urlForPrefix: URL of the corresponding Postscript file
     func setPathes(urlForPrefix: URL) {
         Logger.login("", className: className)
         let pathPrefix = urlForPrefix.deletingPathExtension()
@@ -46,6 +46,12 @@ class ContextPdfView: PDFView, SaveAsProtocol {
         
         return contextMenu
     }
+	
+	/// Used to re-open the temp file as PDF document
+	func clearPdf() {
+		document = PDFDocument()
+	}
+
     
     
     /// Used to re-open the temp file as PDF document
@@ -63,7 +69,7 @@ class ContextPdfView: PDFView, SaveAsProtocol {
                 let alert = NSAlert()
                 
                 alert.alertStyle = .warning
-                alert.messageText = "Poscript file couldn't be saved"
+                alert.messageText = String(localized: "Postscript file couldn't be saved")
                 //alert.informativeText = error.localizedDescription
                 alert.runModal()
             }
@@ -78,7 +84,7 @@ class ContextPdfView: PDFView, SaveAsProtocol {
         var pdfFile = pdfUrl
         let response = runSavePanel(
             &pdfFile
-            , title: "Store the .pdf file?"
+			, title: String(localized: "Store the .pdf file?")
             , fileType: UTType("com.adobe.pdf")!
         )
         switch response {
@@ -97,6 +103,27 @@ class ContextPdfView: PDFView, SaveAsProtocol {
     @IBAction func savePdfAs(_ sender: NSMenuItem) {
         savePdfAsPrivate()
     }
+	
+	/*
+	func drawPDFfromURL(url: URL) -> NSImage? {
+		guard let document = CGPDFDocument(url as CFURL) else { return nil }
+		guard let page = document.page(at: 1) else { return nil }
+
+		let pageRect = page.getBoxRect(.mediaBox)
+		let renderer = NSGraphicsContext()
+		let img = renderer.image { ctx in
+			NSColor.white.set()
+			ctx.fill(pageRect)
+
+			ctx.cgContext.translateBy(x: 0.0, y: pageRect.size.height)
+			ctx.cgContext.scaleBy(x: 1.0, y: -1.0)
+
+			ctx.cgContext.drawPDFPage(page)
+		}
+
+		return img
+	}
+	 */
 
 }
 

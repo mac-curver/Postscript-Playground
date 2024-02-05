@@ -2,14 +2,14 @@
 //  OutputStreamExtension.swift
 //  SimplePsViewer
 //
-//  Created by Heinz-Jörg on 08.04.23.
+//  Created by LegoEsprit on 08.04.23.
 //
 
 import Foundation
 
 extension OutputStream {
+	
     /// Add some more error enums
-
     enum OutputStreamError: Error {
         case stringConversionFailure
         case bufferFailure

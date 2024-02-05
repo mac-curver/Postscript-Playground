@@ -2,11 +2,10 @@
 //  ColorTransformer.swift
 //  SimplePsViewer
 //
-//  Created by Heinz-Jörg on 09.06.23.
+//  Created by LegoEsprit on 09.06.23.
 //
 
 import Cocoa
-
 
 /// Subclass from `NSSecureUnarchiveFromDataTransformer`
 @objc(ColorValueTransformer)
@@ -16,7 +15,7 @@ final class ColorValueTransformer: NSSecureUnarchiveFromDataTransformer {
     static let name = NSValueTransformerName(rawValue: String(describing: ColorValueTransformer.self))
 
     // Make sure `NSColor` is in the allowed class list.
-    override static var allowedTopLevelClasses: [AnyClass] {
+	override static var allowedTopLevelClasses: [AnyClass] {
         return [NSColor.self]
     }
 
@@ -41,8 +40,10 @@ final class ColorValueTransformer: NSSecureUnarchiveFromDataTransformer {
     /// Transforms color to Data
     /// - Parameter value: NSColor as input
     /// - Returns: Data from the color
-    /// This method is beeing called from xib. In case the preferences are not yet existing it could
-    /// fail and return nil.
+    /// ```
+	/// This method is beeing called from xib. In case the preferences are
+	/// not yet existing it could fail and return nil.
+	/// ``
     override func transformedValue(_ value: Any?) -> Any? {
         guard let data = value as? Data else {
             //fatalError("Wrong data type: value must be a Data object; received \(type(of: value))")
@@ -70,3 +71,4 @@ extension NSValueTransformerName {
     static let colorToDataTransformer = NSValueTransformerName(rawValue: "ColorValueTransformer")
 }
 
+ 

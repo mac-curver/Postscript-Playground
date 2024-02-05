@@ -80,6 +80,9 @@
 /* Class = "NSMenuItem"; title = "Recent files"; ObjectID = "AZp-kq-rZJ"; */
 "AZp-kq-rZJ.title" = "Recent files";
 
+/* Class = "NSMenuItem"; title = "Example files"; ObjectID = "sMZ-WG-g9G"; */
+"sMZ-WG-g9G.title" = "Example files";
+
 /* Class = "NSTextFieldCell"; title = "Flow control color"; ObjectID = "AaK-7e-Vi2"; */
 "AaK-7e-Vi2.title" = "Flow control color";
 
@@ -346,9 +349,6 @@
 
 /* Class = "NSMenuItem"; title = "Undo"; ObjectID = "dRJ-4n-Yzg"; */
 "dRJ-4n-Yzg.title" = "Undo";
-
-/* Class = "NSButtonCell"; title = "..."; ObjectID = "fKd-5P-zrC"; */
-"fKd-5P-zrC.title" = "...";
 
 /* Class = "NSMenuItem"; title = "Example files"; ObjectID = "flA-A6-dEG"; */
 "flA-A6-dEG.title" = "Example files";

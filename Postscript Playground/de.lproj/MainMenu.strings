@@ -65,6 +65,10 @@
 /* Class = "NSMenu"; title = "Recent files"; ObjectID = "8AO-Nz-E1Y"; */
 "8AO-Nz-E1Y.title" = "Letzte Dateien";
 
+/* Class = "NSMenuItem"; title = "Example files"; ObjectID = "sMZ-WG-g9G"; */
+"sMZ-WG-g9G.title" = "Beispieldateien";
+
+
 /* Class = "NSMenu"; title = "Writing Direction"; ObjectID = "8mr-sm-Yjd"; */
 "8mr-sm-Yjd.title" = "Schreibrichtung";
 
@@ -84,7 +88,7 @@
 "AaK-7e-Vi2.title" = "Farbe für Steuerungsbefehle";
 
 /* Class = "NSButtonCell"; title = "Default colors"; ObjectID = "BDr-ud-C8B"; */
-"BDr-ud-C8B.title" = "Default Farbe";
+"BDr-ud-C8B.title" = "Farben auf Voreinstellung";
 
 /* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW"; */
 "BOF-NM-1cW.title" = "Voreinstellungen…";
@@ -93,7 +97,7 @@
 "BgM-ve-c93.title" = "\tLinks nach Rechts";
 
 /* Class = "NSMenuItem"; title = "Save as…"; ObjectID = "Bw7-FT-i3A"; */
-"Bw7-FT-i3A.title" = "Unter speichern…";
+"Bw7-FT-i3A.title" = "Speichern unter…";
 
 /* Class = "NSTextFieldCell"; title = "Math color"; ObjectID = "C0m-JE-dt4"; */
 "C0m-JE-dt4.title" = "Farbe für Rechenausdrücke";
@@ -232,7 +236,7 @@
 "S0p-oC-mLd.title" = "Zur Auswahl springen";
 
 /* Class = "NSMenuItem"; title = "Help..."; ObjectID = "SD1-R3-GwV"; */
-"SD1-R3-GwV.title" = "Hilfe...";
+"SD1-R3-GwV.title" = "Hilfe ...";
 
 /* Class = "NSMenu"; title = "Window"; ObjectID = "Td7-aD-5lo"; */
 "Td7-aD-5lo.title" = "Fenster";
@@ -247,7 +251,7 @@
 "VIY-Ag-zcb.title" = "Zentrieren";
 
 /* Class = "NSTextFieldCell"; title = "Define color"; ObjectID = "VTH-cx-L9v"; */
-"VTH-cx-L9v.title" = "Farbe festlegen";
+"VTH-cx-L9v.title" = "Farbe für def Ausdrücke";
 
 /* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO"; */
 "Vdr-fp-XzO.title" = "Andere ausblenden";
@@ -348,9 +352,6 @@
 /* Class = "NSMenuItem"; title = "Undo"; ObjectID = "dRJ-4n-Yzg"; */
 "dRJ-4n-Yzg.title" = "Rückgängig";
 
-/* Class = "NSButtonCell"; title = "..."; ObjectID = "fKd-5P-zrC"; */
-"fKd-5P-zrC.title" = "...";
-
 /* Class = "NSMenuItem"; title = "Example files"; ObjectID = "flA-A6-dEG"; */
 "flA-A6-dEG.title" = "Beispieldateien";
 
@@ -361,7 +362,7 @@
 "hQb-2v-fYv.title" = "Intelligente Anführungszeichen";
 
 /* Class = "NSMenuItem"; title = "Save PDF as..."; ObjectID = "hfl-T6-eQI"; */
-"hfl-T6-eQI.title" = "PDF speichern unter...";
+"hfl-T6-eQI.title" = "PDF speichern unter ...";
 
 /* Class = "NSMenuItem"; title = "Check Document Now"; ObjectID = "hz2-CU-CR7"; */
 "hz2-CU-CR7.title" = "Dokument jetzt überprüfen";

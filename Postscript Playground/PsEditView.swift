@@ -10,9 +10,9 @@
 import os.log
 import Cocoa
 import UniformTypeIdentifiers
-import Carbon.HIToolbox
+//import Carbon.HIToolbox
 
-
+/// Here all useful encodings are listed - I got some ps files from PC with different encoding
 public let allPossibleEncodings: [String.Encoding] = [
 	    .utf8
 	  , .isoLatin1
@@ -56,30 +56,42 @@ extension StringProtocol {
 /// Extension to the `Double` type to print exactly 6 fractional digits
 extension Double {
 	
-	static func fractionalDigits(digits: Int) -> NumberFormatter {
+	/// Numberformatter to print double with specific number of digits
+	/// - Parameters:
+	///   - digits: Number of fractional digits - Defaults to 6
+	///   - minDigits: Minimum number of fractional digits. If not given the number of fractional
+	///   digits is fixed to digits. - Defaults to nil!
+	/// - Returns: Output of double number with a specified number of factional digits
+	/// as NumberFotmatter
+	static func fractionalDigits(digits: Int = 6, minDigits: Int? = nil) -> NumberFormatter {
 		let formatter = NumberFormatter()
 		formatter.numberStyle = .decimal
-		formatter.minimumFractionDigits = digits
+		if let minDigits = minDigits {
+			formatter.minimumFractionDigits = minDigits
+		}
+		else {
+			formatter.minimumFractionDigits = digits
+		}
 		formatter.maximumFractionDigits = digits
 		return formatter
 	}
-
+	
+	/// Returns a number formatter for exactly 6 fractional digits
     static let sixFractionalDigits: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.minimumFractionDigits = 6
-        formatter.maximumFractionDigits = 6
-        return formatter
-    }()
+		return fractionalDigits(digits: 6)
+	}()
+	
+	/// Outputs the double number with exactly 6 fractional digits
     var formatted: String {
         return Double.sixFractionalDigits.string(for: self) ?? "-.------"
     }
 }
 
 
+
 /// PsEditView overwritten NSTextView used to convert .ps file into .pdf
-class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
-    
+class PsEditView: NSTextView /* see protocol extensions below*/ {
+		
 	/// FileUrl to store the url and whether the file has already been open with a file dialog
     struct FileUrl {
         var url:URL
@@ -89,16 +101,24 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
     /// version number of PsEditView
     static let version = "2.2.0"
     var viewController: ViewController!
+	
+	//let commandQueue = DispatchQueue.global(qos: .utility)
+	//var backGroundIsRunning = false
+	
 
     
     /// Only .ps files are allowed
-    let expectedExt = ["ps"]
+	let expectedExt = ["ps"]
+	/// The postscript unified type identifier is required for storage
     let postScriptUTType = UTType("com.adobe.postscript")!
     
     /// Timer used for automatic conversion and delayed syntax highlighting
-    var timer: Timer = Timer()
-    
-    var psFileUrl: FileUrl
+	var timer: Timer = Timer()
+	//var syntaxTimer: Timer = Timer()
+	
+	/// Url for the .ps text file
+	var psFileUrl: FileUrl
+	/// Default path to store the .ps text file from save dialog
     let homeDir = FileManager.default.urls(
         for: FileManager.SearchPathDirectory.documentDirectory
         , in: FileManager.SearchPathDomainMask.userDomainMask
@@ -114,7 +134,9 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
     ///
     /// - parameter coder:                  Propagated to super.
     ///
-    /// Calls its super class init sets the background and registers for drop
+    /// ```
+	/// Calls its super class init sets the background and registers for drop
+	/// ```
     required init?(coder: NSCoder) {
         psFileUrl = FileUrl(
               url: homeDir.appendingPathComponent(
@@ -133,7 +155,7 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
             ]
         )
         delegate = self
-        initializeSyntaxColors()
+        //initializeSyntaxColors()
         Logger.logout("init?")
     }
 	
@@ -145,21 +167,32 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
 		_ = openFileWithEncoding(encoding, showAlert: true)
 	}
 	
-	/// awakeFromNib to initialize to a monospaced font
+	/// Respond to chages of the syntax segmented control
+	/// - Parameter sender: Segemented control for 3 syntax algos
+	/// ```
+	/// This very likely will be removed later, when the most effective
+	/// version has been identified!
+	/// ```
+	@IBAction func syntaxCodeChanged(_ sender: NSSegmentedControl) {
+		textStorage?.removeAttribute(.foregroundColor, range: NSMakeRange(0, string.count-1))
+		assignSyntaxColors(syntax: viewController.segmentedSyntax)
+	}
+	
+	/// awakeFromNib initializes a monospaced font for the .ps text editor
     override func awakeFromNib() {
         Logger.login("", className: className)
         font = NSFont(name: "Monaco", size: 11)
         //isRulerVisible = true
         Logger.logout("", className: className)
     }
-    
+	
     
 	/// setPathes calculates the pdf and ps pathes from a root `URL`
 	/// - parameter urlForPrefix:           The  root `URL` for the pdf or ps.
 	/// - parameter known: 	True if already opened with a open or save dialog to allow to
 	/// 					cope with Apple security
     func setPathes(urlForPrefix: URL, known: Bool) {
-        Logger.login("", level: OSLogType.default, className: className)
+        Logger.login("\(urlForPrefix)", level: OSLogType.default, className: className)
         let pathPrefix = urlForPrefix.deletingPathExtension()
         psFileUrl = FileUrl(url: pathPrefix.appendingPathExtension("ps")
                             , knownToFileManager: known
@@ -201,14 +234,17 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
             return NSDragOperation()
         }
     }
+	
 
     /// draggingEntered returns the .copy if file extension is .ps
     /// - parameter dragInfo:               The drag info from the system.
     /// - returns:                          See checkExtension
     ///
-    /// Running in the main thread. Unfortunately checking the extension
+    /// ```
+	/// Running in the main thread. Unfortunately checking the extension
     /// here does not work completely, therefore we need to overwrite
     /// also draggingUpdated!
+	/// ```
     @MainActor
     override func draggingEntered(_ dragInfo: NSDraggingInfo) -> NSDragOperation {
         return checkExtension(dragInfo)
@@ -217,8 +253,9 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
     /// draggingUpdated returns the .copy if file extension is .ps
     /// - parameter dragInfo:               The drag info from the system.
     /// - returns:                          See checkExtension
-    ///
-    /// Contiously called during drag operation in the main thread.
+    /// ```
+    /// Continously called during drag operation in the main thread.
+	/// ```
     @MainActor
     override func draggingUpdated(_ dragInfo: NSDraggingInfo) -> NSDragOperation {
         return checkExtension(dragInfo)
@@ -226,7 +263,7 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
 
 
     /// performDragOperation performs the drag operation
-    /// Contiously called during drag operation in the main thread.
+    /// Continously called during drag operation in the main thread.
     /// - Parameter dragInfo:               The drag info from the system.
     /// - Returns: true if drag finished successfully
     @MainActor
@@ -260,6 +297,14 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
         let (line, column) = lineNumber()
         viewController?.setColumnRow(line: "L: \((line+1).formatted()) C:\((column+1).formatted())")
     }
+	
+	
+	/// Called when editor widow was resized
+	/// - Parameter oldSize: Not used
+	override func resize(withOldSuperviewSize oldSize: NSSize) {
+		viewController?.resizePsEditView(availableWidth: self.visibleRect.width)
+	}
+	
 
 
     /// mouseDown used to caluculate the text position in the ps file
@@ -281,34 +326,48 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
     
     /// Text did change notification from OS
     /// - Parameter notification: Not used
-    ///
-    /// Indicates, that the file contents should be changed and starts a 2 s timer.
+    /// ```
+    /// Indicates, that the file contents should be changed and starts a
+	/// 2 s timer.
+	/// ```
     func textDidChange(_ notification: Notification) {
         saved = false
+		if let swiftRange = Range(selectedRange(), in: string) {
+			let swiftLineRange = string.lineRange(for: swiftRange)
+			let nsLineRange = NSRange(swiftLineRange, in: string)
+			let lineString = String(string[swiftLineRange])
+			removeAttributesInLine(nsLineRange)
+			assignSyntaxColorToLine(lineString
+									, nsStartDistance: nsLineRange.location
+									, syntax: viewController.segmentedSyntax
+			)
+		}
         timer.invalidate()
         timer = Timer.scheduledTimer(timeInterval: 2
                                      , target: self
-                                     , selector: #selector(fireTimer)
+                                     , selector: #selector(textDidChangeTimerFired)
                                      , userInfo: nil
                                      , repeats: false
         )
     }
+	
     
     
-    /// fireTimer was restarted for autosave and syntax highligthing.
-    /// Recolors according to syntax and in case of aiutosave mode converts to pdf like a
-    /// playground.
-    @objc func fireTimer() {
+    /// timerFired was restarted for autosave.
+    /// In case of autosave mode converts ps to pdf (likewise a playground).
+    @objc func textDidChangeTimerFired() {
         Logger.login("", className: className)
-        if (autoSave) {
+        if autoSave {
             if saveFileToPsUrl() {
                 viewController?.convertPsToPdf()
-                Logger().log("Timer was fired")
+				Logger.write("File was saved and converted as Timer was fired")
             }
         }
-        assignSyntaxColors()
-        Logger.logout("", className: className)
+		Logger.logout("", className: className)
     }
+	
+	static var syntaxTimerRunning = false
+	
     
     /// Not tested Works, but is wrong!
     func selectLineNumber(lineNumberToJumpTo: Int) {
@@ -353,8 +412,7 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
          let nsRange = NSMakeRange(0, 4)
          let range   = Range(nsRange, in: s)
          */
-        Logger.login("")
-        let start = ProcessInfo.processInfo.systemUptime;
+        //let start = ProcessInfo.processInfo.systemUptime;
         var indexStarts:[String.Index] = []
 
         var index = string.startIndex
@@ -364,7 +422,7 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
             index = range.upperBound
             indexStarts.append(index)
         }
-        Logger.logout("Using String.Index:\(ProcessInfo.processInfo.systemUptime-start) s")
+        //Logger.write("Using String.Index:\(ProcessInfo.processInfo.systemUptime-start) s")
         return indexStarts
     }
     
@@ -393,8 +451,7 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
         Logger.login("", className: className)
         let openPanel = NSOpenPanel()
             
-        let file = selected.isEmpty ? "a .ps" : "the \(selected)"
-        let openMessage = "Please choose \(file) to be converted to pdf"
+        let openMessage = String(localized: "Please choose a .ps file to be converted to pdf")
         openPanel.message                 = openMessage
         openPanel.showsResizeIndicator    = true
         openPanel.showsHiddenFiles        = false
@@ -418,25 +475,30 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
     ///
     /// In case the bundle access fails a hard coded file is being used!
     func newFile() {
-        let myFileUrl = Bundle.main.url(forResource:"New", withExtension: "ps")
+		checkToSaveChanges()
+        let fileUrl = Bundle.main.url(forResource:"New", withExtension: "ps")
+		textStorage?.setAttributedString(NSAttributedString(string: ""))		/// Clear any pending attributes.
         do {
-            string = try String(contentsOf: myFileUrl ?? URL(fileURLWithPath: ""), encoding: .utf8)
+			string = try String(contentsOf: fileUrl ?? URL(fileURLWithPath: "")
+								, encoding: .utf8
+						 )
         }
         catch {
-            string = """
-                %!PS
-                
-                /Times-Bold findfont 36 scalefont setfont
-                72 684 moveto (Hello World!) show
-                4 setlinewidth
-                0 -4 rmoveto
-                72 680 lineto stroke
-                showpage
-                """
+			string = """
+					%!PS
+					
+					/test 7 8 9.0 add add def
+					/Times-Bold findfont 36 scalefont setfont
+					72 684 moveto (Hello World!) show
+					4 setlinewidth
+					0 -4 rmoveto
+					72 680 lineto stroke
+					showpage
+					"""
         }
+		
         setPathes(urlForPrefix: URL(filePath: "Untitled.ps"), known: false)
-        fireTimer()
-
+		assignSyntaxColors(syntax: viewController.segmentedSyntax)
     }
     
     /// Displays file open dialog
@@ -464,97 +526,128 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
 	/// - Parameter fileEncoding: character encoding used to try decoding
 	/// - Parameter showAlert: if YES shows alert
 	/// - Returns: true if new file was opened successfully
-	fileprivate func openFileWithEncoding(_ fileEncoding: String.Encoding, showAlert: Bool) -> Bool {
+	fileprivate func openFileWithEncoding(_ fileEncoding: String.Encoding
+										  , showAlert: Bool) -> Bool
+	{
+		Logger.login("", className: className)
 		var opened = false
+
 		do {
-			string = try String(contentsOf: psFileUrl.url, encoding: fileEncoding)
-			assignSyntaxColors()
+			textStorage?.setAttributedString(NSAttributedString(string: ""))
+			string = try String(contentsOf: psFileUrl.url
+								, encoding: fileEncoding
+			             )
+			Logger.write("3", className: className)
+			assignSyntaxColors(syntax: viewController.segmentedSyntax)
+			Logger.write("4", className: className)
 			opened = true
 		}
 		catch {
 			if showAlert {
-				Logger.write("Open file failed with \(error.localizedDescription)", level: OSLogType.error, className: className)
+				Logger.write("Open file failed with "
+							 + "\(error.localizedDescription)"
+							 , level: OSLogType.error, className: className
+				)
 				let alert = NSAlert()
 				
 				alert.alertStyle = .critical
-				alert.messageText = "Poscript file "+psFileUrl.url.absoluteString+" could not be loaded"
+				alert.messageText = String(localized:
+											"""
+											Postscript \
+											\(psFileUrl.url.absoluteString) \
+											could not be loaded
+											"""
+									)
 				alert.informativeText = "\(error.localizedDescription)"
 				_ = alert.runModal()
 			}
 		}
+		Logger.write("5", className: className)
+		Logger.logout("", className: className)
 		return opened
 	}
 		
-
+	
+	/// Try different encodings to open the .ps text file
+	/// - Parameter opened: Returns true if opened successfully
 	fileprivate func string1(_ opened: inout Bool) {
-		let start = ProcessInfo.processInfo.systemUptime;
-		if let data = NSData(contentsOf: psFileUrl.url) {
-			// try different encondings
-			for encoding in allPossibleEncodings {
-				if let myString = String(data: data as Data, encoding: encoding) {
-					string = myString
-					viewController.setEncoding(item: encoding.description)
-					assignSyntaxColors()
-					opened = true
+		profile.measure(className: className, {
+			if let data = NSData(contentsOf: psFileUrl.url) {
+				// try different encondings
+				for encoding in allPossibleEncodings {
+					if let myString = String(data: data as Data, encoding: encoding) {
+						string = myString
+						viewController.setEncoding(item: encoding.description)
+						assignSyntaxColors(syntax: viewController.segmentedSyntax)
+						opened = true
+						break
+					}
+				}
+			}
+		})
+	}
+	
+	/// Try different encodings to open the .ps text file
+	/// - Parameter opened: Returns true if opened successfully
+	fileprivate func string2(_ opened: inout Bool) {
+		profile.measure(className: className, {
+			// Open the file independently of its encoding!
+			let options: [NSAttributedString.DocumentReadingOptionKey : Any] = [:]
+			var dict: NSDictionary? = [:]
+			do {
+				let myString = try NSAttributedString(
+					url: psFileUrl.url
+					, options: options
+					, documentAttributes: &dict
+				)
+				let encoding = String.Encoding(
+					rawValue: (dict?.value(forKey: "CharacterEncoding"))! as! UInt
+				)
+				viewController.setEncoding(item: encoding.description)
+				
+				string = myString.string
+				assignSyntaxColors(syntax: viewController.segmentedSyntax)
+				opened = true
+			}
+			catch {
+				Logger.write("\(error)")
+				string = ""
+				Logger.write("Open file failed with \(error.localizedDescription)"
+							 , level: OSLogType.error
+							 , className: className
+				)
+				let alert = NSAlert()
+				
+				alert.alertStyle = .critical
+				alert.messageText = String(
+					localized: "PSNotLoadedKey"
+					, defaultValue: """
+							Postscript file \
+							\(psFileUrl.url.absoluteString) \
+							could not be loaded
+							"""
+				)
+				alert.informativeText = "\(error.localizedDescription)"
+				_ = alert.runModal()
+			}
+		})
+	}
+	
+	/// Try different encodings to open the .ps text file
+	/// - Parameter opened: Returns true if opened successfully
+	fileprivate func string3(_ opened: inout Bool) {
+		// about 5-10 faster than string 1 and string2
+		profile.measure(className: className, {
+			for fileEncoding in allPossibleEncodings  {
+				opened = openFileWithEncoding(fileEncoding
+											  , showAlert: fileEncoding == allPossibleEncodings.last
+				)
+				if opened {
+					viewController.setEncoding(item: fileEncoding.description)
 					break
 				}
 			}
-		}
-		Logger.write("1. \(ProcessInfo.processInfo.systemUptime-start)")
-	}
-	
-	fileprivate func string2(_ opened: inout Bool) {
-		let start = ProcessInfo.processInfo.systemUptime;
-		// Open the file independently of its encoding!
-		let options: [NSAttributedString.DocumentReadingOptionKey : Any] = [:]
-		var dict: NSDictionary? = [:]
-		do {
-			let myString = try NSAttributedString(
-				url: psFileUrl.url
-				, options: options
-				, documentAttributes: &dict
-			)
-			let encoding = String.Encoding(
-				rawValue: (dict?.value(forKey: "CharacterEncoding"))! as! UInt
-			)
-			viewController.setEncoding(item: encoding.description)
-			
-			string = myString.string
-			assignSyntaxColors()
-			opened = true
-		}
-		catch {
-			Logger.write("\(error)")
-			string = ""
-			Logger.write("Open file failed with \(error.localizedDescription)"
-						 , level: OSLogType.error
-						 , className: className
-			)
-			let alert = NSAlert()
-			
-			alert.alertStyle = .critical
-			alert.messageText = """
-								Poscript file \
-								\(psFileUrl.url.absoluteString) \
-								could not be loaded
-								"""
-			alert.informativeText = "\(error.localizedDescription)"
-			_ = alert.runModal()
-		}
-		Logger.write("2. \(ProcessInfo.processInfo.systemUptime-start)")
-	}
-	
-	fileprivate func string3(_ opened: inout Bool) {
-		// about 5-10 faster than string 1 and string2
-		let start = ProcessInfo.processInfo.systemUptime;
-		for fileEncoding in allPossibleEncodings  {
-			opened = openFileWithEncoding(fileEncoding, showAlert: fileEncoding == allPossibleEncodings.last)
-			if opened {
-				viewController.setEncoding(item: fileEncoding.description)
-				break
-			}
-		}
-		Logger.write("3. \(ProcessInfo.processInfo.systemUptime-start)")
+		})
 	}
 	
 	/// Copies contents of the file to self.string to display it by using openFileWithEncoding.
@@ -574,18 +667,22 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
     
     /// Displays an alert to offer to save the changes in case document has been changed
     func checkToSaveChanges() {
+		Logger.login("\(saved ? "saved": "not saved")", className: className)
         if !saved {
             let alert = NSAlert()
             
             alert.alertStyle = .warning
-            alert.messageText = "Changes to Poscript file were not saved"
-            alert.informativeText =
+            alert.messageText = String(localized:
+									"Changes to Postscript file were not saved"
+			                    )
+            alert.informativeText = String(localized:
                         """
                         The current file contains changes, that
                         were not yet stored onto the disk!
                         """
-            alert.addButton(withTitle: "Save the changes")
-            alert.addButton(withTitle: "Ignore and don't save")
+			)
+            alert.addButton(withTitle: String(localized: "Save the changes"))
+            alert.addButton(withTitle: String(localized: "Ignore and don't save"))
             switch alert.runModal() {
             case .alertFirstButtonReturn:
                 Logger().log("Save changes")
@@ -594,6 +691,7 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
                 break
             }
         }
+		Logger.logout("", className: className)
     }
     
 	/// revert to stored file
@@ -605,7 +703,7 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
     /// openFileUrlAsPs load file and apply syntax coloring
     /// - Returns: true if loading did succeed
     func openFileUrlAsPs(url: URL) -> Bool {
-        Logger.login("", className: className)
+        Logger.login("\(url)", className: className)
         checkToSaveChanges()
         setPathes(urlForPrefix: url, known: true)
 
@@ -618,12 +716,11 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
     }
     
 	/// openSecurityScopedResource is needed to re-open a file that has been opened in a session
-	/// before due to Apple security limitations.
+	/// before due to Apples security limitations.
 	/// - Parameter bookmark: stored file security state
 	/// - Returns: URL as optional
     func openSecurityScopedResource(bookmark: Data) -> URL? {
         Logger.login("", className: className)
-        checkToSaveChanges()
         // Resolve the decoded bookmark data into a security-scoped URL.
         var isStale:Bool = true
         var bookmarkedUrl: URL? = nil
@@ -638,6 +735,7 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
 
             // Indicate that you want to access the file-system resource.
             if nil != bookmarkedUrl?.startAccessingSecurityScopedResource() {
+				checkToSaveChanges()
                 setPathes(urlForPrefix: bookmarkedUrl!, known: true)
 				let success = openFilePrivate()
                 if success {
@@ -647,7 +745,10 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
             
         }
         catch {
-            Logger.write("Reading bookmark failed: \(error)", level: OSLogType.error, className: className)
+            Logger.write("Reading bookmark failed: \(error)"
+						 , level: OSLogType.error
+						 , className: className
+			)
         }
         Logger.logout("", className: className)
         return bookmarkedUrl
@@ -672,7 +773,7 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
             let alert = NSAlert()
             
             alert.alertStyle = .warning
-            alert.messageText = "Poscript file couldn't be saved"
+            alert.messageText = String(localized: "Postscript file couldn't be saved")
             alert.informativeText = error.localizedDescription
             alert.runModal()
         }
@@ -702,7 +803,7 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
         var psFile = psFileUrl.url
         let response = runSavePanel(
             &psFile
-            , title: "Write to \(expectedExt.first ?? ".ps") (Postscript) file"
+            , title: String(localized: "Write to Postscript file")
             , fileType: postScriptUTType
         )
         switch response {
@@ -715,5 +816,52 @@ class PsEditView: NSTextView, SaveAsProtocol, NSTextViewDelegate {
         }
         return response
     }
+	
+	/// Getter for the current context (avoids deprecation)
+	private var currentContext: CGContext? {
+		get {
+			if #available(OSX 10.10, *) {
+				return NSGraphicsContext.current?.cgContext
+			}
+			else if let contextPointer = NSGraphicsContext.current?.graphicsPort {
+				return Unmanaged.fromOpaque(contextPointer).takeUnretainedValue()
+			}
+			return nil
+		}
+	}
 
+	/*
+	override open func draw(_ dirtyRect: NSRect) {
+		let rect = visibleRect.insetBy(dx: 30.0, dy: 30.0)
+
+		let backgroundColor = NSColor.red.withAlphaComponent(0.1)
+		backgroundColor.set()
+		NSBezierPath.fill(rect)
+		super.draw(dirtyRect)
+		
+	}
+	
+	@MainActor func textView(
+		_ textView: NSTextView,
+		shouldChangeTypingAttributes oldTypingAttributes: [String : Any] = [:],
+		toAttributes newTypingAttributes: [NSAttributedString.Key : Any] = [:]
+	) -> [NSAttributedString.Key : Any] {
+		//assignSyntaxColors(false, inside: textView.string[...])
+
+		return 	[NSAttributedString.Key.backgroundColor: NSColor.yellow.withAlphaComponent(0.1)]
+
+	}
+	 
+	 */
 }
+
+/// PsEditView extension for NSTextViewDelegate protocol
+extension PsEditView: NSTextViewDelegate {
+	// May be I missed something, but seams to be empty
+}
+
+/// PsEditView extension for SaveAsProtocol protocol
+extension PsEditView: SaveAsProtocol {
+	// already satisfied in implementation of SaveAsProtocol extension
+}
+
