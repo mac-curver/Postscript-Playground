@@ -1,0 +1,77 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 HelveticaNeue-Bold;\f1\fnil\fcharset0 HelveticaNeue;\f2\fnil\fcharset0 .AppleSystemUIFontMonospaced-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red11\green12\blue12;\red255\green255\blue255;\red13\green43\blue87;
+\red24\green94\blue197;\red244\green244\blue244;\red166\green63\blue5;\red220\green224\blue226;\red69\green105\blue13;
+}
+{\*\expandedcolortbl;;\cssrgb\c4706\c5098\c5490;\cssrgb\c100000\c100000\c100000;\cssrgb\c4706\c23137\c41569;
+\cssrgb\c10588\c45882\c81569;\cssrgb\c96471\c96471\c96471;\cssrgb\c71765\c32549\c392;\cssrgb\c89020\c90196\c90980;\cssrgb\c33725\c47843\c5098;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww15920\viewh15440\viewkind0
+\deftab720
+\pard\pardeftab720\sa330\partightenfactor0
+
+\f0\b\fs30 \cf2 \cb3 \expnd0\expndtw0\kerning0
+from: {\field{\*\fldinst{HYPERLINK "https://stackoverflow.com/questions/39652867/code-sign-error-in-macos-monterey-xcode-resource-fork-finder-information-or"}}{\fldrslt https://stackoverflow.com/questions/39652867/code-sign-error-in-macos-monterey-xcode-resource-fork-finder-information-or}}\
+Solution 1:
+\f1\b0 \cb1 \
+\pard\pardeftab720\sa330\partightenfactor0
+\cf2 \cb3 Apple Developer Website Answers above problem {\field{\*\fldinst{HYPERLINK "https://developer.apple.com/library/content/qa/qa1940/_index.html"}}{\fldrslt \cf4 \ul \ulc4 Here}}.\cb1 \
+\cb3 Execute below command in terminal : First goto projects root folder\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf2 \cb6  xattr -cr <\cf7 path_to_project_dir\cf2 >\
+\pard\pardeftab720\sa330\partightenfactor0
+
+\f1\fs30 \cf2 \cb3 Clean Xcode and Re-build.\cb1 \
+\pard\pardeftab720\sa330\partightenfactor0
+
+\f0\b \cf2 \cb3 Solution 2:
+\f1\b0 \cb1 \
+\pard\pardeftab720\sa330\partightenfactor0
+\cf2 \cb3 Just go to project root directory and run this command xattr -cr .\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf2 \cb6 xattr -cr .\
+\pard\pardeftab720\sa330\partightenfactor0
+
+\f1\fs30 \cf2 \cb3 Clean Xcode and Re-build.\cb1 \
+\pard\pardeftab720\sa330\partightenfactor0
+
+\f0\b \cf2 \cb3 Solution 3:
+\f1\b0 \cb1 \
+\pard\pardeftab720\sa330\partightenfactor0
+\cf2 \cb3 You can fix this problem by finding files which holds finder information.\cb1 \
+\cb3 In terminal, goto project root directory and execute\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf7 \cb6 ls\cf2  -alR@ . > kundapura.txt\
+\pard\pardeftab720\sa330\partightenfactor0
+
+\f1\fs30 \cf2 \cb3 This creates kundapura.txt in current directory. Now search for com.apple.FinderInfo and clear this attributes for all files. You can do it like this\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf2 \cb6 xattr -c <\cf7 filename\cf2 >\
+\pard\pardeftab720\sa330\partightenfactor0
+
+\f1\fs30 \cf2 \cb3 Example: 
+\f2\fs26 \cb8 xattr -c guru.png
+\f1\fs30 \cb1 \
+\cb3 Once you clear all then code sign works. Clean Xcode and Re Build. Cheers\cb1 \
+\pard\pardeftab720\sa330\partightenfactor0
+
+\f0\b \cf2 \cb3 Solution 4:
+\f1\b0  Inspired by Mark McCorkle's Answer\cb1 \
+\pard\pardeftab720\sa330\partightenfactor0
+\cf2 \cb3 In terminal, goto project's root directory and execute one by one command\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf2 \cb6   find . -\cf7 type\cf2  f -name \cf9 '*.jpeg'\cf2  -\cf7 exec\cf2  xattr -c \{\} \\;\
+  find . -\cf7 type\cf2  f -name \cf9 '*.jpg'\cf2  -\cf7 exec\cf2  xattr -c \{\} \\;\
+  find . -\cf7 type\cf2  f -name \cf9 '*.png'\cf2  -\cf7 exec\cf2  xattr -c \{\} \\;\
+  find . -\cf7 type\cf2  f -name \cf9 '*.json'\cf2  -\cf7 exec\cf2  xattr -c \{\} \\;\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs30 \cf2 \cb3 Clean Xcode and Re-build.
+\f0\b \
+}
