@@ -190,7 +190,8 @@ class ViewController: NSViewController {
 							"""
 				, comment: "Multiline text"
 			)
-            //alert.addButton(withTitle: "Quit PsViewer")
+			alert.addButton(withTitle: "Quit")
+			alert.addButton(withTitle: "Help")
             //alert.addButton(withTitle: "Xcode in App Store")
             //alert.addButton(withTitle: "GS for Mac Ports")
             //alert.addButton(withTitle: "GS for Homebrew")
@@ -201,6 +202,14 @@ class ViewController: NSViewController {
             switch alert.runModal() {
             case NSApplication.ModalResponse.alertFirstButtonReturn:
                 exit(-1)
+			case NSApplication.ModalResponse.alertSecondButtonReturn:
+				// help button
+				if let myFileUrl = Bundle.main.url(forResource:"HelpContent/Prerequisites", withExtension: "html") {
+					NSWorkspace.shared.open(myFileUrl)
+				}
+
+				
+			/*
             case NSApplication.ModalResponse.alertSecondButtonReturn:
                 if let url = URL(string: "https://apps.apple.com/de/app/xcode/id497799835?ls=1&mt=12") {
                     NSWorkspace.shared.open(url as URL)
@@ -209,6 +218,7 @@ class ViewController: NSViewController {
                 if let url = URL(string: "https://ports.macports.org/port/ghostscript/") {
                     NSWorkspace.shared.open(url as URL)
                 }
+			 */
             default:
                 //if let url = URL(string: "https://formulae.brew.sh/formula/ghostscript#default") {
                 //    NSWorkspace.shared.open(url as URL)
