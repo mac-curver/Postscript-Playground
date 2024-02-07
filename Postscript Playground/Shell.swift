@@ -43,7 +43,8 @@ class Shell {
         let task = Process()
         task.launchPath = launchPath
         task.arguments = arguments.filter { !$0.isEmpty }
-        Logger.write("\(launchPath) \(arguments)", className: "Shell")
+		Logger.write("\(launchPath)", className: " Shell")
+		Logger.write("(\(arguments))", className: " Shell")
 
         
         let pipe = Pipe()

@@ -5,7 +5,8 @@
 //  Created by LegoEsprit on 30.05.23.
 //
 /// ```
-/// A Description added
+/// Preferences can be clered by:
+/// rm /Users/hj/Library/Preferences/de.LegoEsprit.Postscript-Playground.plist
 /// ```
 
 import Cocoa
@@ -49,9 +50,11 @@ class ViewController: NSViewController {
 	@IBOutlet weak var syntaxSegmentedControl: NSSegmentedControl!
 	
 	/// Array with full path to the tool and parameter for the output argument if required
-	let alternateConverters = [  ["/usr/bin/pstopdf", "-o"]
+	let alternateConverters = [  ["/opt/local/bin/ps2pdf", ""]
                                , ["/usr/local/bin/ps2pdf", ""]
                                , ["/usr/local/opt/ps2pdf", ""]
+							   , ["/usr/local/opt/ghostscript/bin/ps2pdf"]
+							   , ["/usr/bin/pstopdf", "-o"]
                               ]
 	
 
@@ -153,6 +156,35 @@ class ViewController: NSViewController {
 	 */
 
 	
+	fileprivate func setPsToPdfConverterCombobox(_ successPath: String) {
+		let preferences = UserDefaults.standard //NSUserDefaultsController().defaults
+		psToPdfConverterPath = preferences.string(forKey: "PsToPdfConverter") ?? ""
+		
+		if psToPdfConverterPathComboBox.numberOfItems > 1 && psToPdfConverterPath.isEmpty {
+			psToPdfConverterPathComboBox.selectItem(at: 0)
+			psToPdfConverterPathComboBox.stringValue = successPath//psToPdfConverterPathComboBox.objectValueOfSelectedItem as! String
+			
+			/// Start delayed as otherwise main window hides setting window
+			_ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { timer in
+				self.settingsWindow.makeKeyAndOrderFront(self)
+			}
+		}
+		else {
+			psToPdfConverterPathComboBox.stringValue = psToPdfConverterPath
+			preferences.set(psToPdfConverterPath, forKey: "PsToPdfConverter")
+			outputArgument = preferences.string(forKey: "PsToPdfConverterArg") ?? ""
+		}
+	}
+	
+	fileprivate func resetColorsIfNotInitialized() {
+		let preferences = UserDefaults.standard //NSUserDefaultsController().defaults
+		let notEmptyPreferences = preferences.string(forKey: "Initialized") ?? ""
+		if notEmptyPreferences.isEmpty {
+			preferences.set("Initialized", forKey: "Initialized")
+			SyntaxColors.resetAllColors()
+		}
+	}
+	
 	/// Called after IB has been loaded checks whether a ps2Pdf converter is available and does
 	/// some initial settings.
 	override func viewDidLoad() {
@@ -162,7 +194,6 @@ class ViewController: NSViewController {
         super.viewDidLoad()
         
         var successPath = ""
-        let preferences = UserDefaults.standard //NSUserDefaultsController().defaults
 
         psToPdfConverterPathComboBox.removeAllItems()
         for pathAndArgument in alternateConverters {
@@ -174,6 +205,7 @@ class ViewController: NSViewController {
                 psToPdfConverterPathComboBox.addItem(withObjectValue: path)
             }
         }
+		
         
 		if successPath.isEmpty {
             let alert = NSAlert()
@@ -191,7 +223,7 @@ class ViewController: NSViewController {
 				, comment: "Multiline text"
 			)
 			alert.addButton(withTitle: "Quit")
-			alert.addButton(withTitle: "Help")
+			alert.addButton(withTitle: "Enter ps converter path")
             //alert.addButton(withTitle: "Xcode in App Store")
             //alert.addButton(withTitle: "GS for Mac Ports")
             //alert.addButton(withTitle: "GS for Homebrew")
@@ -203,12 +235,10 @@ class ViewController: NSViewController {
             case NSApplication.ModalResponse.alertFirstButtonReturn:
                 exit(-1)
 			case NSApplication.ModalResponse.alertSecondButtonReturn:
-				// help button
-				if let myFileUrl = Bundle.main.url(forResource:"HelpContent/Prerequisites", withExtension: "html") {
-					NSWorkspace.shared.open(myFileUrl)
+				/// Start delayed as otherwise main window hides setting window
+				_ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { timer in
+					self.settingsWindow.makeKeyAndOrderFront(self)
 				}
-
-				
 			/*
             case NSApplication.ModalResponse.alertSecondButtonReturn:
                 if let url = URL(string: "https://apps.apple.com/de/app/xcode/id497799835?ls=1&mt=12") {
@@ -223,35 +253,15 @@ class ViewController: NSViewController {
                 //if let url = URL(string: "https://formulae.brew.sh/formula/ghostscript#default") {
                 //    NSWorkspace.shared.open(url as URL)
                 //}
-                break;
-            }
-            
-            exit(-1)
-        }
-        
-		psToPdfConverterPath = preferences.string(forKey: "PsToPdfConverter") ?? ""
-        
-
-        if psToPdfConverterPathComboBox.numberOfItems > 1 && psToPdfConverterPath.isEmpty {
-            psToPdfConverterPathComboBox.selectItem(at: 0)
-            psToPdfConverterPathComboBox.stringValue = successPath//psToPdfConverterPathComboBox.objectValueOfSelectedItem as! String
-    
-            /// Start delayed as otherwise main window hides setting window
-            _ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { timer in
-                self.settingsWindow.makeKeyAndOrderFront(self)
+                exit(-1)
             }
         }
-        else {
-            psToPdfConverterPathComboBox.stringValue = psToPdfConverterPath
-            preferences.set(psToPdfConverterPath, forKey: "PsToPdfConverter")
-            outputArgument = preferences.string(forKey: "PsToPdfConverterArg") ?? ""
-        }
-		
-		let notEmptyPreferences = preferences.string(forKey: "Initialized") ?? ""
-		if notEmptyPreferences.isEmpty {
-			preferences.set("Initialized", forKey: "Initialized")
-			SyntaxColors.resetAllColors()
+		else {
+			setPsToPdfConverterCombobox(successPath)
 		}
+        
+		
+		resetColorsIfNotInitialized()
 
         SyntaxColors.storeUndoColors()
         
@@ -341,6 +351,13 @@ class ViewController: NSViewController {
 	}
 
     
+	@IBAction func helpForConverterPath(_ sender: Any) {
+		// help button
+		if let myFileUrl = Bundle.main.url(forResource:"HelpContent/Prerequisites", withExtension: "html") {
+			NSWorkspace.shared.open(myFileUrl)
+		}
+	}
+	
 	/// File: Save - Menu actions
 	/// - Parameter sender: Menu item not used
     @IBAction func savePsFile(_ sender: NSMenuItem) {
@@ -652,9 +669,8 @@ class ViewController: NSViewController {
     /// - Parameter filePath: Path of the pdf file
     /// - Returns: true in case a file with filePath does exist
     func checkFileExists(_ filePath: String)->Bool {
-        return FileManager.default.fileExists(
-                  atPath: NSString(string: filePath).expandingTildeInPath
-               )
+		let extended = NSString(string: filePath).expandingTildeInPath
+        return FileManager.default.fileExists(atPath: extended)
     }
     
     
