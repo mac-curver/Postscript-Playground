@@ -226,7 +226,8 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
             return NSDragOperation()
         }
 
-        let suffix = URL(fileURLWithPath: path).pathExtension
+		//let suffix = URL(fileURLWithPath: path).pathExtension
+		let suffix = URL(string: path)!.pathExtension
 
         if expectedExt.contains(suffix) {
             return .copy
@@ -281,11 +282,13 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
             Logger.logout("", className: className)
             return false
         }
-        viewController?.openFileUrl(URL(filePath: path))
-        if pasteboard.count > 1 {
-            viewController?.tooManyFilesAlert()
-        }
-        viewController?.convertPsToPdf()
+		if let url = URL(string: path) {
+			viewController?.openFileUrl(url)
+			if pasteboard.count > 1 {
+				viewController?.tooManyFilesAlert()
+			}
+			viewController?.convertPsToPdf()
+		}
         Logger.logout("", className: className)
         return true
     }
@@ -466,7 +469,7 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
         Logger.write("\(openPanel.nameFieldLabel ?? "None"), \(openPanel.nameFieldStringValue)", className: className)
 
         let response = openPanel.runModal();
-        inFile = openPanel.url ?? URL(fileURLWithPath: "")
+        inFile = openPanel.url ?? URL(string: "")!
         Logger.logout("", className: className)
         return response
     }
@@ -479,7 +482,7 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
         let fileUrl = Bundle.main.url(forResource:"New", withExtension: "ps")
 		textStorage?.setAttributedString(NSAttributedString(string: ""))		/// Clear any pending attributes.
         do {
-			string = try String(contentsOf: fileUrl ?? URL(fileURLWithPath: "")
+			string = try String(contentsOf: fileUrl ?? URL(string: "")!
 								, encoding: .utf8
 						 )
         }
@@ -497,7 +500,7 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
 					"""
         }
 		
-        setPathes(urlForPrefix: URL(filePath: "Untitled.ps"), known: false)
+		setPathes(urlForPrefix: URL(string: "Untitled.ps")!, known: false)
 		assignSyntaxColors(syntax: viewController.segmentedSyntax)
     }
     
@@ -513,7 +516,6 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
         case NSApplication.ModalResponse.OK:
             psFileUrl.url = resultUrl
             psFileUrl.knownToFileManager = true
-            break
         default:
             break
         }
@@ -623,7 +625,7 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
 					localized: "PSNotLoadedKey"
 					, defaultValue: """
 							Postscript file \
-							\(psFileUrl.url.absoluteString) \
+							\(psFileUrl.url.myPath) \
 							could not be loaded
 							"""
 				)
@@ -786,7 +788,7 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
     func saveFileToPsUrl() -> Bool {
         Logger.write("\(psFileUrl)", className: className)
         if psFileUrl.knownToFileManager {
-            saved = saveFileTo(path: psFileUrl.url.path)
+            saved = saveFileTo(path: psFileUrl.url.myPath)
             return true
         }
         else {

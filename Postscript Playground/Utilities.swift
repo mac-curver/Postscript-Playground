@@ -16,17 +16,41 @@ func undefined<T>(_ message: String = "") -> T {
 	fatalError("Undefined: \(message)")
 }
 
-/// Add double seconds to Duration from Swift.misc.
+
+/// Add double toSeconds to Duration from Swift.misc.
+@available(macOS 13.0, *)
 extension Duration {
+	
 	/// Returns the Duration components as s: Double
 	var toSeconds: Double {
 		let v = components
 		return Double(v.seconds) + Double(v.attoseconds) * 1e-18
 	}
+	
 }
 
 
+@available(macOS, unavailable)
+class BenchTimer {
+	let startTime: DispatchTime = DispatchTime.now()
+	var endTime: DispatchTime?
+		
+	func stop() -> Double {
+		endTime = DispatchTime.now()
+		return duration
+	}
+	
+	var duration: Double {
+		let endTime = DispatchTime.now().uptimeNanoseconds
+		return 10E-9 * Double(endTime - startTime.uptimeNanoseconds)
+	}
+}
+
+
+
+
 /// Profiling time record with total, maximum and number of calls information.
+@available(macOS 13.0, *)
 struct ProfileTime {
 	/// Total elapsed time in this method. Will be counted up for any call by init or add().
 	fileprivate var sum: Duration
@@ -85,6 +109,7 @@ struct ProfileTime {
 
 
 /// Implements struct to do simple profiling by method
+@available(macOS 13.0, *)
 struct Profile {
 	
 	/// Dictionary with names and profile times.
@@ -212,6 +237,7 @@ struct Profile {
 	}
 }
 
+@available(macOS 13.0, *)
 let profile = Profile()
 
 

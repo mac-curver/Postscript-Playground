@@ -51,7 +51,7 @@ extension SaveAsProtocol {
         savePanel.nameFieldStringValue    = outFile.lastPathComponent
         
         let response = savePanel.runModal();
-        outFile = savePanel.url ?? URL(fileURLWithPath: "")
+        outFile = savePanel.url ?? URL(string: "")!
         
         return response
     }

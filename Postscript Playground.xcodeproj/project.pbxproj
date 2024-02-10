@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26063C872B7766E9000EE0A6 /* Deprecations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26063C862B7766E9000EE0A6 /* Deprecations.swift */; };
 		2659A7802A3851D5002AB841 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2659A77F2A3851D5002AB841 /* AppDelegate.swift */; };
 		2659A7822A3851D6002AB841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2659A7812A3851D6002AB841 /* Assets.xcassets */; };
 		2659A7852A3851D6002AB841 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2659A7832A3851D6002AB841 /* MainMenu.xib */; };
@@ -38,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		26063C862B7766E9000EE0A6 /* Deprecations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deprecations.swift; sourceTree = "<group>"; };
 		264E7AA02A766604009B75C0 /* Postscript_Playground.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Postscript_Playground.entitlements; sourceTree = "<group>"; };
 		2659A77C2A3851D5002AB841 /* Postscript Playground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Postscript Playground.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2659A77F2A3851D5002AB841 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				26E571752A3853CF0084827C /* Shell.swift */,
 				2675D8942B2EFE59008436A3 /* SyntaxHighlightExtension2.swift */,
 				26E571782A3853CF0084827C /* ViewController.swift */,
+				26063C862B7766E9000EE0A6 /* Deprecations.swift */,
 				2659A77F2A3851D5002AB841 /* AppDelegate.swift */,
 				2659A7812A3851D6002AB841 /* Assets.xcassets */,
 				2659A7832A3851D6002AB841 /* MainMenu.xib */,
@@ -269,6 +272,7 @@
 			files = (
 				26E571832A3853CF0084827C /* ViewController.swift in Sources */,
 				26E571802A3853CF0084827C /* Shell.swift in Sources */,
+				26063C872B7766E9000EE0A6 /* Deprecations.swift in Sources */,
 				26995EE02B68E9010026BAEB /* UserDefaultColorExtension.swift in Sources */,
 				26E571862A3853CF0084827C /* MyLogger.swift in Sources */,
 				26E571852A3853CF0084827C /* OutputStreamExtension.swift in Sources */,
@@ -449,7 +453,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 2.5;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.LegoEsprit.Postscript-Playground";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -481,7 +485,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 2.5;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.LegoEsprit.Postscript-Playground";
 				PRODUCT_NAME = "$(TARGET_NAME)";

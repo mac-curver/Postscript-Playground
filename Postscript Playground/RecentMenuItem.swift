@@ -37,7 +37,7 @@ import Cocoa
 
 /// Structure to remember the name and the bookmark for files that have been opened before
 struct MenuItem: Codable {
-    var pdfUrl: URL = URL(fileURLWithPath: "")                                  ///< remember the pdf path
+    var pdfUrl: URL = URL(string: "")!                                  		///< remember the pdf path
     var secureData: Data = Data()                                               ///< remember the ps path as secure bookmark
 }
   
@@ -63,7 +63,7 @@ extension NSMenu {
 			var generatedPsUrl = pdfUrl.deletingPathExtension()
 			generatedPsUrl.appendPathExtension("ps")
 			
-			if FileManager.default.fileExists(atPath: generatedPsUrl.path) {
+			if FileManager.default.fileExists(atPath: generatedPsUrl.myPath) {
 				let menuItemUrl = try URL(
 					resolvingBookmarkData: psData,
 					options: [.withSecurityScope],
@@ -78,7 +78,7 @@ extension NSMenu {
 					/// Fortunately this never happened?!
 				}
 				
-				if let oldItem = self.item(withTitle: menuItemUrl.path) {
+				if let oldItem = self.item(withTitle: menuItemUrl.myPath) {
 					self.removeItem(oldItem)
 				}
 				let item = RecentMenuItem(  ps: menuItemUrl
@@ -89,7 +89,7 @@ extension NSMenu {
 				self.insertItem(item, at:0)
 			}
 			else {
-				Logger.write("\(generatedPsUrl.path) does not exist")
+				Logger.write("\(generatedPsUrl.myPath) does not exist")
 			}
         }
         catch {
@@ -173,7 +173,7 @@ class RecentMenuItem: NSMenuItem {
     /// - parameter selector:    The `Selector?` to be executed foir the menu item.
 
     init(ps: URL, pdf: URL, psData: Data, action selector: Selector?) {
-        super.init(title: ps.path, action: selector, keyEquivalent: "")
+        super.init(title: ps.myPath, action: selector, keyEquivalent: "")
         menuItem.pdfUrl = pdf
         menuItem.secureData = psData
     }

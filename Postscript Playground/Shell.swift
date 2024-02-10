@@ -42,7 +42,7 @@ class Shell {
     init(_ launchPath: String, arguments: [String])  {
         let task = Process()
         task.launchPath = launchPath
-        task.arguments = arguments.filter { !$0.isEmpty }
+        task.arguments = arguments
 		Logger.write("\(launchPath)", className: " Shell")
 		Logger.write("(\(arguments))", className: " Shell")
 
