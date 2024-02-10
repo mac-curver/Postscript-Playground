@@ -55,7 +55,7 @@ class Shell {
 			try task.run()
 		}
 		catch {
-			Logger.write("Unix tool was not executed!")
+			Logger.write("For an unknown reason Unix tool was not executed!")
 		}
         
         let data = pipe.fileHandleForReading.readDataToEndOfFile()

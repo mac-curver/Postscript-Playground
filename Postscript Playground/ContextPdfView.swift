@@ -91,7 +91,7 @@ class ContextPdfView: PDFView, SaveAsProtocol {
     //func validateMenuItem(_ menuItem: NSMenuItem) -> Bool
     
 	/// empty pdf path
-	var pdfUrl: URL = URL(string: "Untitled")!
+	var pdfUrl: URL = URL(filePath: "Untitled")
     
 	/// temp file to store the pdf - Only directly writable path in Sandbox
 	let tempFileUrl =  FileManager.tempfileUrl

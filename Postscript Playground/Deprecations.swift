@@ -7,6 +7,8 @@
 //	Hopefully this allows to run the app on older systems!
 
 import Cocoa
+import os.log
+import Foundation
 
 extension URL {
 	var myPath: String {
@@ -22,3 +24,21 @@ extension URL {
 	}
 }
 
+
+extension Process {
+	
+	func launchOrRun() {
+		if #available(macOS 10.13, *) {
+			do {
+				try self.run()
+			}
+			catch {
+				Logger.write("Unix tool was not executed!")
+			}
+		}
+		else {
+			self.launch()
+		}
+	}
+
+}

@@ -389,7 +389,7 @@ class ViewController: NSViewController {
 		Logger.write("\(openPanel.nameFieldLabel ?? "None"), \(openPanel.nameFieldStringValue)", className: className)
 
 		let response = openPanel.runModal();
-		inFile = openPanel.url ?? URL(string: "")!
+		inFile = openPanel.url ?? URL(filePath: "")
 		Logger.logout("", className: className)
 		return response
 	}
@@ -487,10 +487,9 @@ class ViewController: NSViewController {
 			, ofType: "ps"
 		) {
             Logger.write(path, className: className)
-			if let url = URL(string: path) {
-				openFileUrl(url, addToRecent: false)
-				convertPsToPdf()
-			}
+			let url = URL(filePath: path)
+			openFileUrl(url, addToRecent: false)
+			convertPsToPdf()
         }
     }
 	    
@@ -564,7 +563,7 @@ class ViewController: NSViewController {
 	/// - Parameter sender: Menu item not used
     @IBAction func fileNew(_ sender: NSMenuItem) {
         window.title = "Postscript Playground"
-        setPdfPath(urlForPrefix: URL(string: "Untitled.pdf")!)
+        setPdfPath(urlForPrefix: URL(filePath: "Untitled.pdf"))
 		pdfView.clearPdf()
         psTextView.newFile()
 		if !window.isVisible {
@@ -783,7 +782,7 @@ class ViewController: NSViewController {
 	
 	@IBAction func browsePsToPdfConverter(_ sender: NSComboBox) {
 		if sender.numberOfItems - 1 == sender.indexOfSelectedItem {
-			var converterUrl = URL(string: "/usr/bin/pstopdf")!
+			var converterUrl = URL(filePath: "/usr/bin/pstopdf")
 			let response = runOpenCoverterPanel(&converterUrl, with: "/usr/bin")
 			switch response {
 			case NSApplication.ModalResponse.OK:

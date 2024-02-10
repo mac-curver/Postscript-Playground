@@ -5,7 +5,7 @@
 //	Changed by LegoEsprit 2024-01-27 Message abbreviation added
 //  Created by LegoEsprit 2023-05-06
 //
-//                        , file: URL = URL(string: #file) -> MyLogger !!!
+//                        , file: URL = URL(filePath: #file) -> MyLogger !!!
 /*
 > Examples on how to retrieve the log info from "Console" log files:
  

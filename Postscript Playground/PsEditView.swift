@@ -227,7 +227,7 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
         }
 
 		//let suffix = URL(fileURLWithPath: path).pathExtension
-		let suffix = URL(string: path)!.pathExtension
+		let suffix = URL(filePath: path).pathExtension
 
         if expectedExt.contains(suffix) {
             return .copy
@@ -268,30 +268,29 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
     /// - Parameter dragInfo:               The drag info from the system.
     /// - Returns: true if drag finished successfully
     @MainActor
-    override func performDragOperation(_ dragInfo: NSDraggingInfo) -> Bool {
-        Logger.login("", className: className)
-        guard
-            let pasteboard =
-                dragInfo.draggingPasteboard.propertyList(
-                        forType: NSPasteboard.PasteboardType(
-                            rawValue: "NSFilenamesPboardType"
-                        )
-                ) as? NSArray,
-            let path = pasteboard.lastObject as? String
-        else {
-            Logger.logout("", className: className)
-            return false
-        }
-		if let url = URL(string: path) {
-			viewController?.openFileUrl(url)
-			if pasteboard.count > 1 {
-				viewController?.tooManyFilesAlert()
-			}
-			viewController?.convertPsToPdf()
+	override func performDragOperation(_ dragInfo: NSDraggingInfo) -> Bool {
+		Logger.login("", className: className)
+		guard
+			let pasteboard =
+				dragInfo.draggingPasteboard.propertyList(
+					forType: NSPasteboard.PasteboardType(
+						rawValue: "NSFilenamesPboardType"
+					)
+				) as? NSArray,
+			let path = pasteboard.lastObject as? String
+		else {
+			Logger.logout("", className: className)
+			return false
 		}
-        Logger.logout("", className: className)
-        return true
-    }
+		let url = URL(filePath: path)
+		viewController?.openFileUrl(url)
+		if pasteboard.count > 1 {
+			viewController?.tooManyFilesAlert()
+		}
+		viewController?.convertPsToPdf()
+		Logger.logout("", className: className)
+		return true
+	}
     
     /// Find row and column for selection start
     /// Checks indexStarts for the index of the start larger than the selected position and
@@ -468,7 +467,7 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
         Logger.write("\(openPanel.nameFieldLabel ?? "None"), \(openPanel.nameFieldStringValue)", className: className)
 
         let response = openPanel.runModal();
-        inFile = openPanel.url ?? URL(string: "")!
+		inFile = openPanel.url ?? URL(filePath: "")
         Logger.logout("", className: className)
         return response
     }
@@ -481,7 +480,7 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
         let fileUrl = Bundle.main.url(forResource:"New", withExtension: "ps")
 		textStorage?.setAttributedString(NSAttributedString(string: ""))		/// Clear any pending attributes.
         do {
-			string = try String(contentsOf: fileUrl ?? URL(string: "")!
+			string = try String(contentsOf: fileUrl ?? URL(filePath: "")
 								, encoding: .utf8
 						 )
         }
@@ -499,7 +498,7 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
 					"""
         }
 		
-		setPathes(urlForPrefix: URL(string: "Untitled.ps")!, known: false)
+		setPathes(urlForPrefix: URL(filePath: "Untitled.ps"), known: false)
 		assignSyntaxColors()
     }
     

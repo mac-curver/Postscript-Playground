@@ -14,8 +14,8 @@
             filePath = "Postscript Playground/PsEditView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "671"
-            endingLineNumber = "671"
+            startingLineNumber = "670"
+            endingLineNumber = "670"
             landmarkName = "checkToSaveChanges()"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,8 +46,8 @@
             filePath = "Postscript Playground/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "732"
-            endingLineNumber = "732"
+            startingLineNumber = "731"
+            endingLineNumber = "731"
             landmarkName = "checkFileExists(_:)"
             landmarkType = "7">
             <Locations>
@@ -236,8 +236,8 @@
             filePath = "Postscript Playground/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "808"
-            endingLineNumber = "808"
+            startingLineNumber = "807"
+            endingLineNumber = "807"
             landmarkName = "changeSettings(_:)"
             landmarkType = "7">
             <Locations>
@@ -360,8 +360,8 @@
             filePath = "Postscript Playground/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "698"
-            endingLineNumber = "698"
+            startingLineNumber = "697"
+            endingLineNumber = "697"
             landmarkName = "convertPsToPdf()"
             landmarkType = "7">
          </BreakpointContent>
@@ -376,8 +376,8 @@
             filePath = "Postscript Playground/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "779"
-            endingLineNumber = "779"
+            startingLineNumber = "778"
+            endingLineNumber = "778"
             landmarkName = "setConverterPathToPreferences()"
             landmarkType = "7">
          </BreakpointContent>
@@ -440,8 +440,8 @@
             filePath = "Postscript Playground/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "693"
-            endingLineNumber = "693"
+            startingLineNumber = "692"
+            endingLineNumber = "692"
             landmarkName = "convertPsToPdf()"
             landmarkType = "7">
             <Locations>
@@ -474,6 +474,70 @@
                   startingLineNumber = "690"
                   endingLineNumber = "690"
                   offsetFromSymbolStart = "1160">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DD6ECEBC-74EB-4435-B361-B2AAEA101882"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Postscript Playground/Shell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "init(_:arguments:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C740D97A-FAE2-4813-B88D-76CC66396C04"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Postscript Playground/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "484"
+            endingLineNumber = "484"
+            landmarkName = "openSampleFile(sender:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C740D97A-FAE2-4813-B88D-76CC66396C04 - 819c8f20f28228f5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Postscript_Playground.ViewController.openSampleFile(sender: __C.NSMenuItem) -&gt; ()"
+                  moduleName = "Postscript Playground"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hj/Documents/Development/GitHub/Public/Postscript%20Playground/Postscript%20Playground/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "484"
+                  endingLineNumber = "484"
+                  offsetFromSymbolStart = "228">
+               </Location>
+               <Location
+                  uuid = "C740D97A-FAE2-4813-B88D-76CC66396C04 - 819c8f20f28228f5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Postscript_Playground.ViewController.openSampleFile(sender: __C.NSMenuItem) -&gt; ()"
+                  moduleName = "Postscript Playground"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hj/Documents/Development/GitHub/Public/Postscript%20Playground/Postscript%20Playground/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "484"
+                  endingLineNumber = "484"
+                  offsetFromSymbolStart = "296">
                </Location>
             </Locations>
          </BreakpointContent>
