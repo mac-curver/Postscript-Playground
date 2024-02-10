@@ -380,7 +380,7 @@ extension NSTextView {
 	///   This is the fastest implementation 250kB -> 0.35s
 	///   ```
 	func syntaxColorLineByComponents(line: Substring, distance: Int) {
-		let delimiters = CharacterSet(charactersIn: " ()\t\r\n")
+		let delimiters = CharacterSet(charactersIn: " ()\t\r\n<>[]{}/%")
 		
 		var position = line.startIndex
 		let _ = line.components(separatedBy: delimiters).compactMap {
