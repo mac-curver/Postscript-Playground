@@ -37,7 +37,7 @@ import Cocoa
 
 /// Structure to remember the name and the bookmark for files that have been opened before
 struct MenuItem: Codable {
-    var pdfUrl: URL = URL(string: "")!                                  		///< remember the pdf path
+	var pdfUrl: URL = URL(string: ".")!	                                		///< remember the pdf path
     var secureData: Data = Data()                                               ///< remember the ps path as secure bookmark
 }
   

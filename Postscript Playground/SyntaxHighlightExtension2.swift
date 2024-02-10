@@ -324,77 +324,80 @@ extension NSTextView {
 	/// - Parameters:
 	///   - line: The complete line without the comments
 	///   - distance: Distance from the start of the string as NSRange distance
+	///   ```
+	///   This is nearly as fast implementation 250kB -> 0.40s
+	///   ```
 	func syntaxColorLineByRegex(line: Substring, distance: Int) {
-		profile.measure(className: self.className, {
-			let regEx = Regex {
-				Capture {
-					OneOrMore(.whitespace.inverted)
-				}
-				ZeroOrMore(.whitespace)
+		let regEx = Regex {
+			Capture {
+				OneOrMore(.whitespace.inverted)
 			}
-			let subStrings = line.matches(of: regEx)
-			for match in subStrings {
-				let subRange = match.range
-				let subString = match.output.1
-				var shiftedRange = NSRange(subRange, in: line)
-				shiftedRange.location += distance
-
-				colorize(subString, nsRange: shiftedRange)
-			}
-		})
+			ZeroOrMore(.whitespace)
+		}
+		let subStrings = line.matches(of: regEx)
+		for match in subStrings {
+			let subRange = match.range
+			let subString = match.output.1
+			var shiftedRange = NSRange(subRange, in: line)
+			shiftedRange.location += distance
+			
+			colorize(subString, nsRange: shiftedRange)
+		}
 	}
 
 	/// Uses NSRegularExpression to analyse the symbols inside a single line
 	/// - Parameters:
 	///   - line: The complete line with comments
 	///   - distance: Distance from the start of the string as NSRange distance
+	///   ```
+	///   This is the slowest implementation 250kB -> 0.60s
+	///   ```
 	func syntaxColorLineByNSRegularExpression(line: String
 											  , nsRange: NSRange
 											  , distance: Int
 	) {
-		profile.measure(className: self.className, {
-			let regEx = try? NSRegularExpression(pattern: "(?:(\\S+)\\W*)")
-			regEx?.enumerateMatches(in: line
-									, options: .withoutAnchoringBounds
-									, range: nsRange
-			) {
-				match, matchingFlags, bool in
-				
-				var shiftedRange = match!.range(at:1)
-				if let range = Range(shiftedRange, in: line) {
-					let subString = line[range]
-					shiftedRange.location += distance
-					colorize(subString, nsRange: shiftedRange)
-				}
+		let regEx = try? NSRegularExpression(pattern: "(?:(\\S+)\\W*)")
+		regEx?.enumerateMatches(in: line
+								, options: .withoutAnchoringBounds
+								, range: nsRange
+		) {
+			match, matchingFlags, bool in
+			
+			var shiftedRange = match!.range(at:1)
+			if let range = Range(shiftedRange, in: line) {
+				let subString = line[range]
+				shiftedRange.location += distance
+				colorize(subString, nsRange: shiftedRange)
 			}
-		})
+		}
 	}
 	
 	/// Uses String.components to analyse the symbols inside a single line
 	/// - Parameters:
 	///   - line: The complete line without the comments
 	///   - distance: Distance from the start of the string as NSRange distance
-	func syntaxColorsByComponents(line: Substring, distance: Int) {
-		profile.measure(className: self.className, {
-			let set = CharacterSet(charactersIn: " ()")
-			
-			var position = line.startIndex
-			let _ = line.components(separatedBy: set).compactMap {
-				subString in
-				if let subRange = line.range(of: subString
-											 , range: position..<line.endIndex
-				) {
-					position = subRange.upperBound
-					var shiftedRange = NSRange(subRange, in: line)
-					shiftedRange.location += distance
-					colorize(subString[subString.startIndex...]
-							 , nsRange: shiftedRange
-					)
-				}
-
+	///   ```
+	///   This is the fastest implementation 250kB -> 0.35s
+	///   ```
+	func syntaxColorLineByComponents(line: Substring, distance: Int) {
+		let delimiters = CharacterSet(charactersIn: " ()\t\r\n")
+		
+		var position = line.startIndex
+		let _ = line.components(separatedBy: delimiters).compactMap {
+			subString in
+			if let subRange = line.range(
+				of: subString
+				, range: position..<line.endIndex
+			) {
+				position = subRange.upperBound
+				var shiftedRange = NSRange(subRange, in: line)
+				shiftedRange.location += distance
+				colorize(subString[subString.startIndex...]
+						 , nsRange: shiftedRange
+				)
 			}
-		})
-
+			
+		}
 	}
 
 	
@@ -416,7 +419,6 @@ extension NSTextView {
 	/// ```
 	func assignSyntaxColorToLine(_ lineString: String?
 								 , nsStartDistance: Int
-								 , syntax: Int
 	) {
 		if let line = lineString {
 						
@@ -445,24 +447,23 @@ extension NSTextView {
 					, range: nsRange
 				)
 			}
-			switch syntax {
-			case 0:
-				self.syntaxColorLineByRegex(line: nonCommentLine
-											, distance: nsStartDistance
-				)
-			case 1:
-				self.syntaxColorLineByNSRegularExpression(
-					line: line
-					, nsRange: NSRange(nonCommentRange, in: line)
-					, distance: nsStartDistance
-				)
-			case 2:
-				self.syntaxColorsByComponents(line: nonCommentLine
-											  , distance: nsStartDistance
-				)
-			default:
-				print("Error")
-			}
+			/*
+			self.syntaxColorLineByRegex(
+				line: nonCommentLine
+				, distance: nsStartDistance
+			)
+			
+			self.syntaxColorLineByNSRegularExpression(
+				line: line
+				, nsRange: NSRange(nonCommentRange, in: line)
+				, distance: nsStartDistance
+			)
+			*/
+			self.syntaxColorLineByComponents(
+				line: nonCommentLine
+				, distance: nsStartDistance
+			)
+
 			
 		}
 	}
@@ -472,7 +473,7 @@ extension NSTextView {
 	///
 	/// Simple and effective but not efficient syntax highligthing.
 	/// - Parameter syntax: Syntax method to be applied (see SyntaxSegementedControl)
-	func assignSyntaxColors(syntax: Int) {
+	func assignSyntaxColors() {
 		Logger.login("", className: className)
 
 		profile.measure(className: className, {
@@ -488,7 +489,6 @@ extension NSTextView {
 				self.assignSyntaxColorToLine(
 					lineString
 					, nsStartDistance: nsLineRange.location
-					, syntax: syntax
 				)
 			}
 

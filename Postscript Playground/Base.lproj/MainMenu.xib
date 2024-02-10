@@ -38,7 +38,6 @@
                 <outlet property="recent2Menu" destination="8AO-Nz-E1Y" id="rPN-He-zzz"/>
                 <outlet property="settingsWindow" destination="5KJ-h8-R4L" id="dnq-VX-N5w"/>
                 <outlet property="sourceItemView" destination="EiT-Mj-1SZ" id="AfC-no-zcL"/>
-                <outlet property="syntaxSegmentedControl" destination="JvS-j2-46w" id="Ncz-kF-ife"/>
                 <outlet property="verticalSplitter" destination="igB-vT-9oa" id="lbN-z2-1R3"/>
                 <outlet property="view" destination="EiT-Mj-1SZ" id="4eO-MN-clm"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="QDX-VJ-DLH"/>
@@ -843,32 +842,16 @@
                                             <action selector="releadWithEncoding:" target="qTi-0S-hBv" id="ERW-rH-PpZ"/>
                                         </connections>
                                     </comboBox>
-                                    <segmentedControl verticalHuggingPriority="750" mirrorLayoutDirectionWhenInternationalizing="never" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JvS-j2-46w">
-                                        <rect key="frame" x="368" y="730" width="131" height="21"/>
-                                        <segmentedCell key="cell" controlSize="small" borderStyle="border" alignment="left" segmentDistribution="fillEqually" style="rounded" trackingMode="selectOne" id="QWx-Mh-p93">
-                                            <font key="font" metaFont="smallSystem"/>
-                                            <segments>
-                                                <segment label="RegEx" width="40"/>
-                                                <segment label="NS" width="40" selected="YES" tag="1"/>
-                                                <segment label="Comp" width="39"/>
-                                            </segments>
-                                        </segmentedCell>
-                                        <connections>
-                                            <action selector="syntaxCodeChanged:" target="qTi-0S-hBv" id="ebO-sx-z5x"/>
-                                        </connections>
-                                    </segmentedControl>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="wE8-wA-BrE" firstAttribute="firstBaseline" secondItem="VGH-hf-HRg" secondAttribute="firstBaseline" id="75l-ln-Ld9"/>
                                     <constraint firstItem="wE8-wA-BrE" firstAttribute="top" secondItem="LT0-bJ-p8E" secondAttribute="bottom" constant="5" id="77a-U0-po2"/>
                                     <constraint firstAttribute="trailing" secondItem="0JF-Rh-CLr" secondAttribute="trailing" constant="15" id="MLk-w5-dxc"/>
-                                    <constraint firstItem="JvS-j2-46w" firstAttribute="trailing" secondItem="qTi-0S-hBv" secondAttribute="trailing" constant="-44" id="MsG-s2-4Ro"/>
                                     <constraint firstItem="0JF-Rh-CLr" firstAttribute="leading" secondItem="Ws2-f8-NNl" secondAttribute="trailing" constant="17" id="TaS-J4-lgX"/>
                                     <constraint firstItem="Ws2-f8-NNl" firstAttribute="leading" secondItem="bfD-jX-xgq" secondAttribute="trailing" constant="17" id="ZWI-Fd-4IB"/>
                                     <constraint firstItem="VGH-hf-HRg" firstAttribute="leading" secondItem="S1O-BB-TfP" secondAttribute="leading" constant="12" id="c4k-s1-OMq"/>
                                     <constraint firstItem="Ws2-f8-NNl" firstAttribute="firstBaseline" secondItem="bfD-jX-xgq" secondAttribute="firstBaseline" id="nCt-kJ-Zb2"/>
                                     <constraint firstItem="bfD-jX-xgq" firstAttribute="firstBaseline" secondItem="wE8-wA-BrE" secondAttribute="firstBaseline" id="ozV-jF-ZRA"/>
-                                    <constraint firstItem="JvS-j2-46w" firstAttribute="top" secondItem="qTi-0S-hBv" secondAttribute="top" constant="22" id="tUP-HT-BMu"/>
                                     <constraint firstItem="wE8-wA-BrE" firstAttribute="leading" secondItem="VGH-hf-HRg" secondAttribute="trailing" constant="12" id="uBD-DN-Pll"/>
                                     <constraint firstItem="0JF-Rh-CLr" firstAttribute="firstBaseline" secondItem="Ws2-f8-NNl" secondAttribute="firstBaseline" constant="-12" id="vjm-sI-lQP"/>
                                 </constraints>

@@ -59,7 +59,7 @@ class ViewController: NSViewController {
 	@IBOutlet weak var helpButton: NSButton!
 	@IBOutlet weak var automaticallyComboBox: NSComboButton!
 	
-	@IBOutlet weak var syntaxSegmentedControl: NSSegmentedControl!
+	//@IBOutlet weak var syntaxSegmentedControl: NSSegmentedControl!
 	
 	/// Array with full path to the tool and parameter for the output argument if required
 	let kindsOfAlternativeConverters = [
@@ -105,6 +105,7 @@ class ViewController: NSViewController {
         }
 	}
 	
+	/*
 	/// Non optional index of the segment syntax control
 	var segmentedSyntax: Int {
 		if nil != syntaxSegmentedControl {
@@ -114,6 +115,7 @@ class ViewController: NSViewController {
 			return -1
 		}
 	}
+	 */
     
 	
 	/// Returns a version string
@@ -742,6 +744,7 @@ class ViewController: NSViewController {
         attentionButton.layer?.add(animation, forKey: nil)
     }
 	
+	/*
 	/// Used to show and hide the syntaxSegmentedControl.
 	/// - Parameter event: Event to retrieve the mouse position
 	/// ```
@@ -761,7 +764,7 @@ class ViewController: NSViewController {
 			})
 		}
 	}
-
+	 */
 	
 	
 	/// Resets colors to factory settings
@@ -811,7 +814,7 @@ class ViewController: NSViewController {
         settingsWindow.close()
 		NSColorPanel.shared.close()
 
-        psTextView.assignSyntaxColors(syntax: segmentedSyntax)
+        psTextView.assignSyntaxColors()
     }
 	
 	/// Respond to cancel action for the settings dialog

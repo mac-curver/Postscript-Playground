@@ -175,7 +175,7 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
 	/// ```
 	@IBAction func syntaxCodeChanged(_ sender: NSSegmentedControl) {
 		textStorage?.removeAttribute(.foregroundColor, range: NSMakeRange(0, string.count-1))
-		assignSyntaxColors(syntax: viewController.segmentedSyntax)
+		assignSyntaxColors()
 	}
 	
 	/// awakeFromNib initializes a monospaced font for the .ps text editor
@@ -342,7 +342,6 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
 			removeAttributesInLine(nsLineRange)
 			assignSyntaxColorToLine(lineString
 									, nsStartDistance: nsLineRange.location
-									, syntax: viewController.segmentedSyntax
 			)
 		}
         timer.invalidate()
@@ -501,7 +500,7 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
         }
 		
 		setPathes(urlForPrefix: URL(string: "Untitled.ps")!, known: false)
-		assignSyntaxColors(syntax: viewController.segmentedSyntax)
+		assignSyntaxColors()
     }
     
     /// Displays file open dialog
@@ -540,7 +539,7 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
 								, encoding: fileEncoding
 			             )
 			Logger.write("3", className: className)
-			assignSyntaxColors(syntax: viewController.segmentedSyntax)
+			assignSyntaxColors()
 			Logger.write("4", className: className)
 			opened = true
 		}
@@ -580,7 +579,7 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
 					if let myString = String(data: data as Data, encoding: encoding) {
 						string = myString
 						viewController.setEncoding(item: encoding.description)
-						assignSyntaxColors(syntax: viewController.segmentedSyntax)
+						assignSyntaxColors()
 						opened = true
 						break
 					}
@@ -608,7 +607,7 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
 				viewController.setEncoding(item: encoding.description)
 				
 				string = myString.string
-				assignSyntaxColors(syntax: viewController.segmentedSyntax)
+				assignSyntaxColors()
 				opened = true
 			}
 			catch {
@@ -841,17 +840,6 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
 		NSBezierPath.fill(rect)
 		super.draw(dirtyRect)
 		
-	}
-	
-	@MainActor func textView(
-		_ textView: NSTextView,
-		shouldChangeTypingAttributes oldTypingAttributes: [String : Any] = [:],
-		toAttributes newTypingAttributes: [NSAttributedString.Key : Any] = [:]
-	) -> [NSAttributedString.Key : Any] {
-		//assignSyntaxColors(false, inside: textView.string[...])
-
-		return 	[NSAttributedString.Key.backgroundColor: NSColor.yellow.withAlphaComponent(0.1)]
-
 	}
 	 
 	 */

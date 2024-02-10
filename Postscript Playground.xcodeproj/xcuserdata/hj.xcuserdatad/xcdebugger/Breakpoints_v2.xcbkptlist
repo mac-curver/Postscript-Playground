@@ -14,8 +14,8 @@
             filePath = "Postscript Playground/PsEditView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "672"
-            endingLineNumber = "672"
+            startingLineNumber = "671"
+            endingLineNumber = "671"
             landmarkName = "checkToSaveChanges()"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,8 +46,8 @@
             filePath = "Postscript Playground/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "730"
-            endingLineNumber = "730"
+            startingLineNumber = "732"
+            endingLineNumber = "732"
             landmarkName = "checkFileExists(_:)"
             landmarkType = "7">
             <Locations>
@@ -109,13 +109,13 @@
             filePath = "Postscript Playground/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "251"
-            endingLineNumber = "251"
+            startingLineNumber = "253"
+            endingLineNumber = "253"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "11A1F6A7-CBBA-48CE-8055-3235D1BDCB43 - c492c0d2f65afe8c"
+                  uuid = "11A1F6A7-CBBA-48CE-8055-3235D1BDCB43 - c492c0d2f65afeca"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -125,12 +125,12 @@
                   urlString = "file:///Users/hj/Documents/Development/GitHub/Public/Postscript%20Playground/Postscript%20Playground/ViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "251"
-                  endingLineNumber = "251"
+                  startingLineNumber = "253"
+                  endingLineNumber = "253"
                   offsetFromSymbolStart = "3008">
                </Location>
                <Location
-                  uuid = "11A1F6A7-CBBA-48CE-8055-3235D1BDCB43 - b8711475c2cd5697"
+                  uuid = "11A1F6A7-CBBA-48CE-8055-3235D1BDCB43 - b8711475c2cd5551"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -140,12 +140,12 @@
                   urlString = "file:///Users/hj/Documents/Development/GitHub/Public/Postscript%20Playground/Postscript%20Playground/ViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "252"
-                  endingLineNumber = "252"
+                  startingLineNumber = "254"
+                  endingLineNumber = "254"
                   offsetFromSymbolStart = "80">
                </Location>
                <Location
-                  uuid = "11A1F6A7-CBBA-48CE-8055-3235D1BDCB43 - c492c0d2f65afeaf"
+                  uuid = "11A1F6A7-CBBA-48CE-8055-3235D1BDCB43 - c492c0d2f65afeca"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -155,68 +155,8 @@
                   urlString = "file:///Users/hj/Documents/Development/GitHub/Public/Postscript%20Playground/Postscript%20Playground/ViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "250"
-                  endingLineNumber = "250"
-                  offsetFromSymbolStart = "2744">
-               </Location>
-               <Location
-                  uuid = "11A1F6A7-CBBA-48CE-8055-3235D1BDCB43 - c492c0d2f65afda7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Postscript_Playground.ViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "Postscript Playground"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hj/Documents/Development/GitHub/Public/Postscript%20Playground/Postscript%20Playground/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "258"
-                  endingLineNumber = "258"
-                  offsetFromSymbolStart = "2744">
-               </Location>
-               <Location
-                  uuid = "11A1F6A7-CBBA-48CE-8055-3235D1BDCB43 - c492c0d2f65afd84"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Postscript_Playground.ViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "Postscript Playground"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hj/Documents/Development/GitHub/Public/Postscript%20Playground/Postscript%20Playground/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "259"
-                  endingLineNumber = "259"
-                  offsetFromSymbolStart = "2744">
-               </Location>
-               <Location
-                  uuid = "11A1F6A7-CBBA-48CE-8055-3235D1BDCB43 - c492c0d2f65afde5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Postscript_Playground.ViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "Postscript Playground"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hj/Documents/Development/GitHub/Public/Postscript%20Playground/Postscript%20Playground/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "260"
-                  endingLineNumber = "260"
-                  offsetFromSymbolStart = "2744">
-               </Location>
-               <Location
-                  uuid = "11A1F6A7-CBBA-48CE-8055-3235D1BDCB43 - c492c0d2f65afe8c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Postscript_Playground.ViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "Postscript Playground"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hj/Documents/Development/GitHub/Public/Postscript%20Playground/Postscript%20Playground/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "251"
-                  endingLineNumber = "251"
+                  startingLineNumber = "253"
+                  endingLineNumber = "253"
                   offsetFromSymbolStart = "2744">
                </Location>
             </Locations>
@@ -232,8 +172,8 @@
             filePath = "Postscript Playground/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "398"
-            endingLineNumber = "398"
+            startingLineNumber = "400"
+            endingLineNumber = "400"
             landmarkName = "helpForConverterPath(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -248,13 +188,13 @@
             filePath = "Postscript Playground/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "225"
-            endingLineNumber = "225"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "9490B35B-D69E-4865-BFA4-F1BD68C501F8 - c492c0d2f65af966"
+                  uuid = "9490B35B-D69E-4865-BFA4-F1BD68C501F8 - c492c0d2f65af9a4"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -264,12 +204,12 @@
                   urlString = "file:///Users/hj/Documents/Development/GitHub/Public/Postscript%20Playground/Postscript%20Playground/ViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "225"
-                  endingLineNumber = "225"
+                  startingLineNumber = "227"
+                  endingLineNumber = "227"
                   offsetFromSymbolStart = "1852">
                </Location>
                <Location
-                  uuid = "9490B35B-D69E-4865-BFA4-F1BD68C501F8 - c492c0d2f65af909"
+                  uuid = "9490B35B-D69E-4865-BFA4-F1BD68C501F8 - c492c0d2f65af9a4"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -279,68 +219,8 @@
                   urlString = "file:///Users/hj/Documents/Development/GitHub/Public/Postscript%20Playground/Postscript%20Playground/ViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "224"
-                  endingLineNumber = "224"
-                  offsetFromSymbolStart = "1824">
-               </Location>
-               <Location
-                  uuid = "9490B35B-D69E-4865-BFA4-F1BD68C501F8 - c492c0d2f65af801"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Postscript_Playground.ViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "Postscript Playground"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hj/Documents/Development/GitHub/Public/Postscript%20Playground/Postscript%20Playground/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "232"
-                  endingLineNumber = "232"
-                  offsetFromSymbolStart = "1824">
-               </Location>
-               <Location
-                  uuid = "9490B35B-D69E-4865-BFA4-F1BD68C501F8 - c492c0d2f65af85e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Postscript_Playground.ViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "Postscript Playground"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hj/Documents/Development/GitHub/Public/Postscript%20Playground/Postscript%20Playground/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "233"
-                  endingLineNumber = "233"
-                  offsetFromSymbolStart = "1824">
-               </Location>
-               <Location
-                  uuid = "9490B35B-D69E-4865-BFA4-F1BD68C501F8 - c492c0d2f65af8bf"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Postscript_Playground.ViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "Postscript Playground"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hj/Documents/Development/GitHub/Public/Postscript%20Playground/Postscript%20Playground/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "234"
-                  endingLineNumber = "234"
-                  offsetFromSymbolStart = "1824">
-               </Location>
-               <Location
-                  uuid = "9490B35B-D69E-4865-BFA4-F1BD68C501F8 - c492c0d2f65af966"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Postscript_Playground.ViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "Postscript Playground"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hj/Documents/Development/GitHub/Public/Postscript%20Playground/Postscript%20Playground/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "225"
-                  endingLineNumber = "225"
+                  startingLineNumber = "227"
+                  endingLineNumber = "227"
                   offsetFromSymbolStart = "1824">
                </Location>
             </Locations>
@@ -356,8 +236,8 @@
             filePath = "Postscript Playground/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "805"
-            endingLineNumber = "805"
+            startingLineNumber = "808"
+            endingLineNumber = "808"
             landmarkName = "changeSettings(_:)"
             landmarkType = "7">
             <Locations>
@@ -464,8 +344,8 @@
             filePath = "Postscript Playground/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "213"
-            endingLineNumber = "213"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -480,8 +360,8 @@
             filePath = "Postscript Playground/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "696"
-            endingLineNumber = "696"
+            startingLineNumber = "698"
+            endingLineNumber = "698"
             landmarkName = "convertPsToPdf()"
             landmarkType = "7">
          </BreakpointContent>
@@ -496,8 +376,8 @@
             filePath = "Postscript Playground/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "776"
-            endingLineNumber = "776"
+            startingLineNumber = "779"
+            endingLineNumber = "779"
             landmarkName = "setConverterPathToPreferences()"
             landmarkType = "7">
          </BreakpointContent>
@@ -512,8 +392,8 @@
             filePath = "Postscript Playground/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
             landmarkName = "setPsToPdfConverterCombobox(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -544,8 +424,8 @@
             filePath = "Postscript Playground/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
             landmarkName = "setPsToPdfConverterCombobox(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -560,8 +440,8 @@
             filePath = "Postscript Playground/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "691"
-            endingLineNumber = "691"
+            startingLineNumber = "693"
+            endingLineNumber = "693"
             landmarkName = "convertPsToPdf()"
             landmarkType = "7">
             <Locations>
