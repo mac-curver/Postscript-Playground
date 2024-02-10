@@ -51,7 +51,12 @@ class Shell {
         let errorPipe = Pipe()
         task.standardOutput = pipe
         task.standardError = errorPipe
-        task.launch()
+		do {
+			try task.run()
+		}
+		catch {
+			Logger.write("Unix tool was not executed!")
+		}
         
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
         let errorData = errorPipe.fileHandleForReading.readDataToEndOfFile()
