@@ -10,4 +10,4 @@ To start the application for the very first time, you need to right click the ap
 
 The App provides a simple text editor with limited syntax highlighting capabilities. It can be used to view PostScript files and to convert them into their respective PDF counterpart. For the display and conversion a GhostScript converter is being used, that must be installed before running the software.
 
-** ATTENTION ** Under Sonoma Xcode comandline tools don't contain pstopdf anymore and MacPorts installs under a differentz path!!! I am working on it.
+** ATTENTION ** Under Sonoma Xcode comandline tools don't contain pstopdf anymore and MacPorts installs under a different path!!! I am working on it.
