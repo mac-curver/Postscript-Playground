@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+        "http://www.w3.org/TR/html4/strict.dtd">
+<meta charset="UTF-8">
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=ISO-8859-1">
+		<title>Hilfe</title>
+	</head>
+
+	<body>
+		<h3><a name="Help"></a>Benutzung (Beispiele des Editierens)</h3>
+		<img src="FirstPage.jpg" alt="Postscript playground" width="660">
+		<p>Nach dem Start der Anwendung wird im Editorteil des Fensters ein kleines Postscript-Programm* angezeigt. </p>
+		<p>Auf der linken Seite können Sie Text als Postscript-Befehle eingeben. Die rechte Seite kann nur vergrößert oder verkleinert und geschwenkt werden. Wenn Sie mit der rechten Maustaste in diesen Bereich klicken, erhalten Sie eine Reihe von Optionen zur Bearbeitung des gerenderten Bildes sowie die Möglichkeit, die PDF-Datei in einer Datei/auf einem Laufwerk zu speichern.</p>
+
+		<h4><a name="FirstSteps"></a>Erste Schritte</h4>
+		<p>Durch Drücken der blauen Abspieltaste am unteren Rand des Fensters wird ein Dialog zum Speichern der Datei „Write to ps“ angezeigt.  Bitte geben Sie einen Dateinamen an und wählen Sie den Speicherort im Dateidialog. Ein expliziter Dateidialog ist notwendig, da die Anwendung in einer Sandbox laufen soll und nicht direkt auf das Dateisystem zugreifen kann**. </p>
+		<p>Nachdem Sie auf die Schaltfläche Speichern geklickt haben, wird die Postscript-Datei gerendert und auf der rechten Seite in der PDF-Vorschau angezeigt.</p>
+		<h4><a name="Edits"></a>Einfaches Editieren</h4>
+		<p>Ersetzen Sie die Schriftgröße „50“ in Zeile 16, indem Sie 100 darüber tippen. Nach dem Drücken der Abspieltaste wird der Text auf der rechten Seite vergrößert. </p>
+		<h4><a name="Automode"></a>Automatikmode</h4>
+		<p>Ähnlich wie mit dem Xcode-Playground können Sie in den automatischen Modus wechseln, indem Sie Automatisch ausführen wählen und das kleine Dreieck neben der Schaltfläche Abspielen gedrückt halten. Das Bild wird in regelmäßigen Abständen aktualisiert. </p>
+		</p>
+		<img src="AutomaticMode.jpg" alt="Automatic" width="260">
+		<p>Markieren Sie die „4“ vor dem Ausdruck setLineWidth und ersetzen Sie sie durch 9. Die Zahl wird in Schwarz angezeigt, wechselt in die Zahlenfarbe und die Breite der Unterstreichung nimmt zu. </p>
+		<h4><a name="Errors"></a>Fehler</h4>
+		<p>Ersetzen Sie die 9 durch den Buchstaben „B“.  Dies führt zu einem Fehler und die Postscript-Datei kann nicht gerendert werden. In diesem Fall blinkt ein gelbes Ausrufezeichen in der rechten oberen Ecke des PDF-Abschnitts. </p>
+		<p>Wenn Sie auf das Ausrufezeichen klicken, wird die Fehlermeldung angezeigt: „Postscript-Datei konnte nicht konvertiert werden“. In diesem Fall ist der Buchstabe B der fehlerhafte Befehl, der in der Fehlermeldung „OffendingCommand: B; "</p>
+		<p>Korrigieren Sie den Fehler, indem Sie den Buchstaben B wieder durch „4“ ersetzen, und die Datei wird erneut gerendert.</p>
+		<p></p>
+		<p>)*  Die Datei ist auch als Beispieldatei verfügbar.</p>
+		<p>)** Derzeit wird die Sandbox nicht unterstützt, da sie die Verwendung eines externen Tools nicht zulassen würde.</p>
+
+	</body>
+
+</html>

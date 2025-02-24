@@ -2,6 +2,7 @@
 //  Utilities.swift
 //  Postscript Playground
 //
+//  Changed by LegoEsprit 2024-12-27 New GIT version
 //  Created by LegoEsprit on 15.12.23.
 //
 
@@ -84,7 +85,7 @@ struct ProfileTime {
 		self.count = 1
 	}
 	
-	/// Adds timining information on subsequent calls.
+	/// Adds timing information on subsequent calls.
 	/// - Parameter time: Elapsed time for the current method call.
 	/// ```
 	/// Called from Profile.add() to update the elapsed time information.
@@ -119,7 +120,7 @@ struct Profile {
 	/// ```
 	static var profiles: [String: ProfileTime] = [:]
 	
-	/// Used to measure the timining
+	/// Used to measure the timing
 	/// ```
 	/// Seams to be a reliable clock to measure the exact profiling times.
 	/// ```

@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFAppleHelpAnchor</key>
+	<string>Postscript PlaygroundHelp.html</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
@@ -34,8 +36,6 @@
 		</dict>
 	</array>
 	<key>CFBundleHelpBookFolder</key>
-	<string>HelpFolder</string>
-	<key>CFAppleHelpAnchor</key>
-	<string>Postscript PlaygroundHelp.html</string>
+	<string>HelpFolder/Postscript PlaygroundHelp.html</string>
 </dict>
 </plist>

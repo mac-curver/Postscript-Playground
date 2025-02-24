@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+        "http://www.w3.org/TR/html4/strict.dtd">
+<meta charset="UTF-8">
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=ISO-8859-1">
+		<title>Voraussetzungen</title>
+	</head>
+
+	<body>
+		<h3><a name="Prerequisites"></a>Voraussetzungen</h3>
+        <p>Mindestvoraussetzung zum Ausführen der Anwendung ist Ventura (macOs 13.0).
+			Leider haben sich die Voraussetzungen für Sonoma (macOs 14.0) geändert!
+		</p>
+		<p>Die Anwendung enthält nicht den Postscript-Interpreter selbst, sondern nutzt ein Tool, das Postscript-Dateien in PDF konvertiert. Es gibt 3 Möglichkeiten, dies zu tun: (Die Sandbox erlaubt es nicht mehr, das Tool auszuführen und stürzt mit „launch path not accessible“ ab).</p>
+		<ol>
+			<li><h4>Xcode und seine Werkzeuge (nur Ventura)</h4>
+				<p>Wenn Sie <a href="https://developer.apple.com/xcode/">Xcode</a> installiert haben, ist es am einfachsten, einen geeigneten Postscript-Konverter zu installieren, indem Sie auch die Xcode-Tools installieren. Die Tools können von der Apple-Entwicklerseite heruntergeladen werden unter: <a href=„https://developer.apple.com/xcode/resources/“>Command line tools.
+				</a>.  
+				<p>Klicken Sie auf die Zeile <i>Command line tools and old versions of Xcode</i> im Abschnitt <b>Additional downloads</b>.</p>
+				<p>Sehr oft wird die Installation der Kommandozeilentools von Xcode angefordert und Sie müssen sie nicht manuell durchführen. Remark: The tool will be installed under: /usr/bin/pstopdf, falls Sie direkt darauf zugreifen möchten.</p>
+				<p>P.S. Es sieht so aus, als ob die neuesten XCode Befehlszeilen-Tools das pstopdf-Tool nicht mehr enthalten, aber wenn es vorher installiert war 
+				bleibt es möglicherweise erhalten. Vielleicht können Sie das Kommandozeilentool für Xcode 13 auch nachträglich installieren.</p>
+	
+			</li>
+			<li><h4><a href="https://www.ghostscript.com">Ghostscript</a> installiert über MacPorts (Ventura, Sonoma)</h4>
+				<p>Bitte befolgen Sie den Installationsprozess, der auf der Seite <a href="https://ports.macports.org/port/ghostscript/#:~:text=Ghostscript%20is%20the%20well-known%20PostScript%20interpreter%20which%20is,terminal%20after%20installing%20MacPorts%20sudo%20port%20install%20ghostscript">Mac Ports</a> beschrieben ist.</p>
+				<p>Sie müssen in der sudoers Liste stehen und müssen<br>
+				> <b>sudo port install ghostscript</b>
+				<br>auf der Kommandozeile ausführen.</p>
+			</li>
+			<p></p>
+			<li><h4><a href="https://www.ghostscript.com">Ghostscript</a> installiert über Brew/Homebrew (Ventura, Sonoma)</h4>
+				<p>Unter <a href=""https://formulae.brew.sh/formula/ghostscript>Homebrew Formulae</a> finden Sie den Befehl, wie Sie Ghostscript mit brew installieren können. Ähnlich wie oben führen Sie aus:<br>
+				> <b>brew install ghostscript</b>.
+				</p>
+			</li>
+		</ol>
+			
+
+		<p>Es ist absolut ausreichend, einen von ihnen installiert zu haben. Falls beim ersten Start der Anwendung zwei oder mehr Postscript-Konverter gefunden wurden, wird das Einstellungsfenster angezeigt, um einen von ihnen auszuwählen. </p>
+		<img src="SettingsDialog.jpg" alt="Settings" width="460">
+		<p>Brew und MacPorts installieren den Konverter unter demselben Pfad (/usr/local/bin/ps2pdf, auch unter Sonoma geändert). 
+			Wenn Sie also weder an der MacPorts- noch an der Brew-Installation etwas geändert haben, wird die zuletzt installierte Version 
+			die vorherige überschreiben. Bemerkung: Brew hat früher /usr/local/opt/ps2pdf als Installationspfad verwendet.
+		</p>
+		<p>Das Programm wurde gegenüber der ursprünglichen Version dahingehend geändert, dass die Eingabe des Konverterpfades auch dann möglich ist, wenn kein Konverter an den typischen Stellen gefunden wurde. Dies ist nützlich, wenn Sie den Konverter an einem anderen Ort installiert haben.
+		</p>
+
+	</body>
+
+</html>

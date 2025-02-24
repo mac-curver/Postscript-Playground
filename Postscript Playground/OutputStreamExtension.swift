@@ -2,6 +2,7 @@
 //  OutputStreamExtension.swift
 //  SimplePsViewer
 //
+//  Changed by LegoEsprit 2024-12-27 New GIT version
 //  Created by LegoEsprit on 08.04.23.
 //
 
@@ -20,7 +21,7 @@ extension OutputStream {
     ///
     /// - parameter string:                The `String` to write.
     /// - parameter encoding:              The `String.Encoding` to use when writing the string. This will default to `.utf8`.
-    /// - parameter allowLossyConversion:  Whether to permit lossy conversion when writing the string. Defaults to `false`.
+    /// - parameter allowLossyConversion:  Whether or not permitting lossy conversion when writing the string. Defaults to `false`.
     func write(_ string: String, encoding: String.Encoding = .utf8, allowLossyConversion: Bool = false) throws {
         guard let data = string.data(using: encoding, allowLossyConversion: allowLossyConversion) else {
             throw OutputStreamError.stringConversionFailure

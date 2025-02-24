@@ -1,0 +1,252 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Changes to Postscript file were not saved" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Änderungen an der Postscript Datei wurden nicht gesichert"
+          }
+        }
+      }
+    },
+    "Click Play to convert" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Play-Taste zum konvertieren drücken"
+          }
+        }
+      }
+    },
+    "Enter ps converter path" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PS Konverter Pfad eingeben"
+          }
+        }
+      }
+    },
+    "Help" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hilfe"
+          }
+        }
+      }
+    },
+    "Ignore and don't save" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ignorieren und nicht sichern"
+          }
+        }
+      }
+    },
+    "InstallGhostScriptKey" : {
+      "comment" : "Multiline text",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bitte die XCode Tools oder alternativ mittels Macports oder Homebrew Ghostscript installieren. Die Anwendung wird beendet!"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Please install either the Xcode tools (only Ventura)\nor alternatively Ghostscript using\nMacports or Homebrew.\nThe App should be closed now!"
+          }
+        }
+      }
+    },
+    "No ps to pdf converter could be found" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Es konnte kein Postscript Konverter gefunden werden"
+          }
+        }
+      }
+    },
+    "Only a single file can be opened at at time" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nur eine einzige Datei kann auf einmal geöffnet werden"
+          }
+        }
+      }
+    },
+    "OnlySingleFileKey" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieses Programm kann nur eine einzelne .ps Datei auf einmal bearbeiten. Nur die zuerst selektierte Datei wird zum Editieren geöffnet."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "This app allows to edit a single .ps at a time. Only\nthe first selected file is being opened for editing."
+          }
+        }
+      }
+    },
+    "Please choose a .ps file to be converted to pdf" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bitte eine .ps Datei zum Konvertieren auswählen"
+          }
+        }
+      }
+    },
+    "Please select a ps to pdf converter" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bitte einen ps zu pdf Konverter auswählen"
+          }
+        }
+      }
+    },
+    "Postscript %@ could not be loaded" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Postscript Datei %@ konnte nicht geladen werden"
+          }
+        }
+      }
+    },
+    "Postscript file couldn't be converted" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Postscript Datei konnte nicht konvertiert werden"
+          }
+        }
+      }
+    },
+    "Postscript file couldn't be saved" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Postscript Datei konnte nicht gespeichert werden"
+          }
+        }
+      }
+    },
+    "PSNotLoadedKey" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Postscript Datei %@ konnte nicht geladen werden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Postscript file %@ could not be loaded"
+          }
+        }
+      }
+    },
+    "Quit" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beenden"
+          }
+        }
+      }
+    },
+    "Runs in automatic mode" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatik Modus"
+          }
+        }
+      }
+    },
+    "Runs in automatic stop mode" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatik Stopmodus"
+          }
+        }
+      }
+    },
+    "Save the changes" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Änderungen sichern"
+          }
+        }
+      }
+    },
+    "Store the .pdf file?" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die .pdf Datei speichern?"
+          }
+        }
+      }
+    },
+    "The current file contains changes, that\nwere not yet stored onto the disk!" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die aktuelle Datei enthält Änderungen, die noch nicht abgespeichert wurden!"
+          }
+        }
+      }
+    },
+    "Write to Postscript file" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Postscript Datei schreiben"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

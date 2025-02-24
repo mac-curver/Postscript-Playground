@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+        "http://www.w3.org/TR/html4/strict.dtd">
+<meta charset="UTF-8">
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=ISO-8859-1">
+		<title>Zusammenfassung</title>
+	</head>
+
+	<body>
+		<h3><a name="Summary"></a>Zusammenfassung</h3>
+		<p>Version 2.14.1 co 2024/2025 LegoEsprit. </p>
+		<p>Aufgrund der Verwendung eines externen Tools kann das Programm nicht in einer <b>Sandbox-Umgebung</b> laufen (auf dem Entwicklungs-Mac funktioniert Sandboxing, auf anderen Macs jedoch nicht). Nichtsdestotrotz schränkt Ventura einige Zugriffe ein, was die Benutzung der Anwendung etwas umständlicher macht als beabsichtigt.
+		</p>
+		<p>Jetzt im Dezember 2024 schlug die Kompilierung mit XCode 16 und Sonoma 14.7.1 bei der Konvertierung in PDF fehl. Das beschreibbare temporäre Verzeichnis war für ps2pdf nicht zugänglich und XCode fügte dem Projekt automatisch eine Sandbox hinzu. 
+        </p>
+		<p>Zusätzlich gibt es einige Einschränkungen:
+			<ul>
+			<li>Nur ein kleiner Teil des großen Postscript-Vokabulars wird vom <b>Syntax High Lighting</b> unterstützt. Die Teilmenge besteht nur aus Postscript Level 1 Befehlen, die häufig verwendet werden. 
+				<br><br>
+			</li>
+			<li>Die Anwendung unterstützt nur eine begrenzte Anzahl von Zeichen. Die Gesamtgröße ist auf etwa 300000 Zeichen begrenzt. Diese Grenze wird durch die NSTextView-Klasse erzwungen, die verwendet wird, um den Inhalt der .ps-Datei anzuzeigen.
+				<br><br>
+			</li>
+			<li>Nur eine Datei kann gleichzeitig bearbeitet werden. Sie können dies ein wenig kompensieren, indem Sie die App duplizieren und beide Instanzen ausführen oder über das Terminal können Sie <i>open -n /Applications/Postscript\ Playground.app</i> ausführen. Dennoch gibt es einige Grenzen, wenn Sie dies tun, da alle Instanzen dieselbe Bundle-ID teilen und daher nicht vollständig unabhängig sind.
+				<br><br>
+			</li>
+			<li>Drag-and-Drop wird nur auf Dateiebene unterstützt. Sie können eine vollständige .ps-Datei in den Editor ziehen, aber Textfragmente müssen durch Kopieren und Einfügen kopiert werden.
+				<br><br>
+			</li>
+            </li>
+			<li>
+				Die Benchmark-Ergebnisse werden in der Protokolldatei aufgeführt, nachdem die Anwendung beendet wurde.
+            </li>
+			</ul>
+		</p>
+		<p>Die Hilfe wird als reines html angezeigt und ist nicht in das Apple-Hilfesystem integriert. Während dies früher (Jahr 2010) relativ einfach zu bewerkstelligen war, konnte in den Apple-Dokumentationen außer veralteten und nicht funktionierenden Dateien aus dem Jahr 2010 keine Dokumentation zur Lösung dieses Problems gefunden werden.</p>
+	</body>
+
+</html>

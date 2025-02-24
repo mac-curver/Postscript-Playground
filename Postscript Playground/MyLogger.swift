@@ -2,7 +2,8 @@
 //  MyLogger.swift
 //  SimplePsViewer
 //
-//	Changed by LegoEsprit 2024-01-27 Message abbreviation added
+//  Changed by LegoEsprit 2024-12-27 New GIT version
+//  Changed by LegoEsprit 2024-01-27 Message abbreviation added
 //  Created by LegoEsprit 2023-05-06
 //
 //                        , file: URL = URL(filePath: #file) -> MyLogger !!!
@@ -62,7 +63,10 @@ extension String {
 	/// Avoids the conversion to URL.
 	/// - Returns: Extension (all characters after dot) from string self as Substring
 	var lastComponent: Substring {
-		let pointIndex = index(after: firstIndex(of: ".") ?? startIndex)
+		guard let lastIndex = lastIndex(of: ".") else {
+			return self[...]
+		}
+		let pointIndex = index(after: lastIndex)
 		return self[pointIndex...]
 	}
 	

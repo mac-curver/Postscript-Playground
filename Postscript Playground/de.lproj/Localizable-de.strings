@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  Postscript Playground
+
+  Created by LegoEsprit on 08.12.23.
+  I could not find a tool to generate this file automatically - genstrings does not work!
+  
+*/
+"No ps to pdf converter could be found" = "Es konnte kein Postscript Konverter gefunden werden";
+"InstallGhostScriptKey" = "Bitte die XCode Tools oder alternativ mittels Macports oder Homebrew Ghostscript installieren. Die Anwendung wird beendet!";
+"Postscript file couldn't be saved" = "Postscript Datei konnte nicht gespeichert werden";
+"Store the .pdf file?" = "Die .pdf Datei speichern?";
+"Please choose a .ps file to be converted to pdf" = "Bitte eine .ps Datei zum Konvertieren auswählen";
+"PSNotLoadedKey" = "Die Postscript Datei %@ konnte nicht geladen werden";
+"Changes to Postscript file were not saved" = "Änderungen an der Postscript Datei wurden nicht gesichert";
+"The current file contains changes, that were not yet stored onto the disk!" = "Die aktuelle Datei enthält Änderungen, die noch nicht abgespeichert wurden!";
+"Save the changes" = "Änderungen sichern";
+"Ignore and don't save" = "Ignorieren und nicht sichern";
+"Postscript file couldn't be saved" = "Postscript Datei konnte nicht gesichert werden";
+"Only a single file can be opened at at time" = "Nur eine einzige Datei kann auf einmal geöffnet werden";
+"OnlySingleFileKey" = "Dieses Programm kann nur eine einzelne .ps Datei auf einmal bearbeiten. Nur die zuerst selektierte Datei wird zum Editieren geöffnet.";
+"Postscript file couldn't be converted" = "Postscript Datei konnte nicht konvertiert werden";
+"Write to Postscript file" = "Die Postscript Datei schreiben";
+
+
+

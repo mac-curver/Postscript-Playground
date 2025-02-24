@@ -2,6 +2,7 @@
 //  ColorTransformer.swift
 //  SimplePsViewer
 //
+//  Changed by LegoEsprit 2024-12-27 New GIT version
 //  Created by LegoEsprit on 09.06.23.
 //
 
@@ -11,7 +12,7 @@ import Cocoa
 @objc(ColorValueTransformer)
 final class ColorValueTransformer: NSSecureUnarchiveFromDataTransformer {
 
-    /// The name of the transformer. This is the name used to register the transformer using `ValueTransformer.setValueTrandformer(_"forName:)`.
+    /// The name of the transformer. This is the name used to register the transformer using `ValueTransformer.setValueTransformer(_"forName:)`.
     static let name = NSValueTransformerName(rawValue: String(describing: ColorValueTransformer.self))
 
     // Make sure `NSColor` is in the allowed class list.

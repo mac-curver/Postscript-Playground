@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="23504" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21701"/>
-        <plugIn identifier="com.apple.pdfkit.ibplugin" version="21701"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23504"/>
+        <plugIn identifier="com.apple.pdfkit.ibplugin" version="23504"/>
         <capability name="Combo buttons" minToolsVersion="14.0" minSystemVersion="13.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -703,23 +704,21 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
                         <items>
-                            <menuItem title="Postscript Playground Help" hidden="YES" keyEquivalent="?" id="FKE-Sm-Kum">
+                            <menuItem title="Postscript Playground Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                 <connections>
-                                    <action selector="helpAction:" target="Wis-H3-gc5" id="cNZ-ti-f6h"/>
+                                    <action selector="showHelp:" target="-1" id="egT-84-M3A"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Help..." id="SD1-R3-GwV">
+                            <menuItem title="Help with browser..." id="SD1-R3-GwV" userLabel="Help with browser...">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="helpButtonAction:" target="Wis-H3-gc5" id="s1H-yc-k7x"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Application Help" keyEquivalent="?" id="F1Y-OG-TTo">
-                                <connections>
-                                    <action selector="showHelp:" target="-1" id="GXM-Qd-SSp"/>
+                                    <action selector="helpWithBrowser:" target="Wis-H3-gc5" id="s1H-yc-k7x"/>
                                 </connections>
                             </menuItem>
                         </items>
+                        <connections>
+                            <outlet property="delegate" destination="Voe-Tx-rLC" id="Hm0-Dj-rhw"/>
+                        </connections>
                     </menu>
                 </menuItem>
             </items>
@@ -788,7 +787,7 @@
                                         </buttonCell>
                                         <accessibility identifier="Help"/>
                                         <connections>
-                                            <action selector="helpButtonAction:" target="Wis-H3-gc5" id="oiz-0w-4Gd"/>
+                                            <action selector="showHelp:" target="Wis-H3-gc5" id="OqA-HG-GhK"/>
                                         </connections>
                                     </button>
                                     <box verticalHuggingPriority="750" boxType="separator" id="VoN-mS-Iua" propertyAccessControl="nonLocalizable">
@@ -816,18 +815,15 @@
                                             <action selector="saveAndConvert:" target="Wis-H3-gc5" id="SYJ-0W-6PP"/>
                                         </connections>
                                     </comboButton>
-                                    <textField identifier="columnRowLabel" horizontalHuggingPriority="260" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wE8-wA-BrE">
+                                    <textField identifier="columnRowLabel" focusRingType="none" horizontalHuggingPriority="260" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wE8-wA-BrE">
                                         <rect key="frame" x="54" y="5" width="157" height="14"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="153" id="CZR-vU-ojg"/>
-                                        </constraints>
                                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" allowsUndo="NO" sendsActionOnEndEditing="YES" title="0/0" id="U7I-zJ-0tQ">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <comboBox toolTip="Current encoding - will be changed to utf-8 when stored!" horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bfD-jX-xgq">
+                                    <comboBox toolTip="Current encoding - will be changed to utf-8 when stored!" focusRingType="none" horizontalHuggingPriority="249" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bfD-jX-xgq">
                                         <rect key="frame" x="361" y="2" width="65" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="tJ2-OX-9xn"/>
@@ -847,8 +843,9 @@
                                     <constraint firstItem="wE8-wA-BrE" firstAttribute="firstBaseline" secondItem="VGH-hf-HRg" secondAttribute="firstBaseline" id="75l-ln-Ld9"/>
                                     <constraint firstItem="wE8-wA-BrE" firstAttribute="top" secondItem="LT0-bJ-p8E" secondAttribute="bottom" constant="5" id="77a-U0-po2"/>
                                     <constraint firstAttribute="trailing" secondItem="0JF-Rh-CLr" secondAttribute="trailing" constant="15" id="MLk-w5-dxc"/>
+                                    <constraint firstItem="bfD-jX-xgq" firstAttribute="leading" secondItem="wE8-wA-BrE" secondAttribute="trailing" constant="153" id="RC5-rn-Jda"/>
                                     <constraint firstItem="0JF-Rh-CLr" firstAttribute="leading" secondItem="Ws2-f8-NNl" secondAttribute="trailing" constant="17" id="TaS-J4-lgX"/>
-                                    <constraint firstItem="Ws2-f8-NNl" firstAttribute="leading" secondItem="bfD-jX-xgq" secondAttribute="trailing" constant="17" id="ZWI-Fd-4IB"/>
+                                    <constraint firstItem="Ws2-f8-NNl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bfD-jX-xgq" secondAttribute="trailing" constant="8" symbolic="YES" id="ZWI-Fd-4IB"/>
                                     <constraint firstItem="VGH-hf-HRg" firstAttribute="leading" secondItem="S1O-BB-TfP" secondAttribute="leading" constant="12" id="c4k-s1-OMq"/>
                                     <constraint firstItem="Ws2-f8-NNl" firstAttribute="firstBaseline" secondItem="bfD-jX-xgq" secondAttribute="firstBaseline" id="nCt-kJ-Zb2"/>
                                     <constraint firstItem="bfD-jX-xgq" firstAttribute="firstBaseline" secondItem="wE8-wA-BrE" secondAttribute="firstBaseline" id="ozV-jF-ZRA"/>
@@ -864,7 +861,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="615" height="772"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </pdfView>
-                                    <button toolTip="Error in ps file prevented generation of actual pdf" verticalHuggingPriority="750" allowsExpansionToolTips="YES" id="LVk-of-Y9q">
+                                    <button toolTip="Error in ps file prevented generation of actual pdf" allowsExpansionToolTips="YES" verticalHuggingPriority="750" id="LVk-of-Y9q">
                                         <rect key="frame" x="524" y="736" width="80" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="inline" title="Attention" bezelStyle="inline" image="NSCaution" imagePosition="only" alignment="center" alternateImage="NSStopProgressTemplate" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyUpOrDown" inset="2" id="cEa-04-kFP">
@@ -904,7 +901,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="657" height="287"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="fIt-Q2-PRR">
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="fIt-Q2-PRR">
                         <rect key="frame" x="18" y="251" width="179" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Postscript to PDF converter" id="4VF-Ty-aVV">
@@ -913,7 +910,7 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <comboBox toolTip="Here the path for the ps to pdf converter must be entered!" verticalHuggingPriority="750" id="xUa-Ww-37a">
+                    <comboBox toolTip="Here the path for the ps to pdf converter must be entered!" focusRingType="none" verticalHuggingPriority="750" id="xUa-Ww-37a">
                         <rect key="frame" x="202" y="247" width="196" height="23"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="&lt;path to an existing ps converter&gt;" drawsBackground="YES" completes="NO" numberOfVisibleItems="15" id="I0u-cs-zWb">
@@ -1028,7 +1025,7 @@ Gw
                             </binding>
                         </connections>
                     </colorWell>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="nsu-zt-KNh">
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="nsu-zt-KNh">
                         <rect key="frame" x="18" y="217" width="179" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Math color" id="C0m-JE-dt4">
@@ -1037,7 +1034,7 @@ Gw
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="t4m-jb-t3g">
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="t4m-jb-t3g">
                         <rect key="frame" x="18" y="185" width="179" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Define color" id="VTH-cx-L9v">
@@ -1046,7 +1043,7 @@ Gw
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="kqJ-w5-hLq">
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="kqJ-w5-hLq">
                         <rect key="frame" x="18" y="153" width="179" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Flow control color" id="AaK-7e-Vi2">
@@ -1055,7 +1052,7 @@ Gw
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="2tc-Ye-ko9">
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="2tc-Ye-ko9">
                         <rect key="frame" x="18" y="121" width="179" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Numbers color" id="zp3-hk-WTY">
@@ -1064,7 +1061,7 @@ Gw
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="u4y-dR-UTf">
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="u4y-dR-UTf">
                         <rect key="frame" x="18" y="89" width="179" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Comment color" id="F7g-q2-TsS">
@@ -1073,7 +1070,7 @@ Gw
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="ELk-4l-Buv">
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="ELk-4l-Buv">
                         <rect key="frame" x="18" y="57" width="179" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Graphics color" id="vk2-6c-Oma">
@@ -1106,7 +1103,7 @@ Gw
                             </connections>
                         </buttonCell>
                     </button>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="DDo-b5-00F">
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="DDo-b5-00F">
                         <rect key="frame" x="409" y="251" width="62" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="input" id="KzB-ik-Tkl">
@@ -1115,7 +1112,7 @@ Gw
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <comboBox verticalHuggingPriority="750" id="lFN-Bd-A1s">
+                    <comboBox focusRingType="none" verticalHuggingPriority="750" id="lFN-Bd-A1s">
                         <rect key="frame" x="476" y="247" width="54" height="23"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <string key="toolTip">Eventually here you need to add the delimiting parameter between source file and output file. Like: pstopdf source -o destination</string>
@@ -1131,7 +1128,7 @@ IA
                             </objectValues>
                         </comboBoxCell>
                     </comboBox>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="JrT-10-f5k">
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="JrT-10-f5k">
                         <rect key="frame" x="533" y="251" width="78" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="output" id="SbP-i0-gsx">

@@ -8,11 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		26063C872B7766E9000EE0A6 /* Deprecations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26063C862B7766E9000EE0A6 /* Deprecations.swift */; };
+		2623775E2D6B95B900067C41 /* NSWindowExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2623775D2D6B95B900067C41 /* NSWindowExtension.swift */; };
 		2659A7802A3851D5002AB841 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2659A77F2A3851D5002AB841 /* AppDelegate.swift */; };
 		2659A7822A3851D6002AB841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2659A7812A3851D6002AB841 /* Assets.xcassets */; };
 		2659A7852A3851D6002AB841 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2659A7832A3851D6002AB841 /* MainMenu.xib */; };
 		2675D8952B2EFE59008436A3 /* SyntaxHighlightExtension2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675D8942B2EFE59008436A3 /* SyntaxHighlightExtension2.swift */; };
-		268ACD962B246C5500205133 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 268ACD942B246C5500205133 /* Localizable.strings */; };
+		26882FCA2D6886DC00543708 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 26882FC92D6886DC00543708 /* Localizable.xcstrings */; };
+		268A63632D1D7FA600638AA5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 268A63622D1D7FA600638AA5 /* README.md */; };
+		268D19BD2D68DDF0005E2613 /* HelpFolder in Resources */ = {isa = PBXBuildFile; fileRef = 268D19BC2D68DDEB005E2613 /* HelpFolder */; };
 		269523922B2C9C7700014048 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269523912B2C9C7700014048 /* Utilities.swift */; };
 		26995EE02B68E9010026BAEB /* UserDefaultColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26995EDF2B68E9010026BAEB /* UserDefaultColorExtension.swift */; };
 		26CC8D972B697AB30035577F /* ColorTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CC8D962B697AB30035577F /* ColorTransformer.swift */; };
@@ -25,29 +28,32 @@
 		26E571862A3853CF0084827C /* MyLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E5717B2A3853CF0084827C /* MyLogger.swift */; };
 		26E571872A3853CF0084827C /* SaveAsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E5717C2A3853CF0084827C /* SaveAsProtocol.swift */; };
 		26E5718A2A3853CF0084827C /* RecentMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E5717F2A3853CF0084827C /* RecentMenuItem.swift */; };
-		26E5719F2A3853F00084827C /* Postscript PlaygroundHelp.html in Resources */ = {isa = PBXBuildFile; fileRef = 26E5718D2A3853F00084827C /* Postscript PlaygroundHelp.html */; };
-		26E571A02A3853F00084827C /* Postscript PlaygroundHelp.helpindex in Resources */ = {isa = PBXBuildFile; fileRef = 26E5718E2A3853F00084827C /* Postscript PlaygroundHelp.helpindex */; };
-		26E571AF2A3853F00084827C /* HelpTemplateTrial.code-workspace in Resources */ = {isa = PBXBuildFile; fileRef = 26E5719E2A3853F00084827C /* HelpTemplateTrial.code-workspace */; };
 		26E571B52A3853FC0084827C /* stop.svg in Resources */ = {isa = PBXBuildFile; fileRef = 26E571B12A3853FC0084827C /* stop.svg */; };
 		26E571B62A3853FC0084827C /* stop.fill.svg in Resources */ = {isa = PBXBuildFile; fileRef = 26E571B22A3853FC0084827C /* stop.fill.svg */; };
 		26E571B72A3853FC0084827C /* play.svg in Resources */ = {isa = PBXBuildFile; fileRef = 26E571B32A3853FC0084827C /* play.svg */; };
 		26E571B82A3853FC0084827C /* play.fill.svg in Resources */ = {isa = PBXBuildFile; fileRef = 26E571B42A3853FC0084827C /* play.fill.svg */; };
-		26E571D92A38AD170084827C /* HelpContent in Resources */ = {isa = PBXBuildFile; fileRef = 26E571D82A38AD170084827C /* HelpContent */; };
 		26E571DE2A38AF630084827C /* ConcentricCircles.ps in Resources */ = {isa = PBXBuildFile; fileRef = 26E571DB2A38AF630084827C /* ConcentricCircles.ps */; };
 		26E571DF2A38AF630084827C /* SiemensStarAngle.ps in Resources */ = {isa = PBXBuildFile; fileRef = 26E571DC2A38AF630084827C /* SiemensStarAngle.ps */; };
 		26E571E02A38AF630084827C /* New.ps in Resources */ = {isa = PBXBuildFile; fileRef = 26E571DD2A38AF630084827C /* New.ps */; };
+		26FBADAE2D692B5D00D58470 /* HelpWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26FBADAD2D692B5D00D58470 /* HelpWindow.xib */; };
+		26FBADB02D692B7500D58470 /* HelpWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FBADAF2D692B7500D58470 /* HelpWindow.swift */; };
+		26FBADD82D69E03C00D58470 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 26FBADD62D69E03C00D58470 /* InfoPlist.strings */; };
+		26FBADDA2D69ECA700D58470 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FBADD92D69ECA700D58470 /* LocalizedString.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		26063C862B7766E9000EE0A6 /* Deprecations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deprecations.swift; sourceTree = "<group>"; };
+		2623775D2D6B95B900067C41 /* NSWindowExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSWindowExtension.swift; sourceTree = "<group>"; };
 		264E7AA02A766604009B75C0 /* Postscript_Playground.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Postscript_Playground.entitlements; sourceTree = "<group>"; };
 		2659A77C2A3851D5002AB841 /* Postscript Playground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Postscript Playground.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2659A77F2A3851D5002AB841 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2659A7812A3851D6002AB841 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2659A7842A3851D6002AB841 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		2675D8942B2EFE59008436A3 /* SyntaxHighlightExtension2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxHighlightExtension2.swift; sourceTree = "<group>"; };
-		268ACD952B246C5500205133 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "Postscript Playground/en.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		268ACD972B246C7A00205133 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = "Postscript Playground/de.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		267666EA2BD12BE600D25C14 /* Remove PostScript Playground Preferences.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "Remove PostScript Playground Preferences.sh"; sourceTree = "<group>"; };
+		26882FC92D6886DC00543708 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		268A63622D1D7FA600638AA5 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		268D19BC2D68DDEB005E2613 /* HelpFolder */ = {isa = PBXFileReference; lastKnownFileType = folder; path = HelpFolder; sourceTree = "<group>"; };
 		269523912B2C9C7700014048 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		26995EDF2B68E9010026BAEB /* UserDefaultColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultColorExtension.swift; sourceTree = "<group>"; };
 		26AA0FED2B6A60100061CE54 /* Embedding a command-line tool in a sandboxed app.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Embedding a command-line tool in a sandboxed app.md"; sourceTree = "<group>"; };
@@ -62,20 +68,20 @@
 		26E5717B2A3853CF0084827C /* MyLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLogger.swift; sourceTree = "<group>"; };
 		26E5717C2A3853CF0084827C /* SaveAsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveAsProtocol.swift; sourceTree = "<group>"; };
 		26E5717F2A3853CF0084827C /* RecentMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentMenuItem.swift; sourceTree = "<group>"; };
-		26E5718D2A3853F00084827C /* Postscript PlaygroundHelp.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Postscript PlaygroundHelp.html"; sourceTree = "<group>"; };
-		26E5718E2A3853F00084827C /* Postscript PlaygroundHelp.helpindex */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Postscript PlaygroundHelp.helpindex"; sourceTree = "<group>"; };
-		26E5719E2A3853F00084827C /* HelpTemplateTrial.code-workspace */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "HelpTemplateTrial.code-workspace"; sourceTree = "<group>"; };
 		26E571B12A3853FC0084827C /* stop.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = stop.svg; sourceTree = "<group>"; };
 		26E571B22A3853FC0084827C /* stop.fill.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = stop.fill.svg; sourceTree = "<group>"; };
 		26E571B32A3853FC0084827C /* play.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = play.svg; sourceTree = "<group>"; };
 		26E571B42A3853FC0084827C /* play.fill.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = play.fill.svg; sourceTree = "<group>"; };
 		26E571BA2A3854060084827C /* ToolX.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = ToolX.entitlements; sourceTree = "<group>"; };
-		26E571D82A38AD170084827C /* HelpContent */ = {isa = PBXFileReference; lastKnownFileType = folder; path = HelpContent; sourceTree = "<group>"; };
 		26E571DB2A38AF630084827C /* ConcentricCircles.ps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ConcentricCircles.ps; sourceTree = "<group>"; };
 		26E571DC2A38AF630084827C /* SiemensStarAngle.ps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SiemensStarAngle.ps; sourceTree = "<group>"; };
 		26E571DD2A38AF630084827C /* New.ps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = New.ps; sourceTree = "<group>"; };
 		26EF7E352B18820F00D40D08 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		26EF7E362B18827400D40D08 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		26FBADAD2D692B5D00D58470 /* HelpWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HelpWindow.xib; sourceTree = "<group>"; };
+		26FBADAF2D692B7500D58470 /* HelpWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpWindow.swift; sourceTree = "<group>"; };
+		26FBADD72D69E03C00D58470 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		26FBADD92D69ECA700D58470 /* LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,13 +98,15 @@
 		2659A7732A3851D5002AB841 = {
 			isa = PBXGroup;
 			children = (
+				26FBADAC2D692B3100D58470 /* HelpWindow */,
+				26882FC92D6886DC00543708 /* Localizable.xcstrings */,
+				267666E92BD12BE600D25C14 /* ShellScripts */,
 				26E571B92A3854060084827C /* ToolX */,
 				26E571B02A3853FC0084827C /* Images */,
-				26E5718B2A3853F00084827C /* HelpFolder */,
 				26E571DA2A38AF630084827C /* ExampleFiles */,
-				268ACD942B246C5500205133 /* Localizable.strings */,
 				2659A77E2A3851D5002AB841 /* Postscript Playground */,
 				2659A77D2A3851D5002AB841 /* Products */,
+				268D19BC2D68DDEB005E2613 /* HelpFolder */,
 			);
 			sourceTree = "<group>";
 		};
@@ -115,7 +123,11 @@
 			children = (
 				264E7AA02A766604009B75C0 /* Postscript_Playground.entitlements */,
 				26E571792A3853CF0084827C /* Info.plist */,
+				26FBADD62D69E03C00D58470 /* InfoPlist.strings */,
+				26FBADD92D69ECA700D58470 /* LocalizedString.swift */,
 				26E5717B2A3853CF0084827C /* MyLogger.swift */,
+				2623775D2D6B95B900067C41 /* NSWindowExtension.swift */,
+				2659A77F2A3851D5002AB841 /* AppDelegate.swift */,
 				269523912B2C9C7700014048 /* Utilities.swift */,
 				26E571772A3853CF0084827C /* ContextPdfView.swift */,
 				26E5717A2A3853CF0084827C /* OutputStreamExtension.swift */,
@@ -128,31 +140,21 @@
 				2675D8942B2EFE59008436A3 /* SyntaxHighlightExtension2.swift */,
 				26E571782A3853CF0084827C /* ViewController.swift */,
 				26063C862B7766E9000EE0A6 /* Deprecations.swift */,
-				2659A77F2A3851D5002AB841 /* AppDelegate.swift */,
+				268A63622D1D7FA600638AA5 /* README.md */,
 				2659A7812A3851D6002AB841 /* Assets.xcassets */,
 				2659A7832A3851D6002AB841 /* MainMenu.xib */,
-				26DAB8372B650C1600682705 /* ShowLogFor.sh */,
 			);
 			path = "Postscript Playground";
 			sourceTree = "<group>";
 		};
-		26E5718B2A3853F00084827C /* HelpFolder */ = {
+		267666E92BD12BE600D25C14 /* ShellScripts */ = {
 			isa = PBXGroup;
 			children = (
-				26E5718C2A3853F00084827C /* Postscript PlaygroundHelp */,
+				267666EA2BD12BE600D25C14 /* Remove PostScript Playground Preferences.sh */,
+				26DAB8372B650C1600682705 /* ShowLogFor.sh */,
 			);
-			path = HelpFolder;
-			sourceTree = "<group>";
-		};
-		26E5718C2A3853F00084827C /* Postscript PlaygroundHelp */ = {
-			isa = PBXGroup;
-			children = (
-				26E571D82A38AD170084827C /* HelpContent */,
-				26E5718D2A3853F00084827C /* Postscript PlaygroundHelp.html */,
-				26E5718E2A3853F00084827C /* Postscript PlaygroundHelp.helpindex */,
-				26E5719E2A3853F00084827C /* HelpTemplateTrial.code-workspace */,
-			);
-			path = "Postscript PlaygroundHelp";
+			name = ShellScripts;
+			path = "Postscript Playground/ShellScripts";
 			sourceTree = "<group>";
 		};
 		26E571B02A3853FC0084827C /* Images */ = {
@@ -186,6 +188,15 @@
 			path = "Postscript Playground/ExampleFiles";
 			sourceTree = "<group>";
 		};
+		26FBADAC2D692B3100D58470 /* HelpWindow */ = {
+			isa = PBXGroup;
+			children = (
+				26FBADAD2D692B5D00D58470 /* HelpWindow.xib */,
+				26FBADAF2D692B7500D58470 /* HelpWindow.swift */,
+			);
+			path = HelpWindow;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -214,7 +225,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					2659A77B2A3851D5002AB841 = {
 						CreatedOnToolsVersion = 14.3;
@@ -245,20 +256,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26E571D92A38AD170084827C /* HelpContent in Resources */,
 				2659A7822A3851D6002AB841 /* Assets.xcassets in Resources */,
 				26E571B52A3853FC0084827C /* stop.svg in Resources */,
-				26E571A02A3853F00084827C /* Postscript PlaygroundHelp.helpindex in Resources */,
+				26FBADAE2D692B5D00D58470 /* HelpWindow.xib in Resources */,
 				26E571B72A3853FC0084827C /* play.svg in Resources */,
+				26FBADD82D69E03C00D58470 /* InfoPlist.strings in Resources */,
 				2659A7852A3851D6002AB841 /* MainMenu.xib in Resources */,
+				268A63632D1D7FA600638AA5 /* README.md in Resources */,
 				26E571DE2A38AF630084827C /* ConcentricCircles.ps in Resources */,
-				26E5719F2A3853F00084827C /* Postscript PlaygroundHelp.html in Resources */,
-				26E571AF2A3853F00084827C /* HelpTemplateTrial.code-workspace in Resources */,
+				26882FCA2D6886DC00543708 /* Localizable.xcstrings in Resources */,
 				26E571E02A38AF630084827C /* New.ps in Resources */,
 				26E571B62A3853FC0084827C /* stop.fill.svg in Resources */,
 				26E571842A3853CF0084827C /* Info.plist in Resources */,
-				268ACD962B246C5500205133 /* Localizable.strings in Resources */,
 				26E571B82A3853FC0084827C /* play.fill.svg in Resources */,
+				268D19BD2D68DDF0005E2613 /* HelpFolder in Resources */,
 				26E571DF2A38AF630084827C /* SiemensStarAngle.ps in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,10 +290,13 @@
 				26CC8D972B697AB30035577F /* ColorTransformer.swift in Sources */,
 				26E571872A3853CF0084827C /* SaveAsProtocol.swift in Sources */,
 				2675D8952B2EFE59008436A3 /* SyntaxHighlightExtension2.swift in Sources */,
+				2623775E2D6B95B900067C41 /* NSWindowExtension.swift in Sources */,
 				269523922B2C9C7700014048 /* Utilities.swift in Sources */,
+				26FBADB02D692B7500D58470 /* HelpWindow.swift in Sources */,
 				26E571822A3853CF0084827C /* ContextPdfView.swift in Sources */,
 				26E5718A2A3853CF0084827C /* RecentMenuItem.swift in Sources */,
 				2659A7802A3851D5002AB841 /* AppDelegate.swift in Sources */,
+				26FBADDA2D69ECA700D58470 /* LocalizedString.swift in Sources */,
 				26E571812A3853CF0084827C /* PsEditView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -300,13 +314,12 @@
 			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
-		268ACD942B246C5500205133 /* Localizable.strings */ = {
+		26FBADD62D69E03C00D58470 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				268ACD952B246C5500205133 /* en */,
-				268ACD972B246C7A00205133 /* de */,
+				26FBADD72D69E03C00D58470 /* de */,
 			);
-			name = Localizable.strings;
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -316,6 +329,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -346,9 +360,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -363,6 +379,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -379,6 +396,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -409,9 +427,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -420,6 +440,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -442,9 +463,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = P8TSSKQDC4;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainNibFile = MainMenu;
@@ -453,8 +476,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 2.5;
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				MARKETING_VERSION = 2.15;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.LegoEsprit.Postscript-Playground";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -474,9 +497,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = P8TSSKQDC4;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainNibFile = MainMenu;
@@ -485,8 +510,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 2.5;
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				MARKETING_VERSION = 2.15;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.LegoEsprit.Postscript-Playground";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

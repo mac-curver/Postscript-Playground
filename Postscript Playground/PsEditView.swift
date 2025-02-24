@@ -2,6 +2,7 @@
 //  PsEditView.swift
 //  SimplePsViewer
 //
+//  Changed by LegoEsprit 2024-12-27 New GIT version
 //  Created by LegoEsprit on 30.03.23.
 //
 //  Attention: In IB class section the "Inherit module from target" must be checked!
@@ -87,16 +88,18 @@ extension Double {
     }
 }
 
+/// FileUrl to store the url and whether the file has already been open with a file dialog
+struct FileUrl {
+    var url: URL
+    var knownToFileManager: Bool
+}
 
 
 /// PsEditView overwritten NSTextView used to convert .ps file into .pdf
 class PsEditView: NSTextView /* see protocol extensions below*/ {
+	
+	let filenamesPboardType = NSPasteboard.PasteboardType(rawValue: "NSFilenamesPboardType")
 		
-	/// FileUrl to store the url and whether the file has already been open with a file dialog
-    struct FileUrl {
-        var url:URL
-        var knownToFileManager: Bool
-    }
     
     /// version number of PsEditView
     static let version = "2.2.0"
@@ -108,7 +111,7 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
 
     
     /// Only .ps files are allowed
-	let expectedExt = ["ps"]
+	let expectedExtension = ["ps"]
 	/// The postscript unified type identifier is required for storage
     let postScriptUTType = UTType("com.adobe.postscript")!
     
@@ -152,6 +155,9 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
         registerForDraggedTypes(
             [  NSPasteboard.PasteboardType.URL
              , NSPasteboard.PasteboardType.fileURL
+                                        , .fileContents
+                                        , .multipleTextSelection
+                                        , .string
             ]
         )
         delegate = self
@@ -194,9 +200,8 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
     func setPathes(urlForPrefix: URL, known: Bool) {
         Logger.login("\(urlForPrefix)", level: OSLogType.default, className: className)
         let pathPrefix = urlForPrefix.deletingPathExtension()
-        psFileUrl = FileUrl(url: pathPrefix.appendingPathExtension("ps")
-                            , knownToFileManager: known
-        )
+        let url: URL = pathPrefix.appendingPathExtension("ps")
+        psFileUrl = FileUrl(url: url, knownToFileManager: known)
         Logger.logout("\(psFileUrl)", level: OSLogType.default, className: className)
     }
 	
@@ -219,21 +224,27 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
     /// - returns:                      .copy if the file exstension is .ps
     fileprivate func checkExtension(_ dragInfo: NSDraggingInfo) -> NSDragOperation {
         guard let board = dragInfo.draggingPasteboard.propertyList(
-            forType: NSPasteboard.PasteboardType(
-                rawValue: "NSFilenamesPboardType")) as? NSArray,
+            forType: filenamesPboardType) as? NSArray,
               let path = board[0] as? String
         else {
             return NSDragOperation()
         }
-
-		//let suffix = URL(fileURLWithPath: path).pathExtension
-		let suffix = URL(filePath: path).pathExtension
-
-        if expectedExt.contains(suffix) {
-            return .copy
-        } else {
-            return NSDragOperation()
+        do {
+            let url = URL(filePath: path)
+            let resolved = try URL(resolvingAliasFileAt: url, options: [])
+            let suffix = resolved.pathExtension
+            
+            if expectedExtension.contains(suffix) {
+                return .copy
+            } else {
+                return NSDragOperation()
+            }
         }
+        catch {
+            
+        }
+        return NSDragOperation()
+
     }
 	
 
@@ -251,6 +262,8 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
         return checkExtension(dragInfo)
     }
 
+    /*
+    /// Does not help!
     /// draggingUpdated returns the .copy if file extension is .ps
     /// - parameter dragInfo:               The drag info from the system.
     /// - returns:                          See checkExtension
@@ -261,6 +274,7 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
     override func draggingUpdated(_ dragInfo: NSDraggingInfo) -> NSDragOperation {
         return checkExtension(dragInfo)
     }
+    */
 
 
     /// performDragOperation performs the drag operation
@@ -270,24 +284,30 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
     @MainActor
 	override func performDragOperation(_ dragInfo: NSDraggingInfo) -> Bool {
 		Logger.login("", className: className)
+				
 		guard
 			let pasteboard =
 				dragInfo.draggingPasteboard.propertyList(
-					forType: NSPasteboard.PasteboardType(
-						rawValue: "NSFilenamesPboardType"
-					)
-				) as? NSArray,
-			let path = pasteboard.lastObject as? String
+					forType: filenamesPboardType
+				) as? NSArray
+			, let path = pasteboard.lastObject as? String
 		else {
 			Logger.logout("", className: className)
 			return false
 		}
 		let url = URL(filePath: path)
-		viewController?.openFileUrl(url)
-		if pasteboard.count > 1 {
-			viewController?.tooManyFilesAlert()
-		}
-		viewController?.convertPsToPdf()
+        do {
+            let resolved = try URL(resolvingAliasFileAt: url, options: [])
+            
+            viewController?.openFileUrl(resolved)
+            if pasteboard.count > 1 {
+                viewController?.tooManyFilesAlert()
+            }
+            viewController?.convertPsToPdf()
+        }
+        catch {
+            Logger.write(error.localizedDescription, className: className)
+        }
 		Logger.logout("", className: className)
 		return true
 	}
@@ -505,19 +525,17 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
     /// Displays file open dialog
     /// - Parameter selected: Name of the file proposed as default
     /// - Returns: True if not canceled
-    func openFileWithOpenDialog(selected: String)-> Bool {
+    func openFileWithOpenDialog(selected: String) -> URL? {
     
         var resultUrl:URL = psFileUrl.url
 
         let response = runOpenPanel(&resultUrl, with: selected)
         switch response {
         case NSApplication.ModalResponse.OK:
-            psFileUrl.url = resultUrl
-            psFileUrl.knownToFileManager = true
+            return resultUrl
         default:
-            break
+            return nil
         }
-        return response == NSApplication.ModalResponse.OK
 
     }
 
@@ -528,44 +546,44 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
 	/// - Returns: true if new file was opened successfully
 	fileprivate func openFileWithEncoding(_ fileEncoding: String.Encoding
 										  , showAlert: Bool) -> Bool
-	{
-		Logger.login("", className: className)
-		var opened = false
-
-		do {
-			textStorage?.setAttributedString(NSAttributedString(string: ""))
-			string = try String(contentsOf: psFileUrl.url
-								, encoding: fileEncoding
-			             )
-			Logger.write("3", className: className)
-			assignSyntaxColors()
-			Logger.write("4", className: className)
-			opened = true
-		}
-		catch {
-			if showAlert {
-				Logger.write("Open file failed with "
-							 + "\(error.localizedDescription)"
-							 , level: OSLogType.error, className: className
-				)
-				let alert = NSAlert()
-				
-				alert.alertStyle = .critical
-				alert.messageText = String(localized:
-											"""
-											Postscript \
-											\(psFileUrl.url.absoluteString) \
-											could not be loaded
-											"""
-									)
-				alert.informativeText = "\(error.localizedDescription)"
-				_ = alert.runModal()
-			}
-		}
-		Logger.write("5", className: className)
-		Logger.logout("", className: className)
-		return opened
-	}
+    {
+        Logger.login("", className: className)
+        var opened = false
+        
+        do {
+            textStorage?.setAttributedString(NSAttributedString(string: ""))
+            string = try String(contentsOf: psFileUrl.url
+                                , encoding: fileEncoding
+            )
+            Logger.write("3", className: className)
+            assignSyntaxColors()
+            Logger.write("4", className: className)
+            opened = true
+        }
+        catch {
+            if fileEncoding == allPossibleEncodings.last {
+                Logger.write("Open file failed with "
+                             + "\(error.localizedDescription)"
+                             , level: OSLogType.error, className: className
+                )
+                let alert = NSAlert()
+                
+                alert.alertStyle = .critical
+                alert.messageText = String(localized:
+                    """
+                    Postscript \
+                    \(psFileUrl.url.absoluteString) \
+                    could not be loaded
+                    """
+                )
+                alert.informativeText = "\(error.localizedDescription)"
+                _ = alert.runModal()
+            }
+        }
+        Logger.write("5", className: className)
+        Logger.logout("", className: className)
+        return opened
+    }
 		
 	
 	/// Try different encodings to open the .ps text file
@@ -622,10 +640,10 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
 				alert.messageText = String(
 					localized: "PSNotLoadedKey"
 					, defaultValue: """
-							Postscript file \
-							\(psFileUrl.url.myPath) \
-							could not be loaded
-							"""
+                        Postscript file \
+                        \(psFileUrl.url.path_fallback) \
+                        could not be loaded
+                        """
 				)
 				alert.informativeText = "\(error.localizedDescription)"
 				_ = alert.runModal()
@@ -640,7 +658,7 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
 		profile.measure(className: className, {
 			for fileEncoding in allPossibleEncodings  {
 				opened = openFileWithEncoding(fileEncoding
-											  , showAlert: fileEncoding == allPossibleEncodings.last
+											  , showAlert: true //
 				)
 				if opened {
 					viewController.setEncoding(item: fileEncoding.description)
@@ -786,7 +804,7 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
     func saveFileToPsUrl() -> Bool {
         Logger.write("\(psFileUrl)", className: className)
         if psFileUrl.knownToFileManager {
-            saved = saveFileTo(path: psFileUrl.url.myPath)
+            saved = saveFileTo(path: psFileUrl.url.path_fallback)
             return true
         }
         else {

@@ -2,6 +2,7 @@
 //  SyntaxHighlightExtension2.swift
 //  Postscript Playground
 //
+//  Changed by LegoEsprit 2024-12-27 New GIT version
 //  Created by LegoEsprit on 17.12.23.
 //
 
@@ -411,7 +412,7 @@ extension NSTextView {
 	/// - Parameters:
 	///   - lineString: Complete line as String?
 	///   - nsStartDistance: Distance to 1st letter as NSRange distance
-	///   - syntax: Syntax method to be applied as Int (from SyntaxSegemented control)
+	///   - syntax: Syntax method to be applied as Int (from SyntaxSegmented control)
 	/// ```
 	/// Splits the line into comment and non comment part. The comment part
 	/// will be colored correctly. Checks if a define statement starts the
@@ -471,8 +472,8 @@ extension NSTextView {
 	/// assignSyntaxColors takes the syntax directory and assigns it to
 	/// textStorage
 	///
-	/// Simple and effective but not efficient syntax highligthing.
-	/// - Parameter syntax: Syntax method to be applied (see SyntaxSegementedControl)
+	/// Simple and effective but not efficient syntax highlighting.
+	/// - Parameter syntax: Syntax method to be applied (see SyntaxSegmentedControl)
 	func assignSyntaxColors() {
 		Logger.login("", className: className)
 

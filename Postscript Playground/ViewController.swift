@@ -2,6 +2,7 @@
 //  ViewController.swift
 //  SimplePsViewer
 //
+//  Changed by LegoEsprit 2024-12-27 New GIT version
 //  Created by LegoEsprit on 30.05.23.
 //
 /// ```
@@ -60,6 +61,7 @@ class ViewController: NSViewController {
 	@IBOutlet weak var automaticallyComboBox: NSComboButton!
 	
 	//@IBOutlet weak var syntaxSegmentedControl: NSSegmentedControl!
+    
 	
 	/// Array with full path to the tool and parameter for the output argument if required
 	let kindsOfAlternativeConverters = [
@@ -91,15 +93,15 @@ class ViewController: NSViewController {
             switch autoMode {
             case .RunManually:
                 automaticallyComboBox.image = NSImage(imageLiteralResourceName: "play.fill")
-                automaticallyComboBox.toolTip = "Click Play to convert"
+                automaticallyComboBox.toolTip = LocalizedString("Click Play to convert").string
                 break
             case .RunAutomatically:
                 automaticallyComboBox.image = NSImage(imageLiteralResourceName: "play")
-                automaticallyComboBox.toolTip = "Runs in automatic mode"
+                automaticallyComboBox.toolTip = LocalizedString("Runs in automatic mode").string
                 break
             case .StopAutomatically:
                 automaticallyComboBox.image = NSImage(imageLiteralResourceName: "stop")
-                automaticallyComboBox.toolTip = "Runs in automatic stop mode"
+                automaticallyComboBox.toolTip = LocalizedString("Runs in automatic stop mode").string
                 break
             }
         }
@@ -152,8 +154,9 @@ class ViewController: NSViewController {
 	 public class let willStartLiveScrollNotification: NSNotification.Name
 	 public class let didLiveScrollNotification: NSNotification.Name
 	 public class let didEndLiveScrollNotification: NSNotification.Name
-
+	 */
 	 
+	/*
 	/// Register scroll event to ease syntax coloring
 	func registerForNotifications() {
 		NotificationCenter.default.addObserver(self
@@ -166,10 +169,9 @@ class ViewController: NSViewController {
 	@objc func handleScrollNotification(_ notification: NSNotification) {
 		// We use a timer here to avoid scrolling to occur slugish
 		//psTextView.invalidateSyntaxTimer()
-		psTextView.syntaxTimerFired()
+		Logger.write("", className: className)
 	}
 	 */
-
 	
 	fileprivate func setPsToPdfConverterCombobox(_ successPath: String) {
 		let preferences = UserDefaults.standard
@@ -223,13 +225,13 @@ class ViewController: NSViewController {
         }
 		
         
-		if successPath.isEmpty {
+        if successPath.isEmpty {
             let alert = NSAlert()
             
             alert.alertStyle = .critical
             alert.messageText = String(localized: "No ps to pdf converter could be found")
-            alert.informativeText = String(
-				localized: "InstallGhostScriptKey"
+            alert.informativeText = String(localized:
+				"InstallGhostScriptKey"
 				, defaultValue: """
 						Please install either the Xcode tools (only Ventura)
 						or alternatively Ghostscript using
@@ -237,9 +239,9 @@ class ViewController: NSViewController {
 						The App should be closed now!
 						"""
 				, comment: "Multiline text"
-			)
-			alert.addButton(withTitle: "Quit")
-			alert.addButton(withTitle: "Enter ps converter path")
+            )
+            alert.addButton(withTitle: String(localized: "Quit"))
+            alert.addButton(withTitle: String(localized: "Enter ps converter path"))
             //alert.addButton(withTitle: "Xcode in App Store")
             //alert.addButton(withTitle: "GS for Mac Ports")
             //alert.addButton(withTitle: "GS for Homebrew")
@@ -464,8 +466,8 @@ class ViewController: NSViewController {
                 psUrl.stopAccessingSecurityScopedResource()
 
                 if shell.stderr.starts(with: "Operation not permitted:") {
-                    if psTextView.openFileWithOpenDialog(selected: psUrl.absoluteString) {
-                        openFileUrl(psTextView.psFileUrl.url)
+                    if let url = psTextView.openFileWithOpenDialog(selected: psUrl.absoluteString) {
+                        openFileUrl(url)
                         convertPsToPdf()
                     }
                 }
@@ -501,6 +503,14 @@ class ViewController: NSViewController {
     /// Copies the base name to the PDF view as name proposal.
     func openFileUrl(_ resultUrl: URL, addToRecent: Bool = true) {
         Logger.login("\(resultUrl)", className: className)
+        do {
+            let resolved = try URL(resolvingAliasFileAt: resultUrl, options: [])
+            psTextView.psFileUrl = FileUrl(url: resolved, knownToFileManager: true)
+        }
+        catch {
+            Logger.write("Can't resolve alias from \(resultUrl.path)")
+        }
+
         if psTextView.openFileUrlAsPs(url: resultUrl) {
             setPdfPath(urlForPrefix: resultUrl)
             if addToRecent {
@@ -521,8 +531,8 @@ class ViewController: NSViewController {
     /// Calls the file open dialog to open a Postscript file
     /// - Parameter sender: Ignored
     @IBAction func openFileWithOpenDialog(_ sender: Any) {
-        if psTextView.openFileWithOpenDialog(selected: "") {
-            openFileUrl(psTextView.psFileUrl.url)
+        if let url = psTextView.openFileWithOpenDialog(selected: "") {
+            openFileUrl(url)
             convertPsToPdf()
         }
     }
@@ -588,27 +598,44 @@ class ViewController: NSViewController {
     
     /// Help button action
     /// - Parameter sender: Ignored
-    @IBAction func helpButtonAction(_ sender: Any) {
-        if let myFileUrl = Bundle.main.url(
-								forResource:"Postscript PlaygroundHelp"
-								, withExtension: "html"
-		) {
-            NSWorkspace.shared.open(myFileUrl)
+    @IBAction func helpWithBrowser(_ sender: Any) {
+        Logger.login("", className: className)
+        //let availableLocalizations = Bundle.main.localizations
+        var language = Locale.current.language.languageCode
+        switch language {
+        case "en":
+            language = "Base"
+        default:
+            break
         }
+        if let language = language
+           , let myFileUrl = Bundle.main.url(
+                forResource:"Postscript PlaygroundHelp"
+                , withExtension: "html"
+                , subdirectory: "HelpFolder/\(language).lproj"
+            ) {
+                NSWorkspace.shared.open(myFileUrl)
+            }
+        Logger.logout("", className: className)
+    }
+    
+    @IBAction func showHelp(_ sender: Any?) {
+        HelpWindow.create()
     }
     
     /// Help action
     /// - Parameter sender: Ignored
     @IBAction func helpAction(_ sender: Any) {
+        Logger.login("", className: className)
         /// Could not find any description on how to build a help file bumdle
         if  let bookName = Bundle.main.object(
                                 forInfoDictionaryKey: "CFBundleHelpBookName"
                             ) as? String {
-            NSHelpManager.shared.openHelpAnchor("Intro", inBook: bookName)
+            NSHelpManager.shared.openHelpAnchor("Postscript PlaygroundHelp", inBook: bookName)
         }
+        Logger.logout("", className: className)
     }
-    
-	
+        
     
     /// Play or Stop button pressed on combobox
     /// - Parameter sender: Ignored
@@ -671,8 +698,8 @@ class ViewController: NSViewController {
     }
     
     
-    /// fireTimer was restarted for autosave and syntax highligthing.
-    /// Recolors according to syntax and in case of aiutosave mode converts to pdf like a
+    /// fireTimer was restarted for autosave and syntax highlighting.
+    /// Recolors according to syntax and in case of autosave mode converts to pdf like a
     /// playground.
     @objc func fireTimer() {
         convertPsToPdf()
@@ -689,12 +716,13 @@ class ViewController: NSViewController {
 
         window.title = psTextView.psFileUrl.url.lastPathComponent
 		
-		let argumentArray = [  psTextView.psFileUrl.url.myPath
+        let argumentArray = [  psTextView.psFileUrl.url.path_fallback
                              , psToPdfConverterArgument
-                             , pdfView.tempFileUrl.myPath
+                               , pdfView.tempFileUrl.path_fallback
 		                    ].filter { !$0.isEmpty }
+	
 		
-        shell = Shell(psToPdfConverterPath
+		shell = Shell(URL(filePath: psToPdfConverterPath)
                       , arguments: argumentArray
         )
 
@@ -765,13 +793,6 @@ class ViewController: NSViewController {
 	}
 	 */
 	
-	
-	/// Resets colors to factory settings
-	/// - Parameter sender: Not used
-    @IBAction func setToDefaultColors(_ sender: Any) {
-		SyntaxColors.resetAllColors()
-    }
-    
 	fileprivate func setConverterPathToPreferences() {
 		if !psToPdfConverterPath.isEmpty {
 			let preferences = UserDefaults.standard
@@ -779,15 +800,22 @@ class ViewController: NSViewController {
 			preferences.set(psToPdfConverterArgument, forKey: "PsToPdfConverterArg")
 		}
 	}
-	
+    
+
+    /// Resets colors to factory settings
+    /// - Parameter sender: Not used
+    @IBAction func setToDefaultColors(_ sender: Any) {
+        SyntaxColors.resetAllColors()
+    }
+
 	@IBAction func browsePsToPdfConverter(_ sender: NSComboBox) {
 		if sender.numberOfItems - 1 == sender.indexOfSelectedItem {
 			var converterUrl = URL(filePath: "/usr/bin/pstopdf")
 			let response = runOpenCoverterPanel(&converterUrl, with: "/usr/bin")
 			switch response {
 			case NSApplication.ModalResponse.OK:
-				sender.insertItem(withObjectValue: converterUrl.myPath, at: 0)
-				sender.stringValue = converterUrl.myPath
+                sender.insertItem(withObjectValue: converterUrl.path_fallback, at: 0)
+				sender.stringValue = converterUrl.path_fallback
 			default:
 				break
 			}
@@ -823,6 +851,10 @@ class ViewController: NSViewController {
         settingsWindow.close()
     }
     
+    
+    
+
+    
 }
 
 
@@ -838,3 +870,5 @@ extension ViewController: NSWindowDelegate {
 		return true
 	}
 }
+
+

@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+        "http://www.w3.org/TR/html4/strict.dtd">
+<meta charset="UTF-8">
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=ISO-8859-1">
+		<title>Wissenswertes für Experten</title>
+	</head>
+
+	<body>
+		<h3><a name="Knowledge"></a>Wissen</h3>
+		<p></p>
+		<p>Für Experten.
+			<ul>
+			<li>
+				<p>Lesen und löschen der Präferenzen:</p>
+                Bitte tippen Sie folgende Kommandos im Terminal:<br>
+                zum Lesen<br>
+                <p style = "font-family:monaco;font-size:12px">
+                defaults read de.legoesprit.postscript-playground
+                </p>
+                zum Löschen<br>
+                <p style = "font-family:monaco;font-size:12px">
+                defaults delete de.legoesprit.postscript-playground<br>
+                </p>
+			</li>
+			<li>
+                <p>Konsolennachrichten mit der Konsole.app überprüfen(Admin Benutzerrechte sind notwendig):</p>
+                Öffnen Sie die Konsole.app und tippen Sie<br>
+                <p style = "font-family:monaco;font-size:12px">
+                de.legoesprit.postscript-playground
+                </p>
+                ins Suchfeld. Wenn gefragt geben Sie den admin Benutzer
+				und sein Passwort ein. Im Suchfeld ändern Sie den Eintrag im Popupmenü auf "subsystem". <br>
+                <i>Die angezeigten Mitteilungen bleiben nur eine gewisse Zeit erhalten!</i>
+			</li>
+			<li>
+                <p>Konsolennachrichten mit der Terminal.app überprüfen (Der Benutzer muss als Sudoer registriert sein):</p>
+                Geben Sie <br>
+                <p style = "font-family:monaco;font-size:12px">
+                sudo log stream --predicate 'subsystem == "de.LegoEsprit.Postscript-Playground"' | awk 'NR>2 {print substr($0,12,15) " T:" substr($0,index($0,"00 ")+3, 8)  substr($0, index($0,"]")+1) }'<br>
+                </p>
+                im Terminal ein. Diese Kommandozeile streamt kontinuierlich die log
+                Datei der Applikation und sendet sie an awk. Das awk Kommando überspringt die ersten 2 Zeilen und kopiert nur die relevanten Spalten in das Ausgabefenster.
+                </p>
+			</li>
+			</ul>
+		</p>
+	</body>
+
+</html>

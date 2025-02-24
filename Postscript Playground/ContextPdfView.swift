@@ -2,6 +2,7 @@
 //  ContextPdfView.swift
 //  SimplePsViewer
 //
+//  Changed by LegoEsprit 2024-12-27 New GIT version
 //  Created by LegoEsprit on 29.04.23.
 //
 import os.log
@@ -10,7 +11,9 @@ import PDFKit
 import UniformTypeIdentifiers
 
 extension FileManager {
-	
+	/*
+	 // Not required anymore
+	 
 	/// Url for the path into the application writable directory
 	static var supportDataPath: URL {
 		get {
@@ -27,11 +30,12 @@ extension FileManager {
 	}
 	
 	/// Url for the temporary pdf
-	static var tempfileUrl: URL {
+	static var tempPdfFileUrl: URL {
 		get {
 			return createTempURL(name: "temp.pdf")
 		}
 	}
+	*/
 	
 	/// Creates a tempfile from the name
 	/// - Parameter name: Name of the temp file including extension
@@ -41,6 +45,8 @@ extension FileManager {
 	/// being created.
 	/// ```
 	static func createTempURL(name: String) -> URL {
+		// Again fails under Sonoma
+		/*
 		if !FileManager.default.fileExists(atPath: supportDataPath.path) {
 			do {
 				try FileManager.default.createDirectory(
@@ -66,6 +72,26 @@ extension FileManager {
 			name
 			, isDirectory: false
 		)
+		 */
+        let tempDir = FileManager.default.temporaryDirectory.path_fallback
+		let tempFileUrl = URL(fileURLWithPath: tempDir + name)
+		if !FileManager.default.fileExists(atPath: tempDir) {
+			do {
+				try FileManager.default.createDirectory(
+					atPath: tempDir
+					, withIntermediateDirectories: true
+					, attributes: nil
+				)
+			}
+			catch {
+				Logger.write("Can't create writeable directory", className: " Static")
+
+				return tempFileUrl
+			}
+
+		}
+
+		return tempFileUrl
 
 	}
 
@@ -91,12 +117,16 @@ class ContextPdfView: PDFView, SaveAsProtocol {
     //func validateMenuItem(_ menuItem: NSMenuItem) -> Bool
     
 	/// empty pdf path
-	var pdfUrl: URL = URL(filePath: "Untitled")
+    var pdfUrl: URL = URL.create_fallback(path: "Untitled")
     
 	/// temp file to store the pdf - Only directly writable path in Sandbox
-	let tempFileUrl =  FileManager.tempfileUrl
-	
-	
+	private var _tempFileUrl: URL? = nil
+	var tempFileUrl: URL {
+		if nil == _tempFileUrl {
+			_tempFileUrl = FileManager.createTempURL(name: "temp.pdf")
+		}
+		return _tempFileUrl!
+	}
 
     
     /// Copies the name and sets pdf as extension to propose a correct name for the pdf
@@ -142,7 +172,7 @@ class ContextPdfView: PDFView, SaveAsProtocol {
                 let alert = NSAlert()
                 
                 alert.alertStyle = .warning
-                alert.messageText = String(localized: "Postscript file couldn't be saved")
+                alert.messageText = LocalizedString("Postscript file couldn't be saved").string
                 //alert.informativeText = error.localizedDescription
                 alert.runModal()
             }
@@ -153,11 +183,11 @@ class ContextPdfView: PDFView, SaveAsProtocol {
     
     /// Opens the save dialog via ''runSavePanel''
     @objc func savePdfAsPrivate() {
-		Logger.login(pdfUrl.myPath, className: className)
+        Logger.login(pdfUrl.path_fallback, className: className)
         var pdfFile = pdfUrl
         let response = runSavePanel(
             &pdfFile
-			, title: String(localized: "Store the .pdf file?")
+            , title: LocalizedString("Store the .pdf file?").string
             , fileType: UTType("com.adobe.pdf")!
         )
         switch response {

@@ -2,6 +2,7 @@
 //  SaveAsProtocol.swift
 //  SimplePsViewer
 //
+//  Changed by LegoEsprit 2024-12-27 New GIT version
 //  Created by LegoEsprit on 29.04.23.
 //
 

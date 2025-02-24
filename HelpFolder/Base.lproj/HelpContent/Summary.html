@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+        "http://www.w3.org/TR/html4/strict.dtd">
+<meta charset="UTF-8">
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=ISO-8859-1">
+		<title>Summary</title>
+	</head>
+
+	<body>
+		<h3><a name="Summary"></a>Summary</h3>
+		<p>Version 2.14.1 co 2024/2025 LegoEsprit. </p>
+		<p>Due to usage of an external tool, the application can't run in <b>Sandboxed</b> environment (In fact on the development Mac sandboxing works, but not on other Macs). Nevertheless Ventura limits some accesses make using the application a bit more cumbersome than intended. 
+		</p>
+		<p> Now in December 2024 compiling the with XCode 16 and Sonoma 14.7.1 was failing to convert to PDF. The writable temporary directory was not accessible to ps2pdf and XCode added Sandbox automatically to the project. 
+        </p>
+		<p>Additionally there are some limits:
+			<ul>
+			<li>Only a small part of the large Postscript vocabulary is supported for the <b>syntax high lighting</b>. The subset consists only of Postscript level 1 commands that are used frequently.
+			<br><br>
+            </li>
+			<li>The editor supports only limited capabilities. The total size is limited to about 300000 characters. This limit is forced by the NSTextView class used to display the .ps file contents.
+				<br><br>
+            </li>
+            <li>Only a single file can be edited at a time. You can compensate this a bit by duplicating the app and running both instances or using the Terminal you can run <i>open -n /Applications/Postscript\ Playground.app</i>. Nevertheless there are some limits doing this, as all instances share the same bundle ID and therefore are not completely independent.
+				<br><br>
+            </li>
+            <li>Drag and drop is only supported on file level access. You can drag a complete .ps file onto the editor, but text fragments need to be copied by copy and paste.
+				<br><br>
+            </li>
+			<li>The benchmark results are listed in the log file, after the application did finish.
+            </li>
+			</ul>
+		</p>
+		<p>The help is displayed as pure html and is not integrated into the Apple help system. While former times (year 2010) this was relatively easy to do, no documentation except outdated and non working files from 2010 could be found in Apple documentations to solve this issue.</p>
+	</body>
+
+</html>

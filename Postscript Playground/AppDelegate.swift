@@ -2,6 +2,7 @@
 //  AppDelegate.swift
 //  SimplePsViewer
 //
+//  Changed by LegoEsprit 2024-12-27 New GIT version
 //  Created by LegoEsprit on 25.03.23.
 //
 // Minimum Deployment version set to 13.0 as otherwise Combobox is not available
@@ -68,6 +69,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	///   might happen, that we mix up the files!
 	///   ```
     func application(_ application: NSApplication, open urls: [URL]) {
+        
 		
         Logger.login("""
 					app started1 \(application.debugDescription) \
@@ -118,6 +120,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	/// - Parameter aNotification: Currently not in use
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 		Logger.login("Version: \(viewController.version())", className: className)
+        
+
+        
 #if DEBUG
         /// Testing Console message levels
         Logger.write("Testing: Info", level: OSLogType.info, className: className)
@@ -180,6 +185,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         Logger.write("====================", level: OSLogType.info
 					 , className: className
 		)
+        NSApplication.shared.terminate(self) // must be called otherwise rejected
     }
     
     
@@ -251,7 +257,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		//exampleMenu.autoenablesItems = false
 	}
 
-    
 
+
+}
+
+extension AppDelegate: NSMenuDelegate {
+    
+    /// Menu delegate, when opening a menu
+    /// - Parameter menu: Here the comple help menu
+    /// Used to open the help menu and keep the browser solution hidden unless the <control>-
+    /// modifier is hold down when opening the menu
+    func menuWillOpen(_ menu: NSMenu) {
+        Logger.login("", className: className)
+        menu.items[1].isHidden = !NSEvent.modifierFlags.contains(.control)
+        Logger.logout("", className: className)
+    }
+    
 }
 
