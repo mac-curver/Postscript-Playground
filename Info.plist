@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>HDPBookAccessPath</key>
+	<string>index.html</string>
+	<key>HDPBookTitle</key>
+	<string>PS Play Ground Help</string>
+	<key>HPDBookCSIndexPath</key>
+	<string>PSPlayGroundHelp.cshelpIndex</string>
+	<key>HPDBookIndexPath</key>
+	<string>PSPlayGroundHelp.helpindex</string>
+	<key>HPDBookKBProduct</key>
+	<string>app1</string>
+	<key>HPDBookType</key>
+	<string>3</string>
+</dict>
+</plist>
