@@ -77,7 +77,7 @@
 		2621C6612F2D1BC7006119A6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/TOC.html; sourceTree = "<group>"; };
 		2621C6622F2D1BC7006119A6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = de; path = de.lproj/TOC.html; sourceTree = "<group>"; };
 		26882FC92D6886DC00543708 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		26A395F42F2CCBCF00117602 /* PostScriptPlayGroundHelp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PostScriptPlayGroundHelp-Info.plist"; sourceTree = "<group>"; };
+		26A395F42F2CCBCF00117602 /* PostScriptPlaygroundHelp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PostScriptPlaygroundHelp-Info.plist"; sourceTree = "<group>"; };
 		26A395FF2F2CE4FB00117602 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/index.html; sourceTree = "<group>"; };
 		26A396022F2CE50100117602 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = de; path = de.lproj/index.html; sourceTree = "<group>"; };
 		26AA0FED2B6A60100061CE54 /* Embedding a command-line tool in a sandboxed app.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Embedding a command-line tool in a sandboxed app.md"; sourceTree = "<group>"; };
@@ -89,6 +89,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		26BC49B4307E2EAC002B599A /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 2659A77B2A3851D5002AB841 /* PostscriptPlayground */;
+		};
 		26DA1EB72F36001900410DB3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -101,7 +108,7 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		2621C7122F2E3555006119A6 /* ShellScripts */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (26DA1EB72F36001900410DB3 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = ShellScripts; sourceTree = "<group>"; };
-		2621C73D2F2E3593006119A6 /* PostscriptPlayground */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = PostscriptPlayground; sourceTree = "<group>"; };
+		2621C73D2F2E3593006119A6 /* PostscriptPlayground */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (26BC49B4307E2EAC002B599A /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = PostscriptPlayground; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,7 +158,7 @@
 				26882FC92D6886DC00543708 /* Localizable.xcstrings */,
 				26E571B92A3854060084827C /* ToolX */,
 				26E571B02A3853FC0084827C /* Images */,
-				26A395F22F2CCB4600117602 /* PostScriptPlayGroundHelp */,
+				26A395F22F2CCB4600117602 /* PostScriptPlaygroundHelp */,
 				2621C7122F2E3555006119A6 /* ShellScripts */,
 				2621C73D2F2E3593006119A6 /* PostscriptPlayground */,
 				261F8F9A2F30A8630024A6CA /* PostscriptPlayground.app */,
@@ -159,13 +166,13 @@
 			);
 			sourceTree = "<group>";
 		};
-		26A395F22F2CCB4600117602 /* PostScriptPlayGroundHelp */ = {
+		26A395F22F2CCB4600117602 /* PostScriptPlaygroundHelp */ = {
 			isa = PBXGroup;
 			children = (
 				26A395F32F2CCB6400117602 /* Resources */,
-				26A395F42F2CCBCF00117602 /* PostScriptPlayGroundHelp-Info.plist */,
+				26A395F42F2CCBCF00117602 /* PostScriptPlaygroundHelp-Info.plist */,
 			);
-			path = PostScriptPlayGroundHelp;
+			path = PostScriptPlaygroundHelp;
 			sourceTree = "<group>";
 		};
 		26A395F32F2CCB6400117602 /* Resources */ = {
@@ -250,7 +257,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 2620;
+				LastUpgradeCheck = 2700;
 				TargetAttributes = {
 					2659A77B2A3851D5002AB841 = {
 						CreatedOnToolsVersion = 14.3;
@@ -666,7 +673,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MARKETING_VERSION = 2.19;
 				PRODUCT_BUNDLE_IDENTIFIER = de.legoesprit.PostscriptPlayground;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -699,7 +706,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MARKETING_VERSION = 2.19;
 				PRODUCT_BUNDLE_IDENTIFIER = de.legoesprit.PostscriptPlayground;
 				PRODUCT_NAME = "$(TARGET_NAME)";
