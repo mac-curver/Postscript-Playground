@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="24506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="25098" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24506"/>
-        <plugIn identifier="com.apple.pdfkit.ibplugin" version="24506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="25098"/>
+        <plugIn identifier="com.apple.pdfkit.ibplugin" version="25098"/>
         <capability name="Combo buttons" minToolsVersion="14.0" minSystemVersion="13.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -29,6 +29,7 @@
                 <outlet property="automaticallyComboBox" destination="0JF-Rh-CLr" id="YYV-wM-z9C"/>
                 <outlet property="columnRowLabel" destination="wE8-wA-BrE" id="Xrn-hH-Gpf"/>
                 <outlet property="encodingComboBox" destination="bfD-jX-xgq" id="Ahi-Wm-X1g"/>
+                <outlet property="ghostscriptVersionTextField" destination="GFU-KY-By3" id="ZcR-wc-T4V"/>
                 <outlet property="helpButton" destination="Ws2-f8-NNl" id="qQb-Cw-vYs"/>
                 <outlet property="openButton" destination="VGH-hf-HRg" id="Kuz-li-8Rj"/>
                 <outlet property="pdfView" destination="V2y-i5-Q8g" id="aMw-eB-z5W"/>
@@ -40,7 +41,7 @@
                 <outlet property="sourceItemView" destination="EiT-Mj-1SZ" id="AfC-no-zcL"/>
                 <outlet property="verticalSplitter" destination="igB-vT-9oa" id="lbN-z2-1R3"/>
                 <outlet property="view" destination="EiT-Mj-1SZ" id="4eO-MN-clm"/>
-                <outlet property="window" destination="QvC-M9-y7g" id="QDX-VJ-DLH"/>
+                <outlet property="window" destination="QvC-M9-y7g" id="NUV-zi-bZv"/>
             </connections>
         </viewController>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
@@ -715,23 +716,23 @@
                     </menu>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="-8" y="161"/>
+            <point key="canvasLocation" x="-37" y="105"/>
         </menu>
         <window title="Postscript Playground" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES"/>
-            <rect key="contentRect" x="-171" y="350" width="1166" height="772"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1496" height="937"/>
+            <rect key="contentRect" x="-171" y="350" width="995" height="772"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1728" height="1083"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="1166" height="772"/>
+                <rect key="frame" x="0.0" y="0.0" width="995" height="772"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <splitView arrangesAllSubviews="NO" dividerStyle="paneSplitter" vertical="YES" id="igB-vT-9oa">
-                        <rect key="frame" x="0.0" y="0.0" width="1166" height="772"/>
+                        <rect key="frame" x="0.0" y="0.0" width="995" height="772"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <customView fixedFrame="YES" id="S1O-BB-TfP" userLabel="PSEditView">
-                                <rect key="frame" x="0.0" y="0.0" width="541" height="772"/>
+                            <customView fixedFrame="YES" id="S1O-BB-TfP" userLabel="NSView">
+                                <rect key="frame" x="0.0" y="0.0" width="467" height="772"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <button toolTip="Select another file" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VGH-hf-HRg">
@@ -747,18 +748,18 @@
                                         </connections>
                                     </button>
                                     <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" id="LT0-bJ-p8E">
-                                        <rect key="frame" x="0.0" y="24" width="541" height="748"/>
+                                        <rect key="frame" x="0.0" y="24" width="467" height="748"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <clipView key="contentView" drawsBackground="NO" id="DO9-ti-Ymh">
-                                            <rect key="frame" x="0.0" y="0.0" width="541" height="748"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="467" height="748"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <textView wantsLayer="YES" drawsBackground="NO" importsGraphics="NO" richText="NO" horizontallyResizable="YES" verticallyResizable="YES" findStyle="bar" allowsUndo="YES" usesRuler="YES" smartInsertDelete="YES" id="qTi-0S-hBv" customClass="PsEditView" customModule="PostscriptPlayground" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="541" height="748"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="467" height="748"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    <size key="minSize" width="541" height="748"/>
+                                                    <size key="minSize" width="467" height="748"/>
                                                     <size key="maxSize" width="1200" height="10000000"/>
                                                     <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 </textView>
@@ -769,12 +770,12 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="ZBb-3D-27D">
-                                            <rect key="frame" x="524" y="0.0" width="17" height="748"/>
+                                            <rect key="frame" x="450" y="0.0" width="17" height="748"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ws2-f8-NNl">
-                                        <rect key="frame" x="410" y="5" width="70" height="14"/>
+                                        <rect key="frame" x="336" y="5" width="70" height="14"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                         <buttonCell key="cell" type="bevel" title="Help" bezelStyle="rounded" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="b5z-Ux-JLA">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -786,11 +787,11 @@
                                         </connections>
                                     </button>
                                     <box verticalHuggingPriority="750" boxType="separator" id="VoN-mS-Iua" propertyAccessControl="nonLocalizable">
-                                        <rect key="frame" x="0.0" y="22" width="541" height="5"/>
+                                        <rect key="frame" x="0.0" y="22" width="467" height="5"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     </box>
                                     <comboButton toolTip="Execute PS playground" verticalHuggingPriority="750" fixedFrame="YES" controlSize="small" baseWritingDirection="leftToRight" alignment="center" title="" image="play.fill" imageScaling="proportionallyDown" translatesAutoresizingMaskIntoConstraints="NO" id="0JF-Rh-CLr">
-                                        <rect key="frame" x="484" y="1" width="45" height="21"/>
+                                        <rect key="frame" x="410" y="1" width="45" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                         <menu key="menu" id="E1f-g2-WfM">
                                             <items>
@@ -821,7 +822,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <comboBox toolTip="Current encoding - will be changed to utf-8 when stored!" focusRingType="none" horizontalHuggingPriority="249" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bfD-jX-xgq">
-                                        <rect key="frame" x="339" y="2" width="65" height="19"/>
+                                        <rect key="frame" x="265" y="2" width="65" height="19"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                         <comboBoxCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="UTF-8" usesSingleLineMode="YES" completes="NO" numberOfVisibleItems="16" id="JfV-d3-Fhm">
                                             <font key="font" metaFont="smallSystem"/>
@@ -836,15 +837,15 @@
                                 </subviews>
                             </customView>
                             <customView fixedFrame="YES" id="6gi-qU-lDx" userLabel="PDFView">
-                                <rect key="frame" x="551" y="0.0" width="615" height="772"/>
+                                <rect key="frame" x="477" y="0.0" width="518" height="772"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <pdfView autoresizesSubviews="NO" wantsLayer="YES" id="V2y-i5-Q8g" customClass="ContextPdfView" customModule="PostscriptPlayground" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="615" height="772"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="518" height="772"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </pdfView>
                                     <button toolTip="Error in ps file prevented generation of actual pdf" allowsExpansionToolTips="YES" verticalHuggingPriority="750" id="LVk-of-Y9q">
-                                        <rect key="frame" x="524" y="736" width="80" height="36"/>
+                                        <rect key="frame" x="427" y="736" width="80" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="inline" title="Attention" bezelStyle="inline" image="NSCaution" imagePosition="only" alignment="center" alternateImage="NSStopProgressTemplate" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyUpOrDown" inset="2" id="cEa-04-kFP">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -867,24 +868,24 @@
             <connections>
                 <outlet property="delegate" destination="Wis-H3-gc5" id="4gD-WA-XOE"/>
             </connections>
-            <point key="canvasLocation" x="-343" y="1001"/>
+            <point key="canvasLocation" x="-257.5" y="1001"/>
         </window>
         <textFinder incrementalSearchingEnabled="YES" id="Mmd-QW-FBd"/>
         <window title="Settings" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="5KJ-h8-R4L">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="156" y="689" width="657" height="287"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1496" height="937"/>
-            <value key="minSize" type="size" width="657" height="287"/>
-            <value key="maxSize" type="size" width="657" height="287"/>
-            <value key="minFullScreenContentSize" type="size" width="657" height="287"/>
-            <value key="maxFullScreenContentSize" type="size" width="657" height="287"/>
-            <view key="contentView" misplaced="YES" id="6Hd-5p-pnf">
-                <rect key="frame" x="0.0" y="0.0" width="657" height="287"/>
+            <rect key="contentRect" x="156" y="689" width="657" height="317"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1728" height="1083"/>
+            <value key="minSize" type="size" width="657" height="317"/>
+            <value key="maxSize" type="size" width="657" height="317"/>
+            <value key="minFullScreenContentSize" type="size" width="657" height="317"/>
+            <value key="maxFullScreenContentSize" type="size" width="657" height="317"/>
+            <view key="contentView" id="6Hd-5p-pnf">
+                <rect key="frame" x="0.0" y="0.0" width="657" height="317"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="fIt-Q2-PRR">
-                        <rect key="frame" x="18" y="251" width="179" height="16"/>
+                        <rect key="frame" x="18" y="281" width="179" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Postscript to PDF converter" id="4VF-Ty-aVV">
                             <font key="font" usesAppearanceFont="YES"/>
@@ -893,14 +894,14 @@
                         </textFieldCell>
                     </textField>
                     <comboBox toolTip="Here the path for the ps to pdf converter must be entered!" focusRingType="none" verticalHuggingPriority="750" id="xUa-Ww-37a">
-                        <rect key="frame" x="202" y="247" width="196" height="23"/>
+                        <rect key="frame" x="202" y="277" width="196" height="23"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="&lt;path to an existing ps converter&gt;" drawsBackground="YES" completes="NO" numberOfVisibleItems="15" id="I0u-cs-zWb">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             <objectValues>
-                                <string>Browse…</string>
+                                <string>Browse / …</string>
                             </objectValues>
                         </comboBoxCell>
                         <connections>
@@ -908,8 +909,8 @@
                         </connections>
                     </comboBox>
                     <button verticalHuggingPriority="750" id="m6i-O2-w9R">
-                        <rect key="frame" x="548" y="13" width="96" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                        <rect key="frame" x="548" y="20" width="96" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="push" title="Ok" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Yda-86-vSO">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -922,8 +923,8 @@ DQ
                         </connections>
                     </button>
                     <button horizontalHuggingPriority="249" verticalHuggingPriority="750" id="67K-ho-At7">
-                        <rect key="frame" x="454" y="13" width="96" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                        <rect key="frame" x="434" y="20" width="96" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qiO-SP-AhZ">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -936,7 +937,7 @@ Gw
                         </connections>
                     </button>
                     <colorWell id="hqS-Rn-k7F">
-                        <rect key="frame" x="200" y="211" width="440" height="28"/>
+                        <rect key="frame" x="200" y="218" width="440" height="28"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="color" red="1" green="0.2527923882" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <connections>
@@ -948,7 +949,7 @@ Gw
                         </connections>
                     </colorWell>
                     <colorWell id="5x6-je-9L8">
-                        <rect key="frame" x="200" y="179" width="440" height="28"/>
+                        <rect key="frame" x="200" y="186" width="440" height="28"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="color" red="0.20780656605317074" green="0.5" blue="0.21203315548780488" alpha="1" colorSpace="calibratedRGB"/>
                         <connections>
@@ -960,7 +961,7 @@ Gw
                         </connections>
                     </colorWell>
                     <colorWell id="jf5-kB-c4o">
-                        <rect key="frame" x="200" y="147" width="440" height="28"/>
+                        <rect key="frame" x="200" y="154" width="440" height="28"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="color" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <connections>
@@ -972,7 +973,7 @@ Gw
                         </connections>
                     </colorWell>
                     <colorWell id="hcK-Ff-FnS">
-                        <rect key="frame" x="200" y="115" width="440" height="28"/>
+                        <rect key="frame" x="200" y="122" width="440" height="28"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="color" red="0.36613857268654654" green="0.79204469150423606" blue="0.80604207210762557" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <connections>
@@ -984,7 +985,7 @@ Gw
                         </connections>
                     </colorWell>
                     <colorWell id="GoK-mY-es1">
-                        <rect key="frame" x="200" y="83" width="440" height="28"/>
+                        <rect key="frame" x="200" y="90" width="440" height="28"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="color" red="0.66799789669999998" green="0.47512125970000002" blue="0.25860109930000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <connections>
@@ -996,7 +997,7 @@ Gw
                         </connections>
                     </colorWell>
                     <colorWell id="aJG-z6-Ctx">
-                        <rect key="frame" x="200" y="51" width="440" height="28"/>
+                        <rect key="frame" x="200" y="58" width="440" height="28"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="color" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <connections>
@@ -1008,7 +1009,7 @@ Gw
                         </connections>
                     </colorWell>
                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="nsu-zt-KNh">
-                        <rect key="frame" x="18" y="217" width="179" height="16"/>
+                        <rect key="frame" x="18" y="224" width="179" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Math color" id="C0m-JE-dt4">
                             <font key="font" usesAppearanceFont="YES"/>
@@ -1017,7 +1018,7 @@ Gw
                         </textFieldCell>
                     </textField>
                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="t4m-jb-t3g">
-                        <rect key="frame" x="18" y="185" width="179" height="16"/>
+                        <rect key="frame" x="18" y="192" width="179" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Define color" id="VTH-cx-L9v">
                             <font key="font" usesAppearanceFont="YES"/>
@@ -1026,7 +1027,7 @@ Gw
                         </textFieldCell>
                     </textField>
                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="kqJ-w5-hLq">
-                        <rect key="frame" x="18" y="153" width="179" height="16"/>
+                        <rect key="frame" x="18" y="160" width="179" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Flow control color" id="AaK-7e-Vi2">
                             <font key="font" usesAppearanceFont="YES"/>
@@ -1035,7 +1036,7 @@ Gw
                         </textFieldCell>
                     </textField>
                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="2tc-Ye-ko9">
-                        <rect key="frame" x="18" y="121" width="179" height="16"/>
+                        <rect key="frame" x="18" y="128" width="179" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Numbers color" id="zp3-hk-WTY">
                             <font key="font" usesAppearanceFont="YES"/>
@@ -1044,7 +1045,7 @@ Gw
                         </textFieldCell>
                     </textField>
                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="u4y-dR-UTf">
-                        <rect key="frame" x="18" y="89" width="179" height="16"/>
+                        <rect key="frame" x="18" y="96" width="179" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Comment color" id="F7g-q2-TsS">
                             <font key="font" usesAppearanceFont="YES"/>
@@ -1053,7 +1054,7 @@ Gw
                         </textFieldCell>
                     </textField>
                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="ELk-4l-Buv">
-                        <rect key="frame" x="18" y="57" width="179" height="16"/>
+                        <rect key="frame" x="18" y="64" width="179" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Graphics color" id="vk2-6c-Oma">
                             <font key="font" usesAppearanceFont="YES"/>
@@ -1061,22 +1062,8 @@ Gw
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button verticalHuggingPriority="750" id="ysu-bg-azM">
-                        <rect key="frame" x="122" y="13" width="205" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Default colors" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BDr-ud-C8B">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                            <string key="keyEquivalent" base64-UTF8="YES">
-Gw
-</string>
-                        </buttonCell>
-                        <connections>
-                            <action selector="setToDefaultColors:" target="Wis-H3-gc5" id="4Bn-hM-ITq"/>
-                        </connections>
-                    </button>
                     <button horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XMf-Kd-2hB">
-                        <rect key="frame" x="617" y="246" width="24" height="24"/>
+                        <rect key="frame" x="617" y="276" width="24" height="24"/>
                         <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="G3B-1H-PVh">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -1086,7 +1073,7 @@ Gw
                         </buttonCell>
                     </button>
                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="DDo-b5-00F">
-                        <rect key="frame" x="409" y="251" width="62" height="16"/>
+                        <rect key="frame" x="409" y="281" width="62" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="input" id="KzB-ik-Tkl">
                             <font key="font" usesAppearanceFont="YES"/>
@@ -1095,7 +1082,7 @@ Gw
                         </textFieldCell>
                     </textField>
                     <comboBox focusRingType="none" verticalHuggingPriority="750" id="lFN-Bd-A1s">
-                        <rect key="frame" x="476" y="247" width="54" height="23"/>
+                        <rect key="frame" x="476" y="277" width="54" height="23"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <string key="toolTip">Eventually here you need to add the delimiting parameter between source file and output file. Like: pstopdf source -o destination</string>
                         <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="98h-Ad-Ycx">
@@ -1109,9 +1096,12 @@ IA
                                 <string>-o</string>
                             </objectValues>
                         </comboBoxCell>
+                        <attributedString key="userComments">
+                            <fragment content="Do not translate!"/>
+                        </attributedString>
                     </comboBox>
                     <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="JrT-10-f5k">
-                        <rect key="frame" x="533" y="251" width="78" height="16"/>
+                        <rect key="frame" x="533" y="281" width="78" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="output" id="SbP-i0-gsx">
                             <font key="font" usesAppearanceFont="YES"/>
@@ -1119,14 +1109,49 @@ IA
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Ame-Zn-eLF">
+                        <rect key="frame" x="18" y="257" width="179" height="16"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Ghostscript version (gs)" id="hnk-9G-rvE">
+                            <font key="font" usesAppearanceFont="YES"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <attributedString key="userComments">
+                            <fragment content="This is the gs version, not the version of ps2pdf!"/>
+                        </attributedString>
+                    </textField>
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="GFU-KY-By3">
+                        <rect key="frame" x="201" y="257" width="179" height="16"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="&lt;version&gt;" id="voC-7c-lea">
+                            <font key="font" usesAppearanceFont="YES"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button verticalHuggingPriority="750" id="ysu-bg-azM">
+                        <rect key="frame" x="202" y="20" width="205" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <buttonCell key="cell" type="push" title="Default colors" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BDr-ud-C8B">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="setToDefaultColors:" target="Wis-H3-gc5" id="4Bn-hM-ITq"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="XMf-Kd-2hB" firstAttribute="leading" secondItem="JrT-10-f5k" secondAttribute="trailing" constant="8" symbolic="YES" id="42a-uO-bsb"/>
-                    <constraint firstAttribute="trailing" secondItem="XMf-Kd-2hB" secondAttribute="trailing" constant="20" symbolic="YES" id="VsB-lP-DNo"/>
+                    <constraint firstAttribute="trailing" secondItem="XMf-Kd-2hB" secondAttribute="trailing" constant="16" id="VsB-lP-DNo"/>
                     <constraint firstItem="XMf-Kd-2hB" firstAttribute="top" secondItem="lFN-Bd-A1s" secondAttribute="top" id="vq1-hg-B41"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="1.5" y="401.5"/>
+            <point key="canvasLocation" x="-4.5" y="361.5"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="fup-xg-AJC"/>
     </objects>

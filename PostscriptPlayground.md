@@ -7,4 +7,4 @@
 - using basic syntax coloring
 - help integrated to Apple help
 
-Version: 2.19   2026-01-31
+Version: 2.20   2026-10-15

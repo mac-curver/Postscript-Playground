@@ -2,8 +2,15 @@
 //  AppDelegate.swift
 //  SimplePsViewer
 //
+//
 //  Changed by LegoEsprit 2024-12-27 New GIT version
 //  Created by LegoEsprit on 25.03.23.
+//
+//  Requirements:
+//  Syntax coloring after paste
+//  Column editing
+//  Zoom position should remain after re-draw
+//  Monitor ghostscript version
 //
 // Minimum Deployment version set to 13.0 as otherwise Combobox is not available
 // Sandboxing not possible as on client systems the ps to pdf converters
@@ -33,9 +40,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	/// The main view controller for the edit, pdf display and setting the preferences.
     @IBOutlet weak var viewController: ViewController!
 	
-	/// Opens a menu with some sample files to try the PostScript conversion.
+    //@IBOutlet weak var titleWindowController: TitleClickWindowController!
+    /// Opens a menu with some sample files to try the PostScript conversion.
 	@IBOutlet weak var exampleMenu: NSMenu!										//< Moved to here to allow menu access even if window was closed
-	/// Allows to acces the most recent .ps files used.
+	/// Allows to access the most recent .ps files used.
 	@IBOutlet weak var recentMenu: NSMenu!										//<
 	
 	/// Used to copy the file names, when opening from Finder.
@@ -120,6 +128,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	/// - Parameter aNotification: Currently not in use
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
+        //titleWindowController.showWindow(self)
+        
         print("$$$$$")
         for (key, value) in Bundle.main.infoDictionary! {
             print("\(key): \(value)")
@@ -196,7 +206,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     /// If just one window and file.
     /// - Parameter sender: Ignored
-    /// - Returns: Allways NO // YES
+    /// - Returns: Allways NO
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         return false
     }

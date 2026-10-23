@@ -202,6 +202,10 @@
 /* Class = "NSMenuItem"; title = "Save PDF as..."; ObjectID = "hfl-T6-eQI"; */
 "hfl-T6-eQI.title" = "PDF speichern unter ...";
 
+/* Class = "NSTextFieldCell"; title = "Ghostscript version (gs)"; ObjectID = "hnk-9G-rvE"; Note = "This is the gs version, not the version of ps2pdf!"; */
+"hnk-9G-rvE.title" = "Ghostscript Version (gs)";
+
+
 /* Class = "NSMenuItem"; title = "Show Spelling and Grammar"; ObjectID = "HFo-cy-zxI"; */
 "HFo-cy-zxI.title" = "Sprache und Grammatik anzeigen";
 

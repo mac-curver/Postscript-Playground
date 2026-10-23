@@ -155,9 +155,9 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
         registerForDraggedTypes(
             [  NSPasteboard.PasteboardType.URL
              , NSPasteboard.PasteboardType.fileURL
-                                        , .fileContents
-                                        , .multipleTextSelection
-                                        , .string
+             , .fileContents
+             , .multipleTextSelection
+             , .string
             ]
         )
         delegate = self
@@ -173,7 +173,7 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
 		_ = openFileWithEncoding(encoding, showAlert: true)
 	}
 	
-	/// Respond to chages of the syntax segmented control
+	/// Respond to changes of the syntax segmented control
 	/// - Parameter sender: Segemented control for 3 syntax algos
 	/// ```
 	/// This very likely will be removed later, when the most effective
@@ -189,6 +189,8 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
         Logger.login("", className: className)
         font = NSFont(name: "Monaco", size: 11)
         //isRulerVisible = true
+        
+
         Logger.logout("", className: className)
     }
 	
@@ -262,7 +264,7 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
         return checkExtension(dragInfo)
     }
 
-    /*
+    
     /// Does not help!
     /// draggingUpdated returns the .copy if file extension is .ps
     /// - parameter dragInfo:               The drag info from the system.
@@ -274,11 +276,11 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
     override func draggingUpdated(_ dragInfo: NSDraggingInfo) -> NSDragOperation {
         return checkExtension(dragInfo)
     }
-    */
+
 
 
     /// performDragOperation performs the drag operation
-    /// Continously called during drag operation in the main thread.
+    /// Continously  called during drag operation in the main thread.
     /// - Parameter dragInfo:               The drag info from the system.
     /// - Returns: true if drag finished successfully
     @MainActor
@@ -378,6 +380,7 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
     /// In case of autosave mode converts ps to pdf (likewise a playground).
     @objc func textDidChangeTimerFired() {
         Logger.login("", className: className)
+        assignSyntaxColors()
         if autoSave {
             if saveFileToPsUrl() {
                 viewController?.convertPsToPdf()

@@ -68,6 +68,12 @@
 /* Class = "NSMenu"; title = "Writing Direction"; ObjectID = "8mr-sm-Yjd"; */
 "8mr-sm-Yjd.title" = "Writing Direction";
 
+/* Class = "NSComboBoxCell"; 98h-Ad-Ycx.ibShadowedObjectValues[0] = " "; ObjectID = "98h-Ad-Ycx"; */
+"98h-Ad-Ycx.ibShadowedObjectValues[0]" = " ";
+
+/* Class = "NSComboBoxCell"; 98h-Ad-Ycx.ibShadowedObjectValues[1] = "-o"; ObjectID = "98h-Ad-Ycx"; */
+"98h-Ad-Ycx.ibShadowedObjectValues[1]" = "-o";
+
 /* Class = "NSMenuItem"; title = "Substitutions"; ObjectID = "9ic-FL-obx"; */
 "9ic-FL-obx.title" = "Substitutions";
 
@@ -79,9 +85,6 @@
 
 /* Class = "NSMenuItem"; title = "Recent files"; ObjectID = "AZp-kq-rZJ"; */
 "AZp-kq-rZJ.title" = "Recent files";
-
-/* Class = "NSMenuItem"; title = "Example files"; ObjectID = "sMZ-WG-g9G"; */
-"sMZ-WG-g9G.title" = "Example files";
 
 /* Class = "NSTextFieldCell"; title = "Flow control color"; ObjectID = "AaK-7e-Vi2"; */
 "AaK-7e-Vi2.title" = "Flow control color";
@@ -149,8 +152,17 @@
 /* Class = "NSMenuItem"; title = "Subscript"; ObjectID = "I0S-gh-46l"; */
 "I0S-gh-46l.title" = "Subscript";
 
-/* Class = "NSComboBoxCell"; title = "TextField"; ObjectID = "I0u-cs-zWb"; */
-"I0u-cs-zWb.title" = "TextField";
+/* Class = "NSComboBoxCell"; placeholderString = "<path to an existing ps converter>"; ObjectID = "I0u-cs-zWb"; */
+"I0u-cs-zWb.placeholderString" = "<path to an existing ps converter>";
+
+/* Class = "NSComboBoxCell"; I0u-cs-zWb.ibShadowedObjectValues[0] = "Browse /bin …"; ObjectID = "I0u-cs-zWb"; */
+"I0u-cs-zWb.ibShadowedObjectValues[0]" = "Browse /bin …";
+
+/* Class = "NSComboBoxCell"; I0u-cs-zWb.ibShadowedObjectValues[1] = "Browse /opt ..."; ObjectID = "I0u-cs-zWb"; */
+"I0u-cs-zWb.ibShadowedObjectValues[1]" = "Browse /opt ...";
+
+/* Class = "NSComboBoxCell"; I0u-cs-zWb.ibShadowedObjectValues[2] = "Browse /usr ..."; ObjectID = "I0u-cs-zWb"; */
+"I0u-cs-zWb.ibShadowedObjectValues[2]" = "Browse /usr ...";
 
 /* Class = "NSMenuItem"; title = "Open…"; ObjectID = "IAo-SY-fd9"; */
 "IAo-SY-fd9.title" = "Open…";
@@ -169,6 +181,9 @@
 
 /* Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS"; */
 "Kd2-mp-pUS.title" = "Show All";
+
+/* Class = "NSTextFieldCell"; title = "input"; ObjectID = "KzB-ik-Tkl"; */
+"KzB-ik-Tkl.title" = "input";
 
 /* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ"; */
 "LE2-aR-0XJ.title" = "Bring All to Front";
@@ -233,11 +248,14 @@
 /* Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "S0p-oC-mLd"; */
 "S0p-oC-mLd.title" = "Jump to Selection";
 
-/* Class = "NSMenuItem"; title = "Help..."; ObjectID = "SD1-R3-GwV"; */
-"SD1-R3-GwV.title" = "Help...";
+/* Class = "NSTextFieldCell"; title = "output"; ObjectID = "SbP-i0-gsx"; */
+"SbP-i0-gsx.title" = "output";
 
 /* Class = "NSMenu"; title = "Window"; ObjectID = "Td7-aD-5lo"; */
 "Td7-aD-5lo.title" = "Window";
+
+/* Class = "NSTextFieldCell"; title = "0/0"; ObjectID = "U7I-zJ-0tQ"; */
+"U7I-zJ-0tQ.title" = "0/0";
 
 /* Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "UEZ-Bs-lqG"; */
 "UEZ-Bs-lqG.title" = "Capitalize";
@@ -350,8 +368,8 @@
 /* Class = "NSMenuItem"; title = "Undo"; ObjectID = "dRJ-4n-Yzg"; */
 "dRJ-4n-Yzg.title" = "Undo";
 
-/* Class = "NSMenuItem"; title = "Example files"; ObjectID = "flA-A6-dEG"; */
-"flA-A6-dEG.title" = "Example files";
+/* Class = "NSButtonCell"; title = "..."; ObjectID = "fKd-5P-zrC"; */
+"fKd-5P-zrC.title" = "...";
 
 /* Class = "NSMenuItem"; title = "Paste"; ObjectID = "gVA-U4-sdL"; */
 "gVA-U4-sdL.title" = "Paste";
@@ -361,6 +379,9 @@
 
 /* Class = "NSMenuItem"; title = "Save PDF as..."; ObjectID = "hfl-T6-eQI"; */
 "hfl-T6-eQI.title" = "Save PDF as...";
+
+/* Class = "NSTextFieldCell"; title = "Ghostscript version (gs)"; ObjectID = "hnk-9G-rvE"; Note = "This is the gs version, not the version of ps2pdf!"; */
+"hnk-9G-rvE.title" = "Ghostscript version (gs)";
 
 /* Class = "NSMenuItem"; title = "Check Document Now"; ObjectID = "hz2-CU-CR7"; */
 "hz2-CU-CR7.title" = "Check Document Now";
@@ -385,6 +406,9 @@
 
 /* Class = "NSMenuItem"; title = "Show Sidebar"; ObjectID = "kIP-vf-haE"; */
 "kIP-vf-haE.title" = "Show Sidebar";
+
+/* Class = "NSComboBox"; ibShadowedToolTip = "Eventually here you need to add the delimiting parameter between source file and output file. Like: pstopdf source -o destination"; ObjectID = "lFN-Bd-A1s"; */
+"lFN-Bd-A1s.ibShadowedToolTip" = "Eventually here you need to add the delimiting parameter between source file and output file. Like: pstopdf source -o destination";
 
 /* Class = "NSMenuItem"; title = "Check Grammar With Spelling"; ObjectID = "mK6-2p-4JG"; */
 "mK6-2p-4JG.title" = "Check Grammar With Spelling";
@@ -416,6 +440,9 @@
 /* Class = "NSMenuItem"; title = "Smart Dashes"; ObjectID = "rgM-f4-ycn"; */
 "rgM-f4-ycn.title" = "Smart Dashes";
 
+/* Class = "NSMenuItem"; title = "Example files"; ObjectID = "sMZ-WG-g9G"; */
+"sMZ-WG-g9G.title" = "Example files";
+
 /* Class = "NSMenuItem"; title = "Show Toolbar"; ObjectID = "snW-S8-Cw5"; */
 "snW-S8-Cw5.title" = "Show Toolbar";
 
@@ -443,6 +470,9 @@
 /* Class = "NSMenuItem"; title = "Make Upper Case"; ObjectID = "vmV-6d-7jI"; */
 "vmV-6d-7jI.title" = "Make Upper Case";
 
+/* Class = "NSTextFieldCell"; title = "<version>"; ObjectID = "voC-7c-lea"; */
+"voC-7c-lea.title" = "<version>";
+
 /* Class = "NSMenu"; title = "Ligatures"; ObjectID = "w0m-vy-SC9"; */
 "w0m-vy-SC9.title" = "Ligatures";
 
@@ -457,6 +487,9 @@
 
 /* Class = "NSMenuItem"; title = "Use All"; ObjectID = "xQD-1f-W4t"; */
 "xQD-1f-W4t.title" = "Use All";
+
+/* Class = "NSComboBox"; ibShadowedToolTip = "Here the path for the ps to pdf converter must be entered!"; ObjectID = "xUa-Ww-37a"; */
+"xUa-Ww-37a.ibShadowedToolTip" = "Here the path for the ps to pdf converter must be entered!";
 
 /* Class = "NSMenuItem"; title = "Speech"; ObjectID = "xrE-MZ-jX0"; */
 "xrE-MZ-jX0.title" = "Speech";

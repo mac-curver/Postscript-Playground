@@ -14,6 +14,7 @@
 
 import Cocoa
 import UniformTypeIdentifiers
+import Symbols
 import os.log
 
 
@@ -43,8 +44,9 @@ class ViewController: NSViewController {
     @IBOutlet var window: NSWindow!
     @IBOutlet weak var settingsWindow: NSWindow!
     
-	@IBOutlet weak var psToPdfConverterPathComboBox: NSComboBox!
+    @IBOutlet weak var psToPdfConverterPathComboBox: NSComboBox!
 	@IBOutlet weak var psToPdfParameterComboBox: NSComboBox!
+    @IBOutlet weak var ghostscriptVersionTextField: NSTextField!
     @IBOutlet var psTextView: PsEditView!
 	@IBOutlet weak var psScrollView: NSScrollView!
 	@IBOutlet weak var pdfView: ContextPdfView!
@@ -62,27 +64,11 @@ class ViewController: NSViewController {
 	
 	//@IBOutlet weak var syntaxSegmentedControl: NSSegmentedControl!
     
-	
-	/// Array with full path to the tool and parameter for the output argument if required
-	let kindsOfAlternativeConverters = [
-		                         ["/usr/bin/pstopdf", "-o"]
-							   , ["/opt/local/bin/ps2pdf", ""]
-                               , ["/usr/local/bin/ps2pdf", ""]
-                               , ["/usr/local/opt/ps2pdf", ""]
-							   , ["/usr/local/opt/ghostscript/bin/ps2pdf", ""]
-                              ]
-	/*
-	let kindsOfAlternativeConverters = [
-								 ["~/Applications/pstopdf2", "-o"]
-							  ]
-	 */
-
+	    
 	
 	/// Placeholder for the current ps2pdf convert
-    var psToPdfConverterPath = ""
+    var psToPdfConverter: GhostscriptVersion = GhostscriptVersion()
 	
-	/// Used to hold eventually the needed argument for the pdf converter
-    var psToPdfConverterArgument = ""
 	
 	/// Used to call the console with the ps2pdf converter
     var shell = Shell()
@@ -119,6 +105,11 @@ class ViewController: NSViewController {
 	}
 	 */
     
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        //popupMenu = NSMenu.init(title: "Context")
+    }
+    
 	
 	/// Returns a version string
 	/// - Returns: Combined version number as String
@@ -127,27 +118,11 @@ class ViewController: NSViewController {
 	/// String.
 	/// ```
     func version() -> String {
-
-        /*
-        /// Start in background
-        DispatchQueue.global(qos: .userInitiated).async {
-           
-            let start = ProcessInfo.processInfo.systemUptime
-            let test = self.ackermann(m: 2, n: 2)
-            Logger.write("\(ProcessInfo.processInfo.systemUptime-start) s")
-            print("This is run on a background queue: \(test)")
-
-            /// Get back to foreground
-            DispatchQueue.main.async {
-            }
-        }
-         */
-		return """
-			Bundle: \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String) \
-			(\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String))
-			Editor: \(PsEditView.version)
-			"""
-
+        """
+        Bundle: \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String) \
+        (\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String))
+        Editor: \(PsEditView.version)
+        """
     }
 	
 	/*
@@ -174,24 +149,24 @@ class ViewController: NSViewController {
 	 */
 	
 	fileprivate func setPsToPdfConverterCombobox(_ successPath: String) {
-		let preferences = UserDefaults.standard
-		psToPdfConverterPath = preferences.string(forKey: "PsToPdfConverter") ?? successPath
-		psToPdfConverterArgument = preferences.string(forKey: "PsToPdfConverterArg") ?? ""
 		
-		if psToPdfConverterPathComboBox.numberOfItems > 1 && psToPdfConverterPath.isEmpty {
+        if psToPdfConverterPathComboBox.numberOfItems > 1 && psToPdfConverter.path.isEmpty {
 			/// Start delayed as otherwise main window hides setting window
 			_ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { timer in
 				self.settingsWindow.makeKeyAndOrderFront(self)
 			}
 		}
 		else {
-			psToPdfConverterPathComboBox.stringValue = psToPdfConverterPath
-			psToPdfConverterPathComboBox.selectItem(withObjectValue: psToPdfConverterPath)
-			psToPdfParameterComboBox.stringValue = psToPdfConverterArgument
-			psToPdfParameterComboBox.selectItem(withObjectValue: psToPdfConverterArgument)
+            psToPdfConverterPathComboBox.stringValue = psToPdfConverter.path
+            psToPdfConverterPathComboBox.selectItem(withObjectValue: psToPdfConverter.path)
+            psToPdfParameterComboBox.stringValue = psToPdfConverter.argument
+            psToPdfParameterComboBox.selectItem(withObjectValue: psToPdfConverter.argument)
 
-			preferences.set(psToPdfConverterPath, forKey: "PsToPdfConverter")
-			psToPdfConverterArgument = preferences.string(forKey: "PsToPdfConverterArg") ?? ""
+            psToPdfConverter.store()
+            
+            if let url = URL(string: successPath) {
+                setGhostscriptVersion(url)
+            }
 		}
 	}
 	
@@ -204,27 +179,39 @@ class ViewController: NSViewController {
 		}
 	}
 	
-	/// Called after IB has been loaded checks whether a ps2Pdf converter is available and does
+	/// Called after IB has been loaded checks whether a ps2Pdf converter is available and is doing
 	/// some initial settings.
 	override func viewDidLoad() {
 		Logger.login(version(), className: className)
 		Logger.write("Test viewDidLoad", className: className)
+        
+
 
         super.viewDidLoad()
+        attentionButton.wantsLayer = true                                       // to allow opacity animation
+        psTextView.awakeFromNib()
+        addLocalMonitor(for: psTextView)
+
         
         var successPath = ""
-
-        for pathAndArgument in kindsOfAlternativeConverters {
-            let path = pathAndArgument[0]
-            if checkFileExists(path) {
-                if successPath.isEmpty {
-                    successPath = path
+        psToPdfConverter.retrieve(successPath, "")
+        psToPdfConverterPathComboBox.stringValue = psToPdfConverter.path
+        psToPdfParameterComboBox.stringValue = psToPdfConverter.argument
+        
+        if !checkFileIsExecutable(successPath) {
+            for pathAndArgument in GhostscriptVersion.alternativeConverters {
+                if checkFileIsExecutable(pathAndArgument.path) {
+                    psToPdfConverterPathComboBox.insertItem(withObjectValue: pathAndArgument.path, at: 0)
+                    psToPdfParameterComboBox.insertItem(withObjectValue: pathAndArgument.argument, at: 0)
+                    if successPath.isEmpty {
+                        successPath = pathAndArgument.path                      // return first found
+                        psToPdfConverterPathComboBox.stringValue = pathAndArgument.path
+                        psToPdfParameterComboBox.stringValue = pathAndArgument.argument
+                    }
                 }
-				psToPdfConverterPathComboBox.insertItem(withObjectValue: path, at: 0)
             }
         }
 		
-        
         if successPath.isEmpty {
             let alert = NSAlert()
             
@@ -277,13 +264,8 @@ class ViewController: NSViewController {
                 exit(-1)
             }
         }
-		else {
-			setPsToPdfConverterCombobox(successPath)
-		}
         
-		
 		resetColorsIfNotInitialized()
-
         SyntaxColors.storeUndoColors()
         
         attentionButton.isHidden = true
@@ -292,11 +274,13 @@ class ViewController: NSViewController {
 			encodingComboBox.addItem(withObjectValue: encoding.description)
 		}
         
+        // The following is used only when syntax coloring takes lot of time
 		//registerForNotifications()
 		
         Logger.logout("", className: className)
 
     }
+    
     
     /*
     override func viewDidAppear() {
@@ -310,7 +294,7 @@ class ViewController: NSViewController {
     func didFinishLaunching(appDelegate: AppDelegate) {
 		Logger.login("", className: className)
 		delegate = appDelegate
-        psTextView.viewController = appDelegate.viewController                  /// copy the view controller down the hierachy
+        psTextView.viewController = appDelegate.viewController                  /// copy the view controller down the hierarchy
 		self.fileNew(NSMenuItem())
         addAnimationToAttentionButton()
 		Logger.logout("", className: className)
@@ -342,7 +326,7 @@ class ViewController: NSViewController {
 	/// Hides bottom controls according to their priority
 	/// - Parameter availableWidth: The width of the visibleRect of the owner
 	/// ```
-	///	Impossible to use contraints as then colapsing the editor is not possible anymore!
+	///	Impossible to use constraints as then collapsing the editor is not possible anymore!
 	/// ```
 	func resizePsEditView(availableWidth: Double) {
 		let factor = 1.2 // instead of the exact spacing
@@ -370,16 +354,17 @@ class ViewController: NSViewController {
 		encodingComboBox.selectItem(withObjectValue: item)
 	}
 	
-	func runOpenCoverterPanel(_ inFile: inout URL
+	func runOpenConverterPanel(_ inFile: inout URL
 							  , with selected: String = ""
 	)->NSApplication.ModalResponse {
 		Logger.login("", className: className)
 		let openPanel = NSOpenPanel()
 			
 		let openMessage = String(localized: "Please select a ps to pdf converter")
+        openPanel.resolvesAliases         = true
 		openPanel.message                 = openMessage
 		openPanel.showsResizeIndicator    = true
-		openPanel.showsHiddenFiles        = false
+		openPanel.showsHiddenFiles        = true                                // required to browse /bin etc.
 		openPanel.canChooseFiles          = true
 		openPanel.canChooseDirectories    = false
 		openPanel.canCreateDirectories    = false
@@ -437,9 +422,7 @@ class ViewController: NSViewController {
         Logger.logout("", className: className)
     }
     
-    
-    
-    
+
     
     /// open recent file
     /// - Parameter sender: The recent menu item selected
@@ -517,6 +500,10 @@ class ViewController: NSViewController {
         Logger.logout("", className: className)
     }
     
+    fileprivate func setGhostscriptVersion(_ url: URL) {
+        let pathOnly = url.deletingLastPathComponent().relativePath
+        ghostscriptVersionTextField.stringValue = GhostscriptVersion.get(from: pathOnly) ?? "- - -"
+    }
 
     
     /// Calls the file open dialog to open a Postscript file
@@ -548,7 +535,7 @@ class ViewController: NSViewController {
         let alert = NSAlert()
         
         alert.alertStyle = .warning
-        alert.messageText = String(localized: "Only a single file can be opened at at time")
+        alert.messageText = String(localized: "Only a single file can be opened at a time")
         alert.informativeText = String(
 			localized: "OnlySingleFileKey"
 			, defaultValue: """
@@ -570,7 +557,6 @@ class ViewController: NSViewController {
 		if !window.isVisible {
 			window.orderFront(self)
 		}
-		
     }
     
     /// Opens an alert to display the Postscript error
@@ -580,7 +566,7 @@ class ViewController: NSViewController {
         
         alert.alertStyle = .warning
         alert.messageText = String(localized: "Postscript file couldn't be converted")
-		
+
 		alert.informativeText = shell.stdout.abbreviate(limitCount: 250, prefix: 200)
                                 + "\n"
 		                        + shell.stderr.abbreviate(limitCount: 250)
@@ -714,23 +700,27 @@ class ViewController: NSViewController {
         window.title = psTextView.psFileUrl.url.lastPathComponent
 		
         let argumentArray = [  psTextView.psFileUrl.url.path_fallback
-                             , psToPdfConverterArgument
+                               , psToPdfConverter.argument
                                , pdfView.tempFileUrl.path_fallback
 		                    ].filter { !$0.isEmpty }
 	
 		
-		shell = Shell(URL(filePath: psToPdfConverterPath)
+        shell = Shell(URL(filePath: psToPdfConverter.path)
                       , arguments: argumentArray
         )
 
-        
+
         if shell.stderr.isEmpty {
             attentionButton.isHidden = true
             pdfView.openTempFileUrlAsPdf();
         }
         else {
+            Logger.write(shell.stdout, className: className)
             Logger.write(shell.stderr, className: className)
             attentionButton.isHidden = false
+            //let imageView = NSImageView(image: attentionButton.image!)
+            //imageView.addSymbolEffect(.breathe.pulse.byLayer, options: .repeat(.continuous))
+            //attentionButton.symbolEffect(.breathe.pulse.byLayer, options: .repeat(.continuous))
         }
         
         autoFinished()
@@ -748,25 +738,26 @@ class ViewController: NSViewController {
 
 
     
-    /// Checks if PDF exists already
-    /// - Parameter filePath: Path of the pdf file
-    /// - Returns: true in case a file with filePath does exist
-    func checkFileExists(_ filePath: String)->Bool {
+    /// Checks if app exists
+    /// - Parameter filePath: Path of the app
+    /// - Returns: true in case a file with filePath is executable
+    func checkFileIsExecutable(_ filePath: String)->Bool {
 		let extended = NSString(string: filePath).expandingTildeInPath
-        return FileManager.default.fileExists(atPath: extended)
+        return FileManager.default.isExecutableFile(atPath: extended)
     }
     
-    
+  
     /// Adds blinking animation to the attention button
     func addAnimationToAttentionButton() {
         let animation = CAKeyframeAnimation.init(keyPath: "opacity")
-        animation.values = [0, 1]
-        animation.duration = 0.5
-        animation.calculationMode = CAAnimationCalculationMode.discrete
+        animation.values = [0.0, 0.5, 1.0, 0.5, 0.0]
+        animation.duration = 0.7
+        animation.calculationMode = CAAnimationCalculationMode.cubic
         animation.repeatCount = .greatestFiniteMagnitude
 
         attentionButton.layer?.add(animation, forKey: nil)
     }
+    
 	
 	/*
 	/// Used to show and hide the syntaxSegmentedControl.
@@ -790,50 +781,60 @@ class ViewController: NSViewController {
 	}
 	 */
 	
-	fileprivate func setConverterPathToPreferences() {
-		if !psToPdfConverterPath.isEmpty {
-			let preferences = UserDefaults.standard
-			preferences.set(psToPdfConverterPath, forKey: "PsToPdfConverter")
-			preferences.set(psToPdfConverterArgument, forKey: "PsToPdfConverterArg")
-		}
-	}
-    
+   
 
     /// Resets colors to factory settings
     /// - Parameter sender: Not used
     @IBAction func setToDefaultColors(_ sender: Any) {
         SyntaxColors.resetAllColors()
     }
+    
+    func selectPs2PdfConverter() -> URL{
+        var converterUrl = URL(filePath: psToPdfConverter.path)
+        let start = "/"
+        let response = runOpenConverterPanel(&converterUrl, with: start)
+        switch response {
+            case NSApplication.ModalResponse.OK:
+                psToPdfConverterPathComboBox.insertItem(withObjectValue: converterUrl.path(), at: 0)
+                psToPdfConverterPathComboBox.selectItem(at: 0)
+            default:
+                break
+        }
+        psToPdfConverterPathComboBox.stringValue = converterUrl.relativePath
+        return converterUrl
+    }
 
-	@IBAction func browsePsToPdfConverter(_ sender: NSComboBox) {
-		if sender.numberOfItems - 1 == sender.indexOfSelectedItem {
-			var converterUrl = URL(filePath: "/usr/bin/pstopdf")
-			let response = runOpenCoverterPanel(&converterUrl, with: "/usr/bin")
-			switch response {
-			case NSApplication.ModalResponse.OK:
-                sender.insertItem(withObjectValue: converterUrl.path_fallback, at: 0)
-				sender.stringValue = converterUrl.path_fallback
-			default:
-				break
-			}
-		}
-		for converter in kindsOfAlternativeConverters {
-			if converter[0] == sender.stringValue {
-				psToPdfParameterComboBox.stringValue = converter[1]
-			}
-		}
-
-	}
+    
+    @IBAction func browsePsToPdfConverter(_ sender: NSComboBox) {
+        var converterUrl: URL
+        
+        switch sender.indexOfSelectedItem {
+            case sender.numberOfItems - 1:
+                converterUrl = selectPs2PdfConverter()
+            default:
+                converterUrl = URL(filePath: sender.stringValue)
+        }
+        
+        setGhostscriptVersion(converterUrl)
+        
+        for converter in GhostscriptVersion.alternativeConverters {
+            if converter.path == sender.stringValue {
+                // set "-o" or "" correctly if it is known!
+                psToPdfParameterComboBox.stringValue = converter.argument
+            }
+        }
+        sender.stringValue = converterUrl.relativePath
+    }
 
 	
 	/// Allows selection of an alternative ps converter in case any other was found
     /// - Parameter sender: Ignored
     @IBAction func changeSettings(_ sender: NSButton) {
-		psToPdfConverterPath = psToPdfConverterPathComboBox.stringValue
+        psToPdfConverter.path = psToPdfConverterPathComboBox.stringValue
 		let argument = psToPdfParameterComboBox.stringValue
-		psToPdfConverterArgument = argument
+        psToPdfConverter.argument = argument
 
-		setConverterPathToPreferences()
+        psToPdfConverter.store()
         SyntaxColors.storeUndoColors()
         settingsWindow.close()
 		NSColorPanel.shared.close()
@@ -848,10 +849,6 @@ class ViewController: NSViewController {
         settingsWindow.close()
     }
     
-    
-    
-
-    
 }
 
 
@@ -859,13 +856,61 @@ extension ViewController: NSWindowDelegate {
 		
 	/// Responds to window delegate to check if file contains non saved changes
 	/// - Parameter sender: Window not used
-	/// - Returns: Allways true
-	@MainActor func windowShouldClose(_ sender: NSWindow) -> Bool {
+	/// - Returns: Always true
+	@MainActor
+    func windowShouldClose(_ sender: NSWindow) -> Bool {
 		Logger.login("", className: className)
 		closeWindow()
 		Logger.logout("", className: className)
 		return true
 	}
+    
+
+}
+
+/// add "Show in Finder" context menu
+extension ViewController {
+    
+    /// Add an event listener to catch right clicks in window title to display context menu
+    func addLocalMonitor(for view: PsEditView) {
+        NSEvent.addLocalMonitorForEvents(matching: .rightMouseDown) { [weak self] event in
+            guard let window = self?.window
+                , event.window == window else {
+                return event
+            }
+            
+            let localPoint = window.contentView?.convert(event.locationInWindow, from: nil)
+            
+            if let point = localPoint, window.contentView?.bounds.contains(point) == false {
+                
+                let menu = NSMenu()
+                var item: NSMenuItem
+                let isKnown = view.psFileUrl.knownToFileManager
+                if isKnown {
+                    item = NSMenuItem(title: "Show in Finder", action: #selector(self!.showInFinder(_:)), keyEquivalent: "")
+                }
+                else {
+                    item = NSMenuItem(title: "File not yet stored", action: nil, keyEquivalent: "")
+                }
+                
+                item.target = self
+                menu.addItem(item)
+
+                menu.popUp(positioning: item, at: point, in: window.contentView)
+            }
+            return event
+        }
+
+    }
+    
+    @objc func showInFinder(_ sender: NSMenuItem) {
+        Logger.write(psTextView.psFileUrl.url.absoluteString)
+        NSWorkspace.shared.activateFileViewerSelecting([psTextView.psFileUrl.url])
+    }
+    
+    
+    
+    
 }
 
 
