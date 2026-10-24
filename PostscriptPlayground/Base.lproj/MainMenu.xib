@@ -844,7 +844,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="518" height="772"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </pdfView>
-                                    <button toolTip="Error in ps file prevented generation of actual pdf" allowsExpansionToolTips="YES" verticalHuggingPriority="750" id="LVk-of-Y9q">
+                                    <button toolTip="Error in ps file prevented generation of actual pdf" allowsExpansionToolTips="YES" verticalHuggingPriority="750" id="LVk-of-Y9q" customClass="AnimatedButton" customModule="PostscriptPlayground" customModuleProvider="target">
                                         <rect key="frame" x="427" y="736" width="80" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="inline" title="Attention" bezelStyle="inline" image="NSCaution" imagePosition="only" alignment="center" alternateImage="NSStopProgressTemplate" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyUpOrDown" inset="2" id="cEa-04-kFP">

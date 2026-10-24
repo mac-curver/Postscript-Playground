@@ -33,90 +33,79 @@ extension Bundle {
 /// Displays a split view with a PS file editor on the left and a pdf output on the right
 ///
 class ViewController: NSViewController {
-
+    
     /// Live editing modes
     enum Mode: Int {
         case RunManually = 0
         case RunAutomatically
         case StopAutomatically
     }
-
+    
     @IBOutlet var window: NSWindow!
     @IBOutlet weak var settingsWindow: NSWindow!
     
     @IBOutlet weak var psToPdfConverterPathComboBox: NSComboBox!
-	@IBOutlet weak var psToPdfParameterComboBox: NSComboBox!
+    @IBOutlet weak var psToPdfParameterComboBox: NSComboBox!
     @IBOutlet weak var ghostscriptVersionTextField: NSTextField!
     @IBOutlet var psTextView: PsEditView!
-	@IBOutlet weak var psScrollView: NSScrollView!
-	@IBOutlet weak var pdfView: ContextPdfView!
+    @IBOutlet weak var psScrollView: NSScrollView!
+    @IBOutlet weak var pdfView: ContextPdfView!
     
     @IBOutlet weak var verticalSplitter: NSSplitView!
-    @IBOutlet weak var attentionButton: NSButton!
+    @IBOutlet weak var attentionButton: AnimatedButton!
     
     @IBOutlet weak var delegate: AppDelegate!
-	
-	@IBOutlet weak var openButton: NSButton!
-	@IBOutlet weak var columnRowLabel: NSTextField!
-	@IBOutlet weak var encodingComboBox: NSComboBox!
-	@IBOutlet weak var helpButton: NSButton!
-	@IBOutlet weak var automaticallyComboBox: NSComboButton!
-	
-	//@IBOutlet weak var syntaxSegmentedControl: NSSegmentedControl!
     
-	    
-	
-	/// Placeholder for the current ps2pdf convert
+    @IBOutlet weak var openButton: NSButton!
+    @IBOutlet weak var columnRowLabel: NSTextField!
+    @IBOutlet weak var encodingComboBox: NSComboBox!
+    @IBOutlet weak var helpButton: NSButton!
+    @IBOutlet weak var automaticallyComboBox: NSComboButton!
+    
+    //@IBOutlet weak var syntaxSegmentedControl: NSSegmentedControl!
+    
+    
+    
+    /// Placeholder for the current ps2pdf convert
     var psToPdfConverter: GhostscriptVersion = GhostscriptVersion()
-	
-	
-	/// Used to call the console with the ps2pdf converter
+    
+    
+    /// Used to call the console with the ps2pdf converter
     var shell = Shell()
     
     /// As side effect the combobox is being adapted
     var autoMode = Mode.RunManually {
         didSet {
             switch autoMode {
-            case .RunManually:
-                automaticallyComboBox.image = NSImage(imageLiteralResourceName: "play.fill")
-                automaticallyComboBox.toolTip = LocalizedString("Click Play to convert").string
-                break
-            case .RunAutomatically:
-                automaticallyComboBox.image = NSImage(imageLiteralResourceName: "play")
-                automaticallyComboBox.toolTip = LocalizedString("Runs in automatic mode").string
-                break
-            case .StopAutomatically:
-                automaticallyComboBox.image = NSImage(imageLiteralResourceName: "stop")
-                automaticallyComboBox.toolTip = LocalizedString("Runs in automatic stop mode").string
-                break
+                case .RunManually:
+                    automaticallyComboBox.image = NSImage(imageLiteralResourceName: "play.fill")
+                    automaticallyComboBox.toolTip = LocalizedString("Click Play to convert").string
+                    break
+                case .RunAutomatically:
+                    automaticallyComboBox.image = NSImage(imageLiteralResourceName: "play")
+                    automaticallyComboBox.toolTip = LocalizedString("Runs in automatic mode").string
+                    break
+                case .StopAutomatically:
+                    automaticallyComboBox.image = NSImage(imageLiteralResourceName: "stop")
+                    automaticallyComboBox.toolTip = LocalizedString("Runs in automatic stop mode").string
+                    break
             }
         }
-	}
-	
-	/*
-	/// Non optional index of the segment syntax control
-	var segmentedSyntax: Int {
-		if nil != syntaxSegmentedControl {
-			return syntaxSegmentedControl.indexOfSelectedItem
-		}
-		else {
-			return -1
-		}
-	}
-	 */
+    }
+    
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         //popupMenu = NSMenu.init(title: "Context")
     }
     
-	
-	/// Returns a version string
-	/// - Returns: Combined version number as String
-	/// ```
-	/// Combines the Bundle version with the PSEditView version into a single
-	/// String.
-	/// ```
+    
+    /// Returns a version string
+    /// - Returns: Combined version number as String
+    /// ```
+    /// Combines the Bundle version with the PSEditView version into a single
+    /// String.
+    /// ```
     func version() -> String {
         """
         Bundle: \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String) \
@@ -124,74 +113,74 @@ class ViewController: NSViewController {
         Editor: \(PsEditView.version)
         """
     }
-	
-	/*
-	 public class let willStartLiveScrollNotification: NSNotification.Name
-	 public class let didLiveScrollNotification: NSNotification.Name
-	 public class let didEndLiveScrollNotification: NSNotification.Name
-	 */
-	 
-	/*
-	/// Register scroll event to ease syntax coloring
-	func registerForNotifications() {
-		NotificationCenter.default.addObserver(self
-			, selector: #selector(handleScrollNotification)
-			, name: NSScrollView.didLiveScrollNotification
-			, object: psScrollView
-		)
-	}
-
-	@objc func handleScrollNotification(_ notification: NSNotification) {
-		// We use a timer here to avoid scrolling to occur slugish
-		//psTextView.invalidateSyntaxTimer()
-		Logger.write("", className: className)
-	}
-	 */
-	
-	fileprivate func setPsToPdfConverterCombobox(_ successPath: String) {
-		
+    
+    /*
+     public class let willStartLiveScrollNotification: NSNotification.Name
+     public class let didLiveScrollNotification: NSNotification.Name
+     public class let didEndLiveScrollNotification: NSNotification.Name
+     */
+    
+    /*
+     /// Register scroll event to ease syntax coloring
+     func registerForNotifications() {
+     NotificationCenter.default.addObserver(self
+     , selector: #selector(handleScrollNotification)
+     , name: NSScrollView.didLiveScrollNotification
+     , object: psScrollView
+     )
+     }
+     
+     @objc func handleScrollNotification(_ notification: NSNotification) {
+     // We use a timer here to avoid scrolling to occur slugish
+     //psTextView.invalidateSyntaxTimer()
+     Logger.write("", className: className)
+     }
+     */
+    
+    fileprivate func setPsToPdfConverterCombobox(_ successPath: String) {
+        
         if psToPdfConverterPathComboBox.numberOfItems > 1 && psToPdfConverter.path.isEmpty {
-			/// Start delayed as otherwise main window hides setting window
-			_ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { timer in
-				self.settingsWindow.makeKeyAndOrderFront(self)
-			}
-		}
-		else {
+            /// Start delayed as otherwise main window hides setting window
+            _ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { timer in
+                self.settingsWindow.makeKeyAndOrderFront(self)
+            }
+        }
+        else {
             psToPdfConverterPathComboBox.stringValue = psToPdfConverter.path
             psToPdfConverterPathComboBox.selectItem(withObjectValue: psToPdfConverter.path)
             psToPdfParameterComboBox.stringValue = psToPdfConverter.argument
             psToPdfParameterComboBox.selectItem(withObjectValue: psToPdfConverter.argument)
-
+            
             psToPdfConverter.store()
             
             if let url = URL(string: successPath) {
                 setGhostscriptVersion(url)
             }
-		}
-	}
-	
-	fileprivate func resetColorsIfNotInitialized() {
-		let preferences = UserDefaults.standard
-		let notEmptyPreferences = preferences.string(forKey: "Initialized") ?? ""
-		if notEmptyPreferences.isEmpty {
-			preferences.set("Initialized", forKey: "Initialized")
-			SyntaxColors.resetAllColors()
-		}
-	}
-	
-	/// Called after IB has been loaded checks whether a ps2Pdf converter is available and is doing
-	/// some initial settings.
-	override func viewDidLoad() {
-		Logger.login(version(), className: className)
-		Logger.write("Test viewDidLoad", className: className)
+        }
+    }
+    
+    fileprivate func resetColorsIfNotInitialized() {
+        let preferences = UserDefaults.standard
+        let notEmptyPreferences = preferences.string(forKey: "Initialized") ?? ""
+        if notEmptyPreferences.isEmpty {
+            preferences.set("Initialized", forKey: "Initialized")
+            SyntaxColors.resetAllColors()
+        }
+    }
+    
+    /// Called after IB has been loaded checks whether a ps2Pdf converter is available and is doing
+    /// some initial settings.
+    override func viewDidLoad() {
+        Logger.login(version(), className: className)
+        Logger.write("Test viewDidLoad", className: className)
+        
         
 
-
+        
         super.viewDidLoad()
-        attentionButton.wantsLayer = true                                       // to allow opacity animation
         psTextView.awakeFromNib()
         addLocalMonitor(for: psTextView)
-
+        
         
         var successPath = ""
         psToPdfConverter.retrieve(successPath, "")
@@ -211,84 +200,38 @@ class ViewController: NSViewController {
                 }
             }
         }
-		
+        
         if successPath.isEmpty {
-            let alert = NSAlert()
-            
-            alert.alertStyle = .critical
-            alert.messageText = String(localized: "No ps to pdf converter could be found")
-            alert.informativeText = String(localized:
-				"InstallGhostScriptKey"
-				, defaultValue: """
-						Please install either the Xcode tools (only Ventura)
-						or alternatively Ghostscript using
-						Macports or Homebrew.
-						The App should be closed now!
-						"""
-				, comment: "Multiline text"
-            )
-            alert.addButton(withTitle: String(localized: "Quit"))
-            alert.addButton(withTitle: String(localized: "Enter ps converter path"))
-            //alert.addButton(withTitle: "Xcode in App Store")
-            //alert.addButton(withTitle: "GS for Mac Ports")
-            //alert.addButton(withTitle: "GS for Homebrew")
-            alert.showsHelp = true
-            let helpAnchor = "Prerequisites"
-            alert.helpAnchor = helpAnchor
-            
-            switch alert.runModal() {
-			case NSApplication.ModalResponse.alertSecondButtonReturn:
-				/// We need at least a single entry
-				psToPdfConverterPathComboBox.addItem(withObjectValue: "")
-				/// Start delayed as otherwise main window hides setting window
-				_ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { timer in
-					self.settingsWindow.makeKeyAndOrderFront(self)
-				}
-
-			/*
-            case NSApplication.ModalResponse.alertSecondButtonReturn:
-                if let url = URL(string: "https://apps.apple.com/de/app/xcode/id497799835?ls=1&mt=12") {
-                    NSWorkspace.shared.open(url as URL)
-                }
-            case NSApplication.ModalResponse.alertThirdButtonReturn:
-                if let url = URL(string: "https://ports.macports.org/port/ghostscript/") {
-                    NSWorkspace.shared.open(url as URL)
-                }
-			 */
-			case NSApplication.ModalResponse.alertFirstButtonReturn:
-				exit(-1)
-            default:
-                //if let url = URL(string: "https://formulae.brew.sh/formula/ghostscript#default") {
-                //    NSWorkspace.shared.open(url as URL)
-                //}
-                exit(-1)
-            }
+            /// Might quit the app
+            GhostscriptVersion.versionAlert(using: self)
         }
         
-		resetColorsIfNotInitialized()
+        resetColorsIfNotInitialized()
         SyntaxColors.storeUndoColors()
         
         attentionButton.isHidden = true
         
-		for encoding in allPossibleEncodings {
-			encodingComboBox.addItem(withObjectValue: encoding.description)
-		}
+        for encoding in allPossibleEncodings {
+            encodingComboBox.addItem(withObjectValue: encoding.description)
+        }
         
         // The following is used only when syntax coloring takes lot of time
-		//registerForNotifications()
-		
+        //registerForNotifications()
+        
         Logger.logout("", className: className)
-
+        
     }
     
     
-    /*
-    override func viewDidAppear() {
-        super.viewDidAppear()
-        // Still too early ?!
-        addAnimationToAttentionButton()
+    func delayedMakeKeyAndOrderFront() {
+        /// We need at least a single entry
+        psToPdfConverterPathComboBox.addItem(withObjectValue: "")
+        /// Start delayed as otherwise main window hides setting window
+        _ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { timer in
+            self.settingsWindow.makeKeyAndOrderFront(self)
+        }
     }
-    */
+    
     
     /// We need this as otherwise the animation does not start
     func didFinishLaunching(appDelegate: AppDelegate) {
@@ -296,7 +239,6 @@ class ViewController: NSViewController {
 		delegate = appDelegate
         psTextView.viewController = appDelegate.viewController                  /// copy the view controller down the hierarchy
 		self.fileNew(NSMenuItem())
-        addAnimationToAttentionButton()
 		Logger.logout("", className: className)
     }
     
@@ -500,7 +442,7 @@ class ViewController: NSViewController {
         Logger.logout("", className: className)
     }
     
-    fileprivate func setGhostscriptVersion(_ url: URL) {
+    private func setGhostscriptVersion(_ url: URL) {
         let pathOnly = url.deletingLastPathComponent().relativePath
         ghostscriptVersionTextField.stringValue = GhostscriptVersion.get(from: pathOnly) ?? "- - -"
     }
@@ -562,15 +504,8 @@ class ViewController: NSViewController {
     /// Opens an alert to display the Postscript error
     /// - Parameter sender: Ignored
     @IBAction func openErrorButtonDisplay(_ sender: NSButton) {
-        let alert = NSAlert()
-        
-        alert.alertStyle = .warning
-        alert.messageText = String(localized: "Postscript file couldn't be converted")
-
-		alert.informativeText = shell.stdout.abbreviate(limitCount: 250, prefix: 200)
-                                + "\n"
-		                        + shell.stderr.abbreviate(limitCount: 250)
-        alert.runModal()
+        attentionButton.stop()
+        GhostscriptVersion.errorAlert(shell: shell)
     }
     
     /// Help button action
@@ -585,14 +520,15 @@ class ViewController: NSViewController {
         default:
             break
         }
-        if let language = language
+        if   let language = language
            , let myFileUrl = Bundle.main.url(
                 forResource:"Postscript PlaygroundHelp"
                 , withExtension: "html"
                 , subdirectory: "HelpFolder/\(language).lproj"
-            ) {
-                NSWorkspace.shared.open(myFileUrl)
-            }
+             )
+        {
+            NSWorkspace.shared.open(myFileUrl)
+        }
         Logger.logout("", className: className)
     }
     
@@ -717,10 +653,12 @@ class ViewController: NSViewController {
         else {
             Logger.write(shell.stdout, className: className)
             Logger.write(shell.stderr, className: className)
+            
+            psTextView.highlightError(shell.stderr)
+                
+            
             attentionButton.isHidden = false
-            //let imageView = NSImageView(image: attentionButton.image!)
-            //imageView.addSymbolEffect(.breathe.pulse.byLayer, options: .repeat(.continuous))
-            //attentionButton.symbolEffect(.breathe.pulse.byLayer, options: .repeat(.continuous))
+            attentionButton.start()
         }
         
         autoFinished()
@@ -746,18 +684,7 @@ class ViewController: NSViewController {
         return FileManager.default.isExecutableFile(atPath: extended)
     }
     
-  
-    /// Adds blinking animation to the attention button
-    func addAnimationToAttentionButton() {
-        let animation = CAKeyframeAnimation.init(keyPath: "opacity")
-        animation.values = [0.0, 0.5, 1.0, 0.5, 0.0]
-        animation.duration = 0.7
-        animation.calculationMode = CAAnimationCalculationMode.cubic
-        animation.repeatCount = .greatestFiniteMagnitude
 
-        attentionButton.layer?.add(animation, forKey: nil)
-    }
-    
 	
 	/*
 	/// Used to show and hide the syntaxSegmentedControl.

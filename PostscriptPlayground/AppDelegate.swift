@@ -206,7 +206,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     /// If just one window and file.
     /// - Parameter sender: Ignored
-    /// - Returns: Allways NO
+    /// - Returns: Always NO
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         return false
     }

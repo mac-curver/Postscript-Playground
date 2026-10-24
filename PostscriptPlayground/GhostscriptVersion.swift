@@ -6,7 +6,7 @@
 //  Copyright (c) 2025 LegoEsprit
 //
 
-import Foundation
+import Cocoa
 
 class GhostscriptVersion {
     
@@ -73,6 +73,90 @@ class GhostscriptVersion {
         }
         
         return nil
+    }
+    
+    static func versionAlert(using vc: ViewController) {
+        let alert = NSAlert()
+        
+        alert.alertStyle = .critical
+        alert.messageText = String(localized: "No ps to pdf converter could be found")
+        alert.informativeText = String(localized:
+            "InstallGhostScriptKey"
+            , defaultValue: """
+                    Please install either the Xcode tools (only Ventura)
+                    or alternatively Ghostscript using
+                    Macports or Homebrew.
+                    The App should be closed now!
+                    """
+            , comment: "Multiline text"
+        )
+        alert.addButton(withTitle: String(localized: "Quit"))
+        alert.addButton(withTitle: String(localized: "Enter ps converter path"))
+        //alert.addButton(withTitle: "Xcode in App Store")
+        //alert.addButton(withTitle: "GS for Mac Ports")
+        //alert.addButton(withTitle: "GS for Homebrew")
+        alert.showsHelp = true
+        let helpAnchor = "Prerequisites"
+        alert.helpAnchor = helpAnchor
+        
+        switch alert.runModal() {
+            case NSApplication.ModalResponse.alertSecondButtonReturn:
+                vc.delayedMakeKeyAndOrderFront()
+                /*
+                 case NSApplication.ModalResponse.alertSecondButtonReturn:
+                 if let url = URL(string: "https://apps.apple.com/de/app/xcode/id497799835?ls=1&mt=12") {
+                 NSWorkspace.shared.open(url as URL)
+                 }
+                 case NSApplication.ModalResponse.alertThirdButtonReturn:
+                 if let url = URL(string: "https://ports.macports.org/port/ghostscript/") {
+                 NSWorkspace.shared.open(url as URL)
+                 }
+                 */
+            case NSApplication.ModalResponse.alertFirstButtonReturn:
+                exit(-1)
+            default:
+                //if let url = URL(string: "https://formulae.brew.sh/formula/ghostscript#default") {
+                //    NSWorkspace.shared.open(url as URL)
+                //}
+                exit(-1)
+        }
+    }
+    
+    static func errorAlert(shell: Shell) {
+        let alert = NSAlert()
+        
+        alert.alertStyle = .warning
+
+        /// Display 1st line with the error message
+        let firstLineRange = shell.stderr.lineRange(for: ..<shell.stderr.startIndex)
+        alert.messageText = String(shell.stderr[firstLineRange])
+
+        alert.informativeText = String(localized: "Postscript file couldn't be converted\n")
+                                 
+        // Create a scrollable text field to widen the view
+        let rect = NSRect(x:0, y: 0, width: 450, height: 150)
+       
+        let scrollView = NSScrollView(frame: rect)
+        scrollView.hasVerticalScroller = true
+
+        let clipView = NSClipView(frame: scrollView.bounds)
+        clipView.autoresizingMask = [.width, .height]
+        clipView.drawsBackground = false
+
+        let textView = NSTextView(frame: clipView.bounds)
+        textView.autoresizingMask = [.width, .height]
+        textView.isEditable = false
+        textView.drawsBackground = false
+
+        textView.string = shell.stdout + "\n"
+                        + shell.stderr[firstLineRange.upperBound...]
+
+        clipView.documentView = textView
+        scrollView.contentView = clipView
+
+        alert.accessoryView = scrollView
+        alert.runModal()
+
     }
     
     /// Retrieve from preferences

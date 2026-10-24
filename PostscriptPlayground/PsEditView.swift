@@ -11,6 +11,7 @@
 import os.log
 import Cocoa
 import UniformTypeIdentifiers
+import RegexBuilder
 //import Carbon.HIToolbox
 
 /// Here all useful encodings are listed - I got some ps files from PC with different encoding
@@ -174,7 +175,7 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
 	}
 	
 	/// Respond to changes of the syntax segmented control
-	/// - Parameter sender: Segemented control for 3 syntax algos
+	/// - Parameter sender: Segmented control for 3 syntax algos
 	/// ```
 	/// This very likely will be removed later, when the most effective
 	/// version has been identified!
@@ -213,6 +214,45 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
         isRulerVisible = sender.state == .on
     }
     
+    func selectWord(before position: Int) {
+        let stringLength = (string as NSString).length
+        
+        // Ensure position is valid and there is at least one character before it
+        guard position > 0, position <= stringLength else { return }
+        
+        // Target the character immediately preceding the position
+        let targetIndex = position - 1
+        let proposedRange = NSRange(location: targetIndex, length: 0)
+        
+        // Ask NSTextView to expand that position to the full word range
+        let wordRange = selectionRange(forProposedRange: proposedRange, granularity: .selectByWord)
+        
+        // Apply the selection
+        if wordRange.location != NSNotFound {
+            setSelectedRange(wordRange)
+            scrollRangeToVisible(wordRange)
+        }
+    }
+    
+    func highlightError(_ stderr: String) {
+        let locationRegEx = Regex {
+            ZeroOrMore {
+                /./
+            }
+            "file position is "
+            Capture {
+                OneOrMore(.digit)
+            }
+        }
+        
+        if let match = stderr.firstMatch(of: locationRegEx)
+            , let location = Int(match.1) {
+            selectWord(before: location-1)
+        }
+    }
+
+
+    
     /// Overwritten prepareForDragOperation for drop operation
     /// - parameter sender:             The `NSDraggingInfo` from the sender.
     /// - returns:                      `true` if we accept the drop otherwise `false`.
@@ -248,6 +288,7 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
         return NSDragOperation()
 
     }
+    
 	
 
     /// draggingEntered returns the .copy if file extension is .ps

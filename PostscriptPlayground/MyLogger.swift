@@ -58,6 +58,13 @@ import Foundation
 ///Logger.write("I'm not running in DEBUG mode")
 ///#endif
 
+extension Substring {
+    
+    func abbreviate(limitCount: Int, prefix minCount: Int = 5) -> String {
+        return String(self).abbreviate(limitCount: limitCount, prefix: minCount)
+    }
+
+}
 
 extension String {
 	/// Avoids the conversion to URL.
@@ -70,7 +77,6 @@ extension String {
 		return self[pointIndex...]
 	}
 	
-		
 	func abbreviate(limitCount: Int, prefix minCount: Int = 5) -> String {
 		if count > limitCount + 1 {
 			var begin = startIndex
@@ -84,7 +90,6 @@ extension String {
 			return self
 		}
 	}
-
 
 }
 
