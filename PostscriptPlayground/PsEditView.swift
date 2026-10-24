@@ -185,7 +185,19 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
 		assignSyntaxColors()
 	}
 	
-	/// awakeFromNib initializes a monospaced font for the .ps text editor
+    @IBAction func changeIncrementalSearch(_ sender: NSMenuItem) {
+        switch sender.state {
+            case .on:
+                sender.state = .off
+            default:
+                sender.state = .on
+        }
+        isIncrementalSearchingEnabled = sender.state == .on
+
+        print("\(sender.state)")
+    }
+    
+    /// awakeFromNib initializes a monospaced font for the .ps text editor
     override func awakeFromNib() {
         Logger.login("", className: className)
         font = NSFont(name: "Monaco", size: 11)

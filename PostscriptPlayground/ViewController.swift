@@ -16,6 +16,7 @@ import Cocoa
 import UniformTypeIdentifiers
 import Symbols
 import os.log
+import PDFKit
 
 
 
@@ -631,6 +632,8 @@ class ViewController: NSViewController {
     /// Here the real magic happens. This method calls the ps2Pdf converter command line tool.
     func convertPsToPdf() {
         Logger.login("", className: className)
+        //pdfView.storeFrame()
+        
         autoStarting()
 
         window.title = psTextView.psFileUrl.url.lastPathComponent
@@ -648,7 +651,8 @@ class ViewController: NSViewController {
 
         if shell.stderr.isEmpty {
             attentionButton.isHidden = true
-            pdfView.openTempFileUrlAsPdf();
+            pdfView.openTempFileUrlAsPdf()
+            //pdfView.retrieveFrame()
         }
         else {
             Logger.write(shell.stdout, className: className)

@@ -7,10 +7,10 @@
 //  Created by LegoEsprit on 25.03.23.
 //
 //  Requirements:
-//  Syntax coloring after paste
-//  Column editing
-//  Zoom position should remain after re-draw
-//  Monitor ghostscript version
+//  Syntax coloring after paste ✓
+//  Column editing ✓
+//  Zoom position should remain after re-draw ✓
+//  Monitor ghostscript version ✓
 //
 // Minimum Deployment version set to 13.0 as otherwise Combobox is not available
 // Sandboxing not possible as on client systems the ps to pdf converters

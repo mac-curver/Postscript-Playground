@@ -2,11 +2,12 @@
 //  ContextPdfView.swift
 //  SimplePsViewer
 //
+//  Changed by LegoEsprit 2026-10-24 Zoom and offset stay constant
 //  Changed by LegoEsprit 2024-12-27 New GIT version
 //  Created by LegoEsprit on 29.04.23.
 //
 import os.log
-import Foundation
+import Cocoa
 import PDFKit
 import UniformTypeIdentifiers
 
@@ -110,6 +111,16 @@ extension URL {
 }
  */
 
+extension NSView {
+    var scrollView: NSScrollView? {
+        if let scrollView = self as? NSScrollView { return scrollView }
+        for subview in subviews {
+            if let found = subview.scrollView { return found }
+        }
+        return nil
+    }
+}
+
 /// Overwritten pdf view for loading and saving pdf files
 class ContextPdfView: PDFView, SaveAsProtocol {
     
@@ -118,6 +129,9 @@ class ContextPdfView: PDFView, SaveAsProtocol {
     
 	/// empty pdf path
     var pdfUrl: URL = URL.create_fallback(path: "Untitled")
+    
+    var currentScale = 1.0
+    var currentOrigin = NSPoint()
     
 	/// temp file to store the pdf - Only directly writable path in Sandbox
 	private var _tempFileUrl: URL? = nil
@@ -155,13 +169,18 @@ class ContextPdfView: PDFView, SaveAsProtocol {
 	func clearPdf() {
 		document = PDFDocument()
 	}
+    
+
 
     
     
     /// Used to re-open the temp file as PDF document
+    /// Using store- and retrieveFrame the scale and origin are kept the same
     func openTempFileUrlAsPdf() {
+        storeFrame()
         let outFile = tempFileUrl
 		document = PDFDocument(url: outFile)
+        retrieveFrame()
     }
     
     
@@ -205,6 +224,24 @@ class ContextPdfView: PDFView, SaveAsProtocol {
     /// - Parameter sender: Sender not used
     @IBAction func savePdfAs(_ sender: NSMenuItem) {
         savePdfAsPrivate()
+    }
+    
+    
+    func storeFrame() {
+        guard let scrollView = scrollView else {
+            return
+        }
+        currentScale = scaleFactor
+        currentOrigin = scrollView.contentView.bounds.origin
+    }
+    
+    func retrieveFrame() {
+        guard let scrollView = scrollView else {
+            return
+        }
+        scaleFactor = currentScale
+        documentView?.scroll(currentOrigin)
+        scrollView.reflectScrolledClipView(scrollView.contentView)
     }
 	
 	/*

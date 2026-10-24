@@ -245,6 +245,12 @@
                                                 <action selector="centerSelectionInVisibleArea:" target="-1" id="IOG-6D-g5B"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Use Incremental Search" state="on" preferredImageVisibility="visible" id="gBY-ZO-8BN">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="changeIncrementalSearch:" target="-1" id="8DG-g5-LKe"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>
@@ -762,6 +768,9 @@
                                                     <size key="minSize" width="467" height="748"/>
                                                     <size key="maxSize" width="1200" height="10000000"/>
                                                     <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                    <allowedInputSourceLocales>
+                                                        <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                                    </allowedInputSourceLocales>
                                                 </textView>
                                             </subviews>
                                         </clipView>
