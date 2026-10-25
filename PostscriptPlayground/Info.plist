@@ -15,22 +15,30 @@
 			<array>
 				<string>com.adobe.postscript</string>
 			</array>
-			<key>NSDocumentClass</key>
-			<string>NSDocument</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeName</key>
 			<string>Pdf</string>
 			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
+			<string>Viewer</string>
 			<key>LSHandlerRank</key>
 			<string>Default</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>com.adobe.pdf</string>
 			</array>
-			<key>NSDocumentClass</key>
-			<string>NSDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>Eps</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Default</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.adobe.encapsulated-postscript</string>
+			</array>
 		</dict>
 	</array>
 	<key>CFBundleHelpBookFolder</key>

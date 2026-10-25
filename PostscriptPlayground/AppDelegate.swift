@@ -25,6 +25,10 @@ sudo log stream --predicate 'subsystem == "de.LegoEsprit.Postscript-Playground"'
 // class, but using the NSSecureUnarchiver makes the preference unreadable
 // for humans.
 
+/// Must be deleted from info.plist as otherwise mac os interprets it as Document app!:
+/// <key>NSDocumentClass</key>
+/// <string>NSDocument</string>
+   
 import os.log
 import Cocoa
 
@@ -62,7 +66,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		recentMenu.addItem(clearItem!)
 	}
 	
-
     
 
     /// Called when opening the app by file click
@@ -76,6 +79,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	///   for the first time we directly open the file as otherwise it
 	///   might happen, that we mix up the files!
 	///   ```
+    ///   To debug this you need to edit the scheme -> Run
+    ///   Build Configuration: Debug
+    ///   ...
+    ///   Launch: Wait for the executable to be launced
+    ///
     func application(_ application: NSApplication, open urls: [URL]) {
         
 		
@@ -129,6 +137,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
         //titleWindowController.showWindow(self)
+        UserDefaults.standard.set(true, forKey: "NSAutosavesInPlace")
+
         
         print("$$$$$")
         for (key, value) in Bundle.main.infoDictionary! {
@@ -210,6 +220,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         return false
     }
+    
 	
 	/// Open a sample file from the menu.
 	/// - Parameter sender: Menu item used to retrieve the name of the example file.
@@ -223,7 +234,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		viewController.openRecentFile(sender: sender)
 	}
     
-    /// Not understood why we need it, but added accordinmg to run-time warning
+    /// Not understood why we need it, but added according to run-time warning
     /// - Parameter app: Obviously this app?
     /// - Returns: Always true
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
@@ -294,6 +305,11 @@ extension AppDelegate: NSMenuDelegate {
         menu.items[1].isHidden = !NSEvent.modifierFlags.contains(.control)
         Logger.logout("", className: className)
     }
+    
+}
+
+extension AppDelegate {
+    
     
 }
 
