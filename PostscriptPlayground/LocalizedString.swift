@@ -30,8 +30,8 @@ struct LocalizedString {
     /// Currently only the localization available with macOS12 and above is supported
     /// One issue is, that text applied here is not automatically added to Localizable.xcstrings
     /// - Parameter text: Text to be translated
-    /// - Parameter defaultValue: <#parameter description#>
-    /// - Parameter comment: <#parameter description#>
+    /// - Parameter defaultValue: default or not used
+    /// - Parameter comment: translator comment or not used
     init(_ text: StaticString, defaultValue: String = "", comment: StaticString = "") {
         if #available(macOS 12.0, *) {
             string = String(localized: text

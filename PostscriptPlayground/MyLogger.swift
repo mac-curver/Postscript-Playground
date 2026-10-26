@@ -2,6 +2,7 @@
 //  MyLogger.swift
 //  SimplePsViewer
 //
+//  Changed by LegoEsprit 2026-10-26 "," removed from output; logs only in debug!
 //  Changed by LegoEsprit 2024-12-27 New GIT version
 //  Changed by LegoEsprit 2024-01-27 Message abbreviation added
 //  Created by LegoEsprit 2023-05-06
@@ -156,21 +157,23 @@ extension Logger {
         let name = name(className: className, file: file)
         
         #if DEBUG
-        let myLevel = OSLogType.default
-        #else
-        let myLevel = level
-        #endif
-
-        Logger.main.log(level: myLevel,
+        
+        Logger.main.log(level: level,
                   //  v--- must be all at same column!
                   """
                   \(fill, privacy: .public)\
                   \(thread, privacy: .public)\(name, privacy: .public)\
-                  \(function, privacy: .public),\
-                   \(shortMessage(message), privacy: .public)
+                  \(function, privacy: .public) \
+                  \(shortMessage(message), privacy: .public)
                   """
                   //  ^--- must be all at same column!
         )
+
+        #else
+        
+        //let myLevel = level
+
+        #endif
         
     }
 

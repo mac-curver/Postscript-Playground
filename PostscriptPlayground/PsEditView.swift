@@ -115,7 +115,8 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
 	let expectedExtension = ["ps"]
 	/// The postscript unified type identifier is required for storage
     let postScriptUTType = UTType("com.adobe.postscript")!
-    
+    let epsUTType = UTType("com.adobe.encapsulated-postscript")!
+
     /// Timer used for automatic conversion and delayed syntax highlighting
 	var timer: Timer = Timer()
 	//var syntaxTimer: Timer = Timer()
@@ -123,10 +124,13 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
 	/// Url for the .ps text file
 	var psFileUrl: FileUrl
 	/// Default path to store the .ps text file from save dialog
+    /*
     let homeDir = FileManager.default.urls(
         for: FileManager.SearchPathDirectory.documentDirectory
         , in: FileManager.SearchPathDomainMask.userDomainMask
     ).first!
+     */
+    let homeDir = FileManager.default.homeDirectoryForCurrentUser
 
     /// true whenever changes were applied
     var saved = true
@@ -174,6 +178,7 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
 		_ = openFileWithEncoding(encoding, showAlert: true)
 	}
 	
+    /*
 	/// Respond to changes of the syntax segmented control
 	/// - Parameter sender: Segmented control for 3 syntax algos
 	/// ```
@@ -184,7 +189,10 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
 		textStorage?.removeAttribute(.foregroundColor, range: NSMakeRange(0, string.count-1))
 		assignSyntaxColors()
 	}
-	
+     */
+    
+    /// Change incremental search for the NSTExtView
+    /// - Parameter sender: Value from the menu item un-/checked
     @IBAction func changeIncrementalSearch(_ sender: NSMenuItem) {
         switch sender.state {
             case .on:
@@ -197,6 +205,7 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
         print("\(sender.state)")
     }
     
+    
     /// awakeFromNib initializes a monospaced font for the .ps text editor
     override func awakeFromNib() {
         Logger.login("", className: className)
@@ -206,25 +215,47 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
 
         Logger.logout("", className: className)
     }
-	
-    
-	/// setPathes calculates the pdf and ps pathes from a root `URL`
-	/// - parameter urlForPrefix:           The  root `URL` for the pdf or ps.
-	/// - parameter known: 	True if already opened with a open or save dialog to allow to
-	/// 					cope with Apple security
-    func setPathes(urlForPrefix: URL, known: Bool) {
-        Logger.login("\(urlForPrefix)", level: OSLogType.default, className: className)
-        let pathPrefix = urlForPrefix.deletingPathExtension()
-        let url: URL = pathPrefix.appendingPathExtension("ps")
-        psFileUrl = FileUrl(url: url, knownToFileManager: known)
-        Logger.logout("\(psFileUrl)", level: OSLogType.default, className: className)
-    }
-	
+
 	/// showRuler Displays or removes ruler according to menu item state
 	/// - Parameter sender: The menu item with checkmark
     @IBAction func showRuler(_ sender: NSMenuItem) {
         isRulerVisible = sender.state == .on
     }
+    
+    
+    override func menu(for event: NSEvent) -> NSMenu? {
+        // Fetch the standard system menu items (Copy, Paste, Font, etc.)
+        guard let contextMenu = super.menu(for: event) else { return nil }
+        if psFileUrl.knownToFileManager {
+            
+            // Add a separator line to isolate custom actions
+            contextMenu.addItem(NSMenuItem.separator())
+            
+            contextMenu.addItem("Show in Finder"
+                                , action: #selector(viewController.showInFinder(_:))
+                                , with: viewController
+                                , symbol: NSImage(systemSymbolName: "folder", accessibilityDescription: nil)
+            )
+        }
+        
+        return contextMenu
+    }
+        
+    
+    /// setPathes calculates the pdf and ps pathes from a root `URL`
+    /// - parameter urlForPrefix:The  root `URL` for the pdf or ps.
+    /// - parameter known:     True if already opened with a open or save dialog to allow to
+    ///                     cope with Apple security
+    /// Changed to keep the extension - may be obsolete now
+    func setPathes(urlForPrefix: URL, known: Bool) {
+        Logger.login("\(urlForPrefix)", level: OSLogType.default, className: className)
+        //let pathPrefix = urlForPrefix.deletingPathExtension()
+        //let url = pathPrefix.appendingPathExtension("ps")
+        //psFileUrl = FileUrl(url: url, knownToFileManager: known)
+        psFileUrl = FileUrl(url: urlForPrefix, knownToFileManager: known)
+        Logger.logout("\(psFileUrl)", level: OSLogType.default, className: className)
+    }
+    
     
     func selectWord(before position: Int) {
         let stringLength = (string as NSString).length
@@ -264,109 +295,7 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
     }
 
 
-    
-    /// Overwritten prepareForDragOperation for drop operation
-    /// - parameter sender:             The `NSDraggingInfo` from the sender.
-    /// - returns:                      `true` if we accept the drop otherwise `false`.
-    override func prepareForDragOperation(_ sender: NSDraggingInfo) -> Bool {
-        return checkExtension(sender) == .copy
-    }
-
-    /// checkExtension returns the .copy if file extension is .ps
-    ///
-    /// - parameter dragInfo:           The drag infor from the system.
-    /// - returns:                      .copy if the file exstension is .ps
-    fileprivate func checkExtension(_ dragInfo: NSDraggingInfo) -> NSDragOperation {
-        guard let board = dragInfo.draggingPasteboard.propertyList(
-            forType: filenamesPboardType) as? NSArray,
-              let path = board[0] as? String
-        else {
-            return NSDragOperation()
-        }
-        do {
-            let url = URL(filePath: path)
-            let resolved = try URL(resolvingAliasFileAt: url, options: [])
-            let suffix = resolved.pathExtension
-            
-            if expectedExtension.contains(suffix) {
-                return .copy
-            } else {
-                return NSDragOperation()
-            }
-        }
-        catch {
-            
-        }
-        return NSDragOperation()
-
-    }
-    
-	
-
-    /// draggingEntered returns the .copy if file extension is .ps
-    /// - parameter dragInfo:               The drag info from the system.
-    /// - returns:                          See checkExtension
-    ///
-    /// ```
-	/// Running in the main thread. Unfortunately checking the extension
-    /// here does not work completely, therefore we need to overwrite
-    /// also draggingUpdated!
-	/// ```
-    @MainActor
-    override func draggingEntered(_ dragInfo: NSDraggingInfo) -> NSDragOperation {
-        return checkExtension(dragInfo)
-    }
-
-    
-    /// Does not help!
-    /// draggingUpdated returns the .copy if file extension is .ps
-    /// - parameter dragInfo:               The drag info from the system.
-    /// - returns:                          See checkExtension
-    /// ```
-    /// Continously called during drag operation in the main thread.
-	/// ```
-    @MainActor
-    override func draggingUpdated(_ dragInfo: NSDraggingInfo) -> NSDragOperation {
-        return checkExtension(dragInfo)
-    }
-
-
-
-    /// performDragOperation performs the drag operation
-    /// Continously  called during drag operation in the main thread.
-    /// - Parameter dragInfo:               The drag info from the system.
-    /// - Returns: true if drag finished successfully
-    @MainActor
-	override func performDragOperation(_ dragInfo: NSDraggingInfo) -> Bool {
-		Logger.login("", className: className)
-				
-		guard
-			let pasteboard =
-				dragInfo.draggingPasteboard.propertyList(
-					forType: filenamesPboardType
-				) as? NSArray
-			, let path = pasteboard.lastObject as? String
-		else {
-			Logger.logout("", className: className)
-			return false
-		}
-		let url = URL(filePath: path)
-        do {
-            let resolved = try URL(resolvingAliasFileAt: url, options: [])
-            
-            viewController?.openFileUrl(resolved)
-            if pasteboard.count > 1 {
-                viewController?.tooManyFilesAlert()
-            }
-            viewController?.convertPsToPdf()
-        }
-        catch {
-            Logger.write(error.localizedDescription, className: className)
-        }
-		Logger.logout("", className: className)
-		return true
-	}
-    
+ 
     /// Find row and column for selection start
     /// Checks indexStarts for the index of the start larger than the selected position and
     /// calculates the distance between the previous line start.
@@ -480,15 +409,15 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
     /// more complicated to use as for example NSTextView.selectedRange returns an NSRange
     /// and therefore must be converted to Range<String.Index>.
     func indexStartsByLineRange() -> [String.Index] {
-        /*
-         // Convert Range<String.Index> to NSRange:
-         let range   = s[s.startIndex..<s.endIndex]
-         let nsRange = NSRange(range, in: s)
+        
+        // // Convert Range<String.Index> to NSRange:
+        // let range   = s[s.startIndex..<s.endIndex]
+        // let nsRange = NSRange(range, in: s)
+        //
+        // // Convert NSRange to Range<String.Index>:
+        // let nsRange = NSMakeRange(0, 4)
+        // let range   = Range(nsRange, in: s)
          
-         // Convert NSRange to Range<String.Index>:
-         let nsRange = NSMakeRange(0, 4)
-         let range   = Range(nsRange, in: s)
-         */
         //let start = ProcessInfo.processInfo.systemUptime;
         var indexStarts:[String.Index] = []
 
@@ -526,10 +455,12 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
     /// - Parameter selected: Not yet used!
     /// - Returns: Result of the dialog - particularly the case when the user cancels must be detected
     func runOpenPanel(_ inFile: inout URL, with selected: String = "")->NSApplication.ModalResponse {
-        Logger.login("", className: className)
+        Logger.login("\(inFile.deletingLastPathComponent().path(percentEncoded: false))", className: className)
         let openPanel = NSOpenPanel()
             
         let openMessage = String(localized: "Please choose a .ps file to be converted to pdf")
+        let startDirectory = inFile.deletingLastPathComponent()
+        
         openPanel.message                 = openMessage
         openPanel.showsResizeIndicator    = true
         openPanel.showsHiddenFiles        = false
@@ -537,8 +468,8 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
         openPanel.canChooseDirectories    = false
         openPanel.canCreateDirectories    = false
         openPanel.allowsMultipleSelection = false
-        openPanel.allowedContentTypes     = [postScriptUTType]
-        openPanel.directoryURL            = inFile.deletingLastPathComponent()
+        openPanel.allowedContentTypes     = [postScriptUTType, epsUTType]
+        openPanel.directoryURL            = startDirectory
         openPanel.nameFieldStringValue    = inFile.lastPathComponent
         
         Logger.write("\(openPanel.nameFieldLabel ?? "None"), \(openPanel.nameFieldStringValue)", className: className)
@@ -575,7 +506,7 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
 					"""
         }
 		
-		setPathes(urlForPrefix: URL(filePath: "Untitled.ps"), known: false)
+        setPathes(urlForPrefix: psFileUrl.url, known: false)
 		assignSyntaxColors()
     }
     
@@ -584,8 +515,8 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
     /// - Returns: True if not canceled
     func openFileWithOpenDialog(selected: String) -> URL? {
     
-        var resultUrl:URL = psFileUrl.url
-
+        var resultUrl = psFileUrl.url
+        Logger.write(selected, className: className)
         let response = runOpenPanel(&resultUrl, with: selected)
         switch response {
         case NSApplication.ModalResponse.OK:
@@ -915,9 +846,187 @@ class PsEditView: NSTextView /* see protocol extensions below*/ {
 		super.draw(dirtyRect)
 		
 	}
-	 
-	 */
+    */
 }
+
+/// Some parts corrected using Gemini
+extension PsEditView/*: NSDraggingSource, NSDraggingDestination */ { // drag and drop
+    
+    /*
+    /// Overwritten prepareForDragOperation for drop operation
+    /// - parameter sender:             The `NSDraggingInfo` from the sender.
+    /// - returns:                      `true` if we accept the drop otherwise `false`.
+    override func prepareForDragOperation(_ sender: NSDraggingInfo) -> Bool {
+        return checkExtension(sender) == .copy
+    }
+    
+    /// checkExtension returns the .copy if file extension is .ps
+    ///
+    /// - parameter dragInfo:           The drag info from the system.
+    /// - returns:                      .copy if the file extension is .ps
+    fileprivate func checkExtension(_ dragInfo: NSDraggingInfo) -> NSDragOperation {
+        guard let board = dragInfo.draggingPasteboard.propertyList(
+            forType: filenamesPboardType) as? NSArray,
+              let path = board[0] as? String
+                else {
+            return .copy
+        }
+        do {
+            let url = URL(filePath: path)
+            let resolved = try URL(resolvingAliasFileAt: url, options: [])
+            let suffix = resolved.pathExtension
+            
+            if expectedExtension.contains(suffix) {
+                return .copy
+            } else {
+                return NSDragOperation()
+            }
+        }
+        catch {
+            
+        }
+        return NSDragOperation()
+    }
+    */
+    
+    
+    /// draggingEntered returns the .copy if file extension is .ps
+    /// - parameter dragInfo:               The drag info from the system.
+    /// - returns:                          .copy or []
+    ///
+    @MainActor
+    override func draggingEntered(_ dragInfo: NSDraggingInfo) -> NSDragOperation {
+        let pb = dragInfo.draggingPasteboard
+        
+        if     pb.canReadObject(forClasses: [NSURL.self], options: nil)
+            || pb.canReadObject(forClasses: [NSString.self], options: nil) {
+            return .copy
+        }
+        
+        return []
+    }
+    
+    
+    /// draggingUpdated returns the .copy if file extension is .ps
+    /// - parameter dragInfo:               The drag info from the system.
+    /// - returns:                          See checkExtension
+    /// ```
+    /// Continuously called during drag operation in the main thread.
+    /// ```
+    @MainActor
+    override func draggingUpdated(_ dragInfo: NSDraggingInfo) -> NSDragOperation {
+        // Optional: Updates the text insertion caret visually under the mouse pointer
+         
+        // Call super first! This tells AppKit to draw the native blue caret/insertion highlight
+        // automatically based on where the mouse is hovering.
+        let allowedOperation = super.draggingUpdated(dragInfo)
+            
+        // If super handles text positioning, we can just return our desired operation
+        if allowedOperation != [] {
+            return allowedOperation
+        }
+        // May be here we should check whether file drop is allowed?
+        return .copy
+    }
+    
+
+
+    
+    /// performDragOperation performs the drag operation
+    /// Continuously  called during drag operation in the main thread.
+    /// - Parameter dragInfo:               The drag info from the system.
+    /// - Returns: true if drag finished successfully
+    @MainActor
+    override func performDragOperation(_ dragInfo: NSDraggingInfo) -> Bool {
+        
+        let pasteboard = dragInfo.draggingPasteboard
+        
+        // 1. Check for File URLs first -> Execute Complete Replacement
+        if let fileURLs = pasteboard.readObjects(forClasses: [NSURL.self], options: nil) as? [URL],
+           !fileURLs.isEmpty {
+            
+            self.handleFileReplacement(with: fileURLs)
+            return true
+        }
+        
+        // 2. Fallback to Text Chunks
+        if let text = pasteboard.string(forType: .string) {
+            let dropIndex = convertDropIndexLocation(dragInfo.draggingLocation)
+            // Fallback to the current selection if index is invalid
+            let targetIndex = (dropIndex == NSNotFound) ? self.selectedRange().location : dropIndex
+
+            self.handleTextChunkInsertion(text, at: targetIndex)
+            return true
+        }
+        
+        return false
+
+    }
+    
+    func handleFileReplacement(with fileURLs: [URL]) {
+        // Read file contents (Example assuming plain text files)
+        guard let url = fileURLs.first
+                else { return }
+        do {
+            let resolved = try URL(resolvingAliasFileAt: url, options: [])
+            
+            viewController?.openFileUrl(resolved)
+            if fileURLs.count > 1 {
+                viewController?.tooManyFilesAlert()
+            }
+            viewController?.convertPsToPdf()
+        }
+        catch {
+            Logger.write(error.localizedDescription, className: className)
+        }
+    }
+
+    
+    private func handleTextChunkInsertion(_ text: String, at index: Int) {
+        guard let textStorage = self.textStorage else { return }
+        
+        // Safely bounds check the index
+        let safeIndex = min(max(0, index), textStorage.length)
+        let insertionRange = NSRange(location: safeIndex, length: 0)
+        
+        // Insert inside the undo manager block so Cmd+Z works automatically
+        if self.shouldChangeText(in: insertionRange, replacementString: text) {
+            textStorage.replaceCharacters(in: insertionRange, with: text)
+            self.didChangeText()
+            
+            // Move selection cursor to the end of the newly inserted text chunk
+            self.setSelectedRange(NSRange(location: safeIndex + text.count, length: 0))
+        }
+    }
+    
+    func convertDropIndexLocation(_ draggingLocation: NSPoint) -> Int {
+        // Convert the dragging location from the window's coordinate system into the local view space
+        let point = self.convert(draggingLocation, from: nil)
+
+        // Step 1: Ensure the Layout Manager and Text Container exist
+        if let layoutManager = self.layoutManager
+         , let textContainer = self.textContainer {
+            
+            // Step 2: Account for the internal text padding offset (margin) of the text container
+            let containerOrigin = self.textContainerOrigin
+            let localPoint = NSPoint(x: point.x - containerOrigin.x, y: point.y - containerOrigin.y)
+            
+            // Step 3: Find the exact character index under the mouse coordinate [1]
+            let dropIndex = layoutManager.characterIndex(
+                  for: localPoint
+                , in: textContainer
+                , fractionOfDistanceBetweenInsertionPoints: nil
+            )
+            
+            // Now you can safely use 'dropIndex' for your selection or insertion!
+            return dropIndex
+        }
+        return 0
+    }
+
+    
+}
+
 
 /// PsEditView extension for NSTextViewDelegate protocol
 extension PsEditView: NSTextViewDelegate {

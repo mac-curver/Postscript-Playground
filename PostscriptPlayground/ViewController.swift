@@ -806,28 +806,31 @@ extension ViewController {
     func addLocalMonitor(for view: PsEditView) {
         NSEvent.addLocalMonitorForEvents(matching: .rightMouseDown) { [weak self] event in
             guard let window = self?.window
-                , event.window == window else {
+                    , let contentView = window.contentView
+                    , event.window == window else {
                 return event
             }
             
-            let localPoint = window.contentView?.convert(event.locationInWindow, from: nil)
+            let localPoint = contentView.convert(event.locationInWindow, from: nil)
             
-            if let point = localPoint, window.contentView?.bounds.contains(point) == false {
+            if !contentView.bounds.contains(localPoint) {
                 
                 let menu = NSMenu()
-                var item: NSMenuItem
                 let isKnown = view.psFileUrl.knownToFileManager
                 if isKnown {
-                    item = NSMenuItem(title: "Show in Finder", action: #selector(self!.showInFinder(_:)), keyEquivalent: "")
+                    menu.addItem("Show in Finder"
+                                 , action: #selector(self!.showInFinder(_:))
+                                 , with: self
+                    )
                 }
                 else {
-                    item = NSMenuItem(title: "File not yet stored", action: nil, keyEquivalent: "")
+                    menu.addItem("File not yet stored"
+                                 , action: nil
+                                 , with: self
+                    )
                 }
                 
-                item.target = self
-                menu.addItem(item)
-
-                menu.popUp(positioning: item, at: point, in: window.contentView)
+                menu.popUp(positioning: menu.item(at: 0), at: localPoint, in: window.contentView)
             }
             return event
         }

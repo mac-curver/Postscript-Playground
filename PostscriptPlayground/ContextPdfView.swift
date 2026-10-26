@@ -141,6 +141,7 @@ class ContextPdfView: PDFView, SaveAsProtocol {
 		}
 		return _tempFileUrl!
 	}
+    
 
     
     /// Copies the name and sets pdf as extension to propose a correct name for the pdf
@@ -156,11 +157,33 @@ class ContextPdfView: PDFView, SaveAsProtocol {
     /// - Parameter event: Not used
     /// - Returns: NSMenuItem for the added "Save as..." item
     override func menu(for event: NSEvent) -> NSMenu? {
-        let contextMenu = super.menu(for: event)
-        contextMenu?.addItem(withTitle: "Save PDF as ..."
-                             , action: #selector(savePdfAsPrivate)
-                             , keyEquivalent: ""
-                     )
+        guard let contextMenu = super.menu(for: event) else { return nil }
+
+        //let saveAsItem = NSMenuItem(
+        //    title: "Save PDF as ..."
+        //    , action: #selector(savePdfAsPrivate)
+        //    , keyEquivalent: ""
+        //)
+        //saveAsItem.target = self
+        contextMenu.addItem("Save PDF as ..."
+                            , action: #selector(savePdfAsPrivate)
+                            , with: self
+                            , symbol: NSImage(systemSymbolName: "tray.and.arrow.down", accessibilityDescription: nil)
+        )
+
+        
+        //let printViewItem = NSMenuItem(
+        //    title: "Print ..."
+        //    , action: #selector(printView(_:))
+        //    , keyEquivalent: ""
+        //)
+        //printViewItem.target = self
+        //contextMenu.addItem(printViewItem)
+        contextMenu.addItem("Print ..."
+                            , action: #selector(printView(_:))
+                            , with: self
+                            , symbol: NSImage(systemSymbolName: "printer", accessibilityDescription: nil)
+        )
         
         return contextMenu
     }
@@ -219,6 +242,16 @@ class ContextPdfView: PDFView, SaveAsProtocol {
         }
         Logger.logout("", className: className)
     }
+    
+    /*
+    @objc func printPdf() {
+        Logger.login(pdfUrl.path_fallback, className: className)
+        var pdfFile = pdfUrl
+        
+        Logger.logout("", className: className)
+    }
+     */
+    
     
     /// Save from menu item
     /// - Parameter sender: Sender not used
